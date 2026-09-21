@@ -1,0 +1,8 @@
+name = "leon-at"
+main = "src/worker.js"
+compatibility_date = "2024-09-23"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "leon-page-db"
+database_id = "e9be5ba2-127a-46eb-b59e-df3eab06c7d4"
