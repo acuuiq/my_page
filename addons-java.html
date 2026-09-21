@@ -48,27 +48,8 @@
     </div>
 
     <section class="filter-section">
-      <div class="cards-grid" id="cardsGrid">
-        <!-- ===== مود: متجر متكامل ===== -->
-        <a
-          href="https://www.mediafire.com/file/puz9qcuww9lxadh/server-shop-1.0.jar/file"
-          target="_blank"
-          class="card"
-          data-category="mods"
-        >
-          <div class="card-image">
-            <img src="images/mod1.jpg" alt="متجر متكامل" />
-            <span class="card-badge">جديد</span>
-          </div>
-          <div class="card-body">
-            <h3>متجر متكامل</h3>
-            <p>
-              مود يوفر لك متجر سيرفر ومتجر لاعبين حيث يمكن للاعبين البيع
-              والشراء، ويمكن للأدمن والمسؤول التعديل على إعداداته.
-            </p>
-            <span class="card-btn">تحميل الآن</span>
-          </div>
-        </a>
+      <div class="cards-grid" id="javaCardsGrid">
+        <!-- المودات تُحمَّل تلقائياً من قاعدة البيانات -->
       </div>
     </section>
 
@@ -104,6 +85,77 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+      // ===== جلب المودات من قاعدة البيانات =====
+      const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
+
+      async function loadModsFromDB() {
+        const grid = document.getElementById("javaCardsGrid");
+        if (!grid) return;
+
+        try {
+          const response = await fetch(API_URL);
+          const mods = await response.json();
+
+          if (mods.length === 0) {
+            grid.innerHTML =
+              "<p style='color:#888;text-align:center;padding:40px;grid-column:1/-1;'>لا توجد مودات بعد.</p>";
+            return;
+          }
+
+          grid.innerHTML = mods
+            .map((mod) => {
+              const badge = mod.badge
+                ? `<span class="card-badge">${mod.badge}</span>`
+                : "";
+              const videoBtn = mod.video
+                ? `<a href="${mod.video}" target="_blank" class="card-video-btn">▶ شرح</a>`
+                : "";
+
+              return `
+              <a href="${mod.download_url}" target="_blank" class="card" data-category="${mod.category}">
+                <div class="card-image">
+                  <img src="${mod.image_url}" alt="${mod.title}">
+                  ${badge}
+                </div>
+                <div class="card-body">
+                  <h3>${mod.title}</h3>
+                  <p>${mod.description}</p>
+                  <span class="card-btn">تحميل الآن</span>
+                  ${videoBtn}
+                </div>
+              </a>
+            `;
+            })
+            .join("");
+        } catch (error) {
+          grid.innerHTML =
+            "<p style='color:#ff3333;text-align:center;padding:40px;grid-column:1/-1;'>خطأ في تحميل المودات</p>";
+          console.error(error);
+        }
+      }
+
+      // ===== الفلترة =====
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const filter = btn.dataset.filter;
+          document.querySelectorAll("#javaCardsGrid .card").forEach((card) => {
+            if (filter === "all" || card.dataset.category === filter) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // تحميل المودات عند فتح الصفحة
+      loadModsFromDB();
+    </script>
   </body>
 </html>
