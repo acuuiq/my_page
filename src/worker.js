@@ -86,11 +86,37 @@ export default {
       }
     }
 
-    // ===== الموقع الثابت (HTML/CSS/JS) =====
-    return env.ASSETS
-      ? env.ASSETS.fetch(request)
-      : new Response("LEON API", {
-          headers: corsHeaders,
+    // ===== خدمة الملفات الثابتة من GitHub =====
+    // أي مسار غير /api/ يُوجَّه إلى GitHub Pages الخاص بالمشروع
+    const githubUrl = `https://raw.githubusercontent.com/acuuiq/my_page/main${path === "/" ? "/index.html" : path}`;
+
+    try {
+      const response = await fetch(githubUrl);
+
+      if (response.ok) {
+        const contentType = getContentType(path);
+        return new Response(response.body, {
+          headers: {
+            "Content-Type": contentType,
+            "Cache-Control": "public, max-age=300",
+          },
         });
+      }
+    } catch (e) {
+      // تجاهل الأخطاء
+    }
+
+    return new Response("Page not found", { status: 404 });
   },
 };
+
+function getContentType(path) {
+  if (path.endsWith(".html")) return "text/html; charset=utf-8";
+  if (path.endsWith(".css")) return "text/css; charset=utf-8";
+  if (path.endsWith(".js")) return "application/javascript; charset=utf-8";
+  if (path.endsWith(".png")) return "image/png";
+  if (path.endsWith(".jpg") || path.endsWith(".jpeg")) return "image/jpeg";
+  if (path.endsWith(".svg")) return "image/svg+xml";
+  if (path.endsWith(".json")) return "application/json";
+  return "text/plain";
+}
