@@ -10,50 +10,74 @@
       rel="stylesheet"
     />
     <style>
-      /* ===== صفحة تفاصيل المود ===== */
-      .mod-detail {
+      /* ===== Breadcrumb ===== */
+      .breadcrumb {
         max-width: 1100px;
-        margin: 0 auto;
-        padding: 40px 24px;
+        margin: 30px auto 0;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #888;
+        flex-wrap: wrap;
+      }
+
+      .breadcrumb a {
+        color: #aaa;
+        transition: color 0.3s;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--primary);
+      }
+
+      .breadcrumb span {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .breadcrumb .separator {
+        color: #555;
+      }
+
+      /* ===== بطاقة المود الرئيسية ===== */
+      .mod-card {
+        max-width: 1100px;
+        margin: 20px auto 0;
+        padding: 0 24px;
       }
 
       .mod-header {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        margin-bottom: 50px;
         background: var(--dark-2);
         border-radius: 20px;
-        overflow: hidden;
+        padding: 30px;
         border: 1px solid rgba(41, 214, 255, 0.15);
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 30px;
+        align-items: start;
       }
 
-      .mod-main-image {
-        position: relative;
-        min-height: 350px;
-        background: var(--dark-3);
+      .mod-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 16px;
         overflow: hidden;
+        border: 2px solid rgba(41, 214, 255, 0.3);
+        flex-shrink: 0;
       }
 
-      .mod-main-image img {
+      .mod-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        position: absolute;
-        inset: 0;
-      }
-
-      .mod-info {
-        padding: 35px 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
       }
 
       .mod-info h1 {
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 900;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         background: linear-gradient(135deg, #ffffff 0%, #29d6ff 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -61,43 +85,58 @@
         line-height: 1.3;
       }
 
-      .mod-meta {
+      .mod-badges {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 20px;
+        gap: 10px;
+        margin-bottom: 15px;
       }
 
-      .mod-meta-badge {
+      .badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 13px;
+        gap: 5px;
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-size: 12px;
         font-weight: 700;
-        background: rgba(41, 214, 255, 0.1);
-        color: var(--primary);
-        border: 1px solid rgba(41, 214, 255, 0.3);
       }
 
-      .mod-meta-badge.edition-java {
-        background: rgba(255, 165, 0, 0.1);
+      .badge-edition {
+        background: rgba(255, 165, 0, 0.15);
         color: #ffa500;
-        border-color: rgba(255, 165, 0, 0.3);
+        border: 1px solid rgba(255, 165, 0, 0.3);
       }
 
-      .mod-meta-badge.edition-bedrock {
-        background: rgba(0, 212, 100, 0.1);
+      .badge-edition.bedrock {
+        background: rgba(0, 212, 100, 0.15);
         color: #00d464;
         border-color: rgba(0, 212, 100, 0.3);
       }
 
+      .badge-category {
+        background: rgba(41, 214, 255, 0.15);
+        color: var(--primary);
+        border: 1px solid rgba(41, 214, 255, 0.3);
+      }
+
+      .badge-rating {
+        background: rgba(255, 215, 0, 0.15);
+        color: #ffd700;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+      }
+
+      .badge-downloads {
+        background: rgba(124, 58, 237, 0.15);
+        color: #a78bfa;
+        border: 1px solid rgba(124, 58, 237, 0.3);
+      }
+
       .mod-description {
         color: #bbb;
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1.8;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
       }
 
       .mod-actions {
@@ -106,42 +145,78 @@
         flex-wrap: wrap;
       }
 
-      .mod-actions .btn-primary,
-      .mod-actions .btn-secondary {
-        flex: 1;
-        min-width: 150px;
-        text-align: center;
-        padding: 14px 24px;
+      .mod-actions a {
+        padding: 12px 24px;
+        font-size: 14px;
+        border-radius: 10px;
       }
 
-      /* الأقسام */
-      .mod-section {
-        margin-bottom: 50px;
+      /* ===== التبويبات ===== */
+      .tabs-container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 24px;
       }
 
-      .mod-section-title {
-        font-size: 24px;
-        font-weight: 900;
-        color: var(--white);
+      .tabs-header {
+        display: flex;
+        gap: 5px;
+        background: var(--dark-2);
+        padding: 6px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
         margin-bottom: 20px;
-        padding-right: 18px;
-        position: relative;
+        overflow-x: auto;
       }
 
-      .mod-section-title::before {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 5px;
-        height: 26px;
+      .tab-btn {
+        flex: 1;
+        padding: 12px 24px;
+        background: transparent;
+        border: none;
+        color: #888;
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s;
+        white-space: nowrap;
+      }
+
+      .tab-btn:hover {
+        color: var(--light);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .tab-btn.active {
         background: var(--gradient-1);
-        border-radius: 3px;
-        box-shadow: 0 0 15px var(--primary-glow);
+        color: white;
+        box-shadow: 0 6px 20px rgba(41, 214, 255, 0.3);
       }
 
-      .full-description {
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== الوصف ===== */
+      .description-box {
         background: var(--dark-2);
         padding: 30px;
         border-radius: 16px;
@@ -152,16 +227,16 @@
         white-space: pre-wrap;
       }
 
-      /* معرض الصور */
+      /* ===== معرض الصور ===== */
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 15px;
       }
 
       .gallery img {
         width: 100%;
-        height: 150px;
+        height: 160px;
         object-fit: cover;
         border-radius: 12px;
         cursor: pointer;
@@ -177,12 +252,26 @@
         border-color: var(--primary);
       }
 
-      /* جدول الإصدارات */
+      /* ===== الإصدارات ===== */
       .versions-list {
         background: var(--dark-2);
         border-radius: 16px;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .version-header {
+        display: grid;
+        grid-template-columns: 120px 150px 1fr 130px;
+        padding: 16px 22px;
+        background: rgba(41, 214, 255, 0.05);
+        border-bottom: 1px solid rgba(41, 214, 255, 0.15);
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        gap: 15px;
       }
 
       .version-item {
@@ -206,12 +295,13 @@
       .version-tag {
         background: var(--gradient-1);
         color: white;
-        padding: 4px 12px;
+        padding: 5px 12px;
         border-radius: 8px;
         font-weight: 700;
         font-size: 13px;
         text-align: center;
         display: inline-block;
+        width: fit-content;
       }
 
       .version-mc {
@@ -231,7 +321,7 @@
       .version-download {
         background: var(--gradient-1);
         color: white;
-        padding: 8px 18px;
+        padding: 10px 18px;
         border-radius: 8px;
         font-weight: 700;
         font-size: 13px;
@@ -239,6 +329,7 @@
         transition:
           transform 0.3s,
           box-shadow 0.3s;
+        display: inline-block;
       }
 
       .version-download:hover {
@@ -246,35 +337,51 @@
         box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
       }
 
-      /* رسالة عدم وجود بيانات */
+      /* ===== الحالات الفارغة ===== */
       .empty-state {
         text-align: center;
-        padding: 40px;
+        padding: 60px 40px;
+        background: var(--dark-2);
+        border-radius: 16px;
+        border: 1px dashed rgba(41, 214, 255, 0.2);
         color: #666;
         font-size: 15px;
       }
 
-      /* استجابة الجوال */
+      .empty-state-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+        opacity: 0.5;
+      }
+
+      /* ===== استجابة الجوال ===== */
       @media (max-width: 768px) {
         .mod-header {
           grid-template-columns: 1fr;
-          gap: 0;
+          padding: 20px;
+          gap: 20px;
         }
 
-        .mod-main-image {
-          min-height: 220px;
-        }
-
-        .mod-info {
-          padding: 25px 20px;
+        .mod-image {
+          width: 100%;
+          height: 200px;
         }
 
         .mod-info h1 {
           font-size: 22px;
         }
 
-        .mod-section-title {
-          font-size: 20px;
+        .tabs-container {
+          margin: 30px auto;
+        }
+
+        .tab-btn {
+          padding: 10px 16px;
+          font-size: 13px;
+        }
+
+        .version-header {
+          display: none;
         }
 
         .version-item {
@@ -287,8 +394,13 @@
           white-space: normal;
         }
 
-        .mod-actions {
-          flex-direction: column;
+        .mod-actions a {
+          flex: 1;
+          text-align: center;
+        }
+
+        .breadcrumb {
+          font-size: 12px;
         }
       }
     </style>
@@ -329,9 +441,44 @@
       </div>
     </nav>
 
-    <!-- محتوى صفحة المود -->
-    <div class="mod-detail" id="modDetail">
-      <div class="empty-state">جارٍ تحميل التفاصيل...</div>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" id="breadcrumb">
+      <a href="index.html">🏠 الرئيسية</a>
+      <span class="separator">›</span>
+      <a href="addons-java.html" id="breadcrumbParent">📦 إضافات Java</a>
+      <span class="separator">›</span>
+      <span id="breadcrumbTitle">جارٍ التحميل...</span>
+    </div>
+
+    <!-- بطاقة المود -->
+    <div class="mod-card" id="modCard">
+      <div class="empty-state">
+        <div class="empty-state-icon">⏳</div>
+        جارٍ تحميل التفاصيل...
+      </div>
+    </div>
+
+    <!-- التبويبات -->
+    <div class="tabs-container" id="tabsContainer" style="display: none">
+      <div class="tabs-header">
+        <button class="tab-btn active" data-tab="description">📝 الوصف</button>
+        <button class="tab-btn" data-tab="images">📸 الصور</button>
+        <button class="tab-btn" data-tab="versions">📦 الإصدارات</button>
+      </div>
+
+      <div class="tab-content active" id="tab-description">
+        <div class="description-box" id="descriptionContent">
+          جارٍ التحميل...
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-images">
+        <div id="imagesContent">جارٍ التحميل...</div>
+      </div>
+
+      <div class="tab-content" id="tab-versions">
+        <div id="versionsContent">جارٍ التحميل...</div>
+      </div>
     </div>
 
     <!-- التذييل -->
@@ -375,11 +522,11 @@
       const modId = params.get("id");
 
       async function loadModDetails() {
-        const container = document.getElementById("modDetail");
+        const cardContainer = document.getElementById("modCard");
 
         if (!modId) {
-          container.innerHTML =
-            "<div class='empty-state'>❌ لم يتم تحديد مود</div>";
+          cardContainer.innerHTML =
+            "<div class='empty-state'><div class='empty-state-icon'>❌</div>لم يتم تحديد مود</div>";
           return;
         }
 
@@ -388,116 +535,180 @@
           const mod = await response.json();
 
           if (mod.error) {
-            container.innerHTML =
-              "<div class='empty-state'>❌ المود غير موجود</div>";
+            cardContainer.innerHTML =
+              "<div class='empty-state'><div class='empty-state-icon'>❌</div>المود غير موجود</div>";
             return;
           }
 
-          // تحديد لون الإصدار
-          const editionClass =
-            mod.edition === "bedrock" ? "edition-bedrock" : "edition-java";
-          const editionText =
-            mod.edition === "bedrock" ? "Bedrock Edition" : "Java Edition";
+          // ===== Breadcrumb =====
+          document.getElementById("breadcrumbTitle").textContent = mod.title;
 
-          // بناء قسم الصور
-          const imagesHTML =
-            mod.images && mod.images.length > 0
-              ? `
-              <div class="mod-section">
-                <h2 class="mod-section-title">📸 معرض الصور</h2>
-                <div class="gallery">
-                  ${mod.images
-                    .map(
-                      (img) =>
-                        `<img src="${img.image_url}" alt="صورة" onclick="window.open('${img.image_url}', '_blank')">`,
-                    )
-                    .join("")}
-                </div>
-              </div>
-            `
-              : "";
+          const parentLink = document.getElementById("breadcrumbParent");
+          if (mod.edition === "bedrock") {
+            parentLink.textContent = "📦 إضافات Bedrock";
+            parentLink.href = "addons-bedrock.html";
+          }
 
-          // بناء قسم الإصدارات
-          const versionsHTML =
-            mod.versions && mod.versions.length > 0
-              ? `
-              <div class="mod-section">
-                <h2 class="mod-section-title">📦 الإصدارات المتاحة</h2>
-                <div class="versions-list">
-                  ${mod.versions
-                    .map(
-                      (v) => `
-                    <div class="version-item">
-                      <span class="version-tag">${v.version}</span>
-                      <span class="version-mc">${v.minecraft_version || "-"}</span>
-                      <span class="version-changelog">${v.changelog || "لا يوجد وصف"}</span>
-                      <a href="${v.download_url}" target="_blank" class="version-download">تحميل</a>
-                    </div>
-                  `,
-                    )
-                    .join("")}
-                </div>
-              </div>
-            `
-              : `
-              <div class="mod-section">
-                <h2 class="mod-section-title">📦 الإصدارات المتاحة</h2>
-                <div class="full-description" style="text-align:center;color:#666;">
-                  لا توجد إصدارات مضافة بعد
-                </div>
-              </div>
-            `;
+          // ===== شارات =====
+          const editionClass = mod.edition === "bedrock" ? "bedrock" : "";
+          const editionText = mod.edition === "bedrock" ? "Bedrock" : "Java";
 
-          // بناء الوصف الكامل
-          const fullDescHTML = mod.full_description
-            ? `
-              <div class="mod-section">
-                <h2 class="mod-section-title">📝 الوصف الكامل</h2>
-                <div class="full-description">${mod.full_description}</div>
-              </div>
-            `
+          const ratingBadge = mod.rating
+            ? `<span class="badge badge-rating">⭐ ${mod.rating}</span>`
+            : "";
+          const downloadsBadge = mod.downloads
+            ? `<span class="badge badge-downloads">⬇ ${mod.downloads}</span>`
             : "";
 
-          // زر الفيديو
+          // ===== زر الفيديو =====
           const videoBtn = mod.video_url
             ? `<a href="${mod.video_url}" target="_blank" class="btn-secondary">▶ مشاهدة الشرح</a>`
             : "";
 
-          // بناء الصفحة
-          container.innerHTML = `
+          // ===== بطاقة المود =====
+          cardContainer.innerHTML = `
             <div class="mod-header">
-              <div class="mod-main-image">
+              <div class="mod-image">
                 <img src="${mod.image_url}" alt="${mod.title}">
               </div>
               <div class="mod-info">
                 <h1>${mod.title}</h1>
-                <div class="mod-meta">
-                  <span class="mod-meta-badge ${editionClass}">🎮 ${editionText}</span>
-                  <span class="mod-meta-badge">📁 ${mod.category}</span>
-                  ${mod.developer ? `<span class="mod-meta-badge">👤 ${mod.developer}</span>` : ""}
-                  ${mod.rating ? `<span class="mod-meta-badge">⭐ ${mod.rating}</span>` : ""}
-                  ${mod.downloads ? `<span class="mod-meta-badge">⬇ ${mod.downloads}</span>` : ""}
+                <div class="mod-badges">
+                  <span class="badge badge-edition ${editionClass}">🎮 ${editionText} Edition</span>
+                  <span class="badge badge-category">📁 ${mod.category}</span>
+                  ${ratingBadge}
+                  ${downloadsBadge}
                 </div>
                 <p class="mod-description">${mod.description}</p>
                 <div class="mod-actions">
-                  <a href="${mod.download_url}" target="_blank" class="btn-primary">⬇ تحميل مباشر</a>
+                  <a href="#" class="btn-primary" id="showVersionsBtn">⬇ عرض الإصدارات</a>
                   ${videoBtn}
                 </div>
               </div>
             </div>
-
-            ${fullDescHTML}
-            ${imagesHTML}
-            ${versionsHTML}
           `;
+
+          // ===== إظهار التبويبات =====
+          document.getElementById("tabsContainer").style.display = "block";
+
+          // ===== محتوى الوصف =====
+          const descriptionContent =
+            document.getElementById("descriptionContent");
+          if (mod.full_description) {
+            descriptionContent.textContent = mod.full_description;
+          } else {
+            descriptionContent.innerHTML = `
+              <div class="empty-state" style="border:none;background:transparent;padding:20px;">
+                <div class="empty-state-icon">📝</div>
+                لا يوجد وصف كامل لهذا المود بعد
+              </div>
+            `;
+          }
+
+          // ===== محتوى الصور =====
+          const imagesContent = document.getElementById("imagesContent");
+          if (mod.images && mod.images.length > 0) {
+            imagesContent.innerHTML = `
+              <div class="gallery">
+                ${mod.images
+                  .map(
+                    (img) =>
+                      `<img src="${img.image_url}" alt="صورة" onclick="window.open('${img.image_url}', '_blank')">`,
+                  )
+                  .join("")}
+              </div>
+            `;
+          } else {
+            imagesContent.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-state-icon">📸</div>
+                لا توجد صور مضافة بعد
+              </div>
+            `;
+          }
+
+          // ===== محتوى الإصدارات =====
+          const versionsContent = document.getElementById("versionsContent");
+          if (mod.versions && mod.versions.length > 0) {
+            versionsContent.innerHTML = `
+              <div class="versions-list">
+                <div class="version-header">
+                  <span>الإصدار</span>
+                  <span>إصدار اللعبة</span>
+                  <span>الوصف</span>
+                  <span>التحميل</span>
+                </div>
+                ${mod.versions
+                  .map(
+                    (v) => `
+                  <div class="version-item">
+                    <span class="version-tag">${v.version}</span>
+                    <span class="version-mc">${v.minecraft_version || "-"}</span>
+                    <span class="version-changelog">${v.changelog || "لا يوجد وصف"}</span>
+                    <a href="${v.download_url}" target="_blank" class="version-download">⬇ تحميل</a>
+                  </div>
+                `,
+                  )
+                  .join("")}
+              </div>
+            `;
+          } else {
+            versionsContent.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-state-icon">📦</div>
+                لا توجد إصدارات مضافة بعد
+              </div>
+            `;
+          }
+
+          // ===== زر "عرض الإصدارات" =====
+          document
+            .getElementById("showVersionsBtn")
+            .addEventListener("click", (e) => {
+              e.preventDefault();
+              // فتح تبويب الإصدارات
+              document.querySelectorAll(".tab-btn").forEach((btn) => {
+                btn.classList.remove("active");
+              });
+              document
+                .querySelector('[data-tab="versions"]')
+                .classList.add("active");
+
+              document.querySelectorAll(".tab-content").forEach((content) => {
+                content.classList.remove("active");
+              });
+              document.getElementById("tab-versions").classList.add("active");
+
+              // تمرير إلى التبويبات
+              document
+                .getElementById("tabsContainer")
+                .scrollIntoView({ behavior: "smooth" });
+            });
         } catch (error) {
-          container.innerHTML =
-            "<div class='empty-state'>❌ خطأ في تحميل البيانات</div>";
+          cardContainer.innerHTML =
+            "<div class='empty-state'><div class='empty-state-icon'>❌</div>خطأ في تحميل البيانات</div>";
           console.error(error);
         }
       }
 
-      loadModDetails();
+      // ===== التبويبات =====
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tabName = btn.dataset.tab;
+
+          // تحديث الأزرار
+          document.querySelectorAll(".tab-btn").forEach((b) => {
+            b.classList.remove("active");
+          });
+          btn.classList.add("active");
+
+          // تحديث المحتوى
+          document.querySelectorAll(".tab-content").forEach((content) => {
+            content.classList.remove("active");
+          });
+          document.getElementById(`tab-${tabName}`).classList.add("active");
+        });
+      });
 
       // ===== شاشة التحميل =====
       const loadingOverlay = document.getElementById("loadingOverlay");
@@ -519,6 +730,9 @@
           loadingOverlay.classList.remove("active");
         });
       }
+
+      // ===== تحميل الصفحة =====
+      loadModDetails();
     </script>
   </body>
 </html>
