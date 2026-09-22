@@ -11,88 +11,216 @@
     />
     <style>
       .admin-container {
-        max-width: 800px;
-        margin: 50px auto;
+        max-width: 1400px;
+        margin: 40px auto;
         padding: 30px;
-        background: var(--dark-2);
-        border-radius: 16px;
-        border: 1px solid rgba(41, 214, 255, 0.2);
       }
-      .admin-container h1 {
-        color: var(--primary);
-        margin-bottom: 30px;
+
+      .admin-header {
         text-align: center;
+        margin-bottom: 40px;
       }
-      .admin-form label {
+
+      .admin-header h1 {
+        font-size: 32px;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .admin-header p {
+        color: #888;
+        font-size: 15px;
+      }
+
+      /* التبويبات */
+      .admin-tabs {
+        display: flex;
+        gap: 6px;
+        background: var(--dark-2);
+        padding: 6px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .admin-tab {
+        flex: 1;
+        padding: 12px 20px;
+        background: transparent;
+        border: none;
+        color: #888;
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s;
+      }
+
+      .admin-tab:hover {
+        color: var(--light);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .admin-tab.active {
+        background: var(--gradient-1);
+        color: white;
+        box-shadow: 0 6px 20px rgba(41, 214, 255, 0.3);
+      }
+
+      .admin-panel {
+        display: none;
+      }
+
+      .admin-panel.active {
+        display: block;
+      }
+
+      /* الحاويات */
+      .panel-card {
+        background: var(--dark-2);
+        padding: 25px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        margin-bottom: 20px;
+      }
+
+      .panel-card h2 {
+        font-size: 20px;
+        color: var(--primary);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(41, 214, 255, 0.15);
+      }
+
+      .panel-card h3 {
+        font-size: 16px;
+        color: var(--light);
+        margin-bottom: 15px;
+      }
+
+      /* النماذج */
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-group label {
         display: block;
         margin-bottom: 8px;
         color: var(--light);
         font-weight: 600;
+        font-size: 14px;
       }
-      .admin-form input,
-      .admin-form textarea,
-      .admin-form select {
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
         width: 100%;
         padding: 12px;
-        margin-bottom: 20px;
         border-radius: 8px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         background: var(--dark);
         color: var(--light);
         font-family: "Cairo", sans-serif;
-        font-size: 15px;
+        font-size: 14px;
+        transition: border-color 0.3s;
       }
-      .admin-form input:focus,
-      .admin-form textarea:focus,
-      .admin-form select:focus {
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
         outline: none;
         border-color: var(--primary);
       }
-      .admin-form textarea {
+
+      .form-group textarea {
         min-height: 100px;
         resize: vertical;
       }
-      .admin-form button {
-        width: 100%;
-        padding: 14px;
-        background: var(--primary);
-        color: var(--dark);
-        border: none;
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      /* الأزرار */
+      .btn {
+        padding: 12px 24px;
         border-radius: 10px;
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 14px;
         cursor: pointer;
         transition: all 0.3s;
+        border: none;
       }
-      .admin-form button:hover {
-        background: #00b8e0;
+
+      .btn-primary {
+        background: var(--gradient-1);
+        color: white;
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+      }
+
+      .btn-primary:hover {
         transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(41, 214, 255, 0.4);
       }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--light);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(41, 214, 255, 0.15);
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .btn-danger {
+        background: rgba(255, 50, 50, 0.15);
+        color: #ff5555;
+        border: 1px solid rgba(255, 50, 50, 0.3);
+        padding: 6px 14px;
+        font-size: 12px;
+      }
+
+      .btn-danger:hover {
+        background: rgba(255, 50, 50, 0.25);
+      }
+
+      /* الرسائل */
       .message {
-        padding: 15px;
-        margin-top: 20px;
-        border-radius: 8px;
+        padding: 14px;
+        margin: 20px 0;
+        border-radius: 10px;
         text-align: center;
         font-weight: 700;
+        font-size: 14px;
       }
+
       .message.success {
         background: rgba(0, 212, 100, 0.15);
         color: #00d464;
         border: 1px solid rgba(0, 212, 100, 0.3);
       }
+
       .message.error {
         background: rgba(255, 50, 50, 0.15);
-        color: #ff3333;
+        color: #ff5555;
         border: 1px solid rgba(255, 50, 50, 0.3);
       }
+
+      /* قائمة المودات */
       .mods-list {
-        margin-top: 40px;
+        display: grid;
+        gap: 12px;
       }
-      .mods-list h2 {
-        color: var(--primary);
-        margin-bottom: 20px;
-      }
+
       .mod-item {
         display: flex;
         justify-content: space-between;
@@ -100,30 +228,139 @@
         padding: 15px;
         background: var(--dark);
         border-radius: 10px;
-        margin-bottom: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: border-color 0.3s;
       }
-      .mod-item h3 {
-        font-size: 16px;
+
+      .mod-item:hover {
+        border-color: rgba(41, 214, 255, 0.3);
+      }
+
+      .mod-item-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+      }
+
+      .mod-item-info img {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .mod-item-info h3 {
+        font-size: 15px;
         color: var(--light);
+        margin-bottom: 3px;
       }
-      .mod-item button {
-        background: #ff3333;
+
+      .mod-item-info p {
+        font-size: 12px;
+        color: #888;
+      }
+
+      .mod-item-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      /* قائمة الإصدارات */
+      .versions-list {
+        margin-top: 15px;
+      }
+
+      .version-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr 1.5fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 12px;
+        background: var(--dark);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .version-row input {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      /* قائمة الصور */
+      .images-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 15px;
+      }
+
+      .image-item {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: border-color 0.3s;
+      }
+
+      .image-item:hover {
+        border-color: var(--primary);
+      }
+
+      .image-item img {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .image-item button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(255, 50, 50, 0.9);
         color: white;
         border: none;
-        padding: 8px 16px;
+        width: 28px;
+        height: 28px;
         border-radius: 6px;
-        font-family: "Cairo", sans-serif;
-        font-weight: 700;
         cursor: pointer;
-        transition: all 0.3s;
+        font-size: 14px;
+        transition: transform 0.2s;
       }
-      .mod-item button:hover {
-        background: #cc0000;
+
+      .image-item button:hover {
+        transform: scale(1.1);
+      }
+
+      /* استجابة الجوال */
+      @media (max-width: 768px) {
+        .admin-container {
+          padding: 15px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-tabs {
+          overflow-x: auto;
+        }
+
+        .admin-tab {
+          padding: 10px 14px;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+
+        .version-row {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
-  <body>
+  <body id="top">
     <nav class="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
@@ -132,67 +369,198 @@
         </a>
         <ul class="nav-links">
           <li><a href="index.html">الرئيسية</a></li>
-          <li><a href="addons-java.html">إضافات Java</a></li>
           <li><a href="admin.html">لوحة الإدارة</a></li>
         </ul>
       </div>
     </nav>
 
     <div class="admin-container">
-      <h1>🎛️ لوحة إدارة المودات</h1>
+      <div class="admin-header">
+        <h1>🎛️ لوحة الإدارة</h1>
+        <p>إدارة المودات، الإصدارات، والصور</p>
+      </div>
 
-      <form class="admin-form" id="modForm">
-        <label>اسم المود *</label>
-        <input
-          type="text"
-          id="title"
-          required
-          placeholder="مثال: متجر متكامل"
-        />
+      <!-- التبويبات -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="add">➕ إضافة مود</button>
+        <button class="admin-tab" data-tab="manage">📋 إدارة المودات</button>
+      </div>
 
-        <label>الوصف *</label>
-        <textarea
-          id="description"
-          required
-          placeholder="وصف مختصر للمود..."
-        ></textarea>
+      <!-- تبويب إضافة مود -->
+      <div class="admin-panel active" id="panel-add">
+        <div class="panel-card">
+          <h2>📦 بيانات المود الأساسية</h2>
 
-        <label>رابط الصورة</label>
-        <input
-          type="text"
-          id="image_url"
-          placeholder="images/mod1.jpg أو رابط كامل"
-        />
+          <form id="modForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>اسم المود *</label>
+                <input
+                  type="text"
+                  id="title"
+                  required
+                  placeholder="مثال: متجر متكامل"
+                />
+              </div>
 
-        <label>رابط التحميل *</label>
-        <input
-          type="text"
-          id="download_url"
-          required
-          placeholder="https://www.mediafire.com/file/..."
-        />
+              <div class="form-group">
+                <label>نوع الإصدار *</label>
+                <select id="edition" required>
+                  <option value="java">Java Edition</option>
+                  <option value="bedrock">Bedrock Edition</option>
+                </select>
+              </div>
+            </div>
 
-        <label>التصنيف</label>
-        <select id="category">
-          <option value="mods">مودات</option>
-          <option value="packs">ريسورس باكات</option>
-          <option value="shaders">شيدرز</option>
-          <option value="worlds">عوالم</option>
-        </select>
+            <div class="form-group">
+              <label>التصنيف *</label>
+              <select id="category" required>
+                <option value="mods">مودات</option>
+                <option value="packs">ريسورس باكات</option>
+                <option value="shaders">شيدرز</option>
+                <option value="worlds">عوالم</option>
+                <option value="games">ألعاب</option>
+                <option value="apps">تطبيقات</option>
+              </select>
+            </div>
 
-        <button type="submit">➕ إضافة المود</button>
-      </form>
+            <div class="form-group">
+              <label>الوصف المختصر *</label>
+              <textarea
+                id="description"
+                required
+                placeholder="وصف مختصر يظهر في البطاقة..."
+                style="min-height: 80px"
+              ></textarea>
+            </div>
 
-      <div id="message"></div>
+            <div class="form-group">
+              <label>الوصف الكامل</label>
+              <textarea
+                id="full_description"
+                placeholder="وصف مفصل يظهر في صفحة المود..."
+                style="min-height: 150px"
+              ></textarea>
+            </div>
 
-      <div class="mods-list">
-        <h2>📋 المودات المضافة</h2>
-        <div id="modsList">جارٍ التحميل...</div>
+            <div class="form-group">
+              <label>رابط الصورة الرئيسية *</label>
+              <input
+                type="text"
+                id="image_url"
+                required
+                placeholder="images/mod1.jpg أو رابط كامل"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>رابط التحميل الرئيسي</label>
+              <input
+                type="text"
+                id="download_url"
+                placeholder="https://www.mediafire.com/file/..."
+              />
+            </div>
+
+            <div class="form-group">
+              <label>رابط فيديو الشرح (اختياري)</label>
+              <input
+                type="text"
+                id="video_url"
+                placeholder="https://youtube.com/watch?v=..."
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              ➕ إضافة المود
+            </button>
+          </form>
+
+          <div id="message"></div>
+        </div>
+      </div>
+
+      <!-- تبويب إدارة المودات -->
+      <div class="admin-panel" id="panel-manage">
+        <div class="panel-card">
+          <h2>📋 المودات المضافة</h2>
+          <div class="mods-list" id="modsList">جارٍ التحميل...</div>
+        </div>
+
+        <!-- تفاصيل المود المحدد -->
+        <div id="modDetailsPanel" style="display: none">
+          <div class="panel-card">
+            <h2 id="selectedModTitle">📝 تفاصيل المود</h2>
+
+            <!-- الإصدارات -->
+            <h3>📦 الإصدارات</h3>
+            <div class="versions-list" id="versionsList"></div>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="addVersionRow()"
+              style="margin-top: 10px"
+            >
+              ➕ إضافة إصدار
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="saveVersions()"
+              style="margin-top: 15px"
+            >
+              💾 حفظ الإصدارات
+            </button>
+
+            <!-- الصور -->
+            <h3 style="margin-top: 30px">📸 الصور الإضافية</h3>
+
+            <div class="form-group">
+              <input
+                type="text"
+                id="newImageUrl"
+                placeholder="رابط الصورة..."
+              />
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="addImage()"
+            >
+              ➕ إضافة صورة
+            </button>
+
+            <div class="images-list" id="imagesList"></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
       const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
+      let currentModId = null;
+
+      // ===== التبويبات =====
+      document.querySelectorAll(".admin-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          document
+            .querySelectorAll(".admin-tab")
+            .forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          document
+            .querySelectorAll(".admin-panel")
+            .forEach((panel) => panel.classList.remove("active"));
+          document
+            .getElementById(`panel-${tab.dataset.tab}`)
+            .classList.add("active");
+
+          if (tab.dataset.tab === "manage") loadMods();
+        });
+      });
 
       // ===== إضافة مود =====
       document
@@ -203,9 +571,12 @@
           const mod = {
             title: document.getElementById("title").value,
             description: document.getElementById("description").value,
+            full_description: document.getElementById("full_description").value,
             image_url: document.getElementById("image_url").value,
             download_url: document.getElementById("download_url").value,
             category: document.getElementById("category").value,
+            edition: document.getElementById("edition").value,
+            video_url: document.getElementById("video_url").value,
           };
 
           try {
@@ -218,9 +589,12 @@
             const data = await response.json();
 
             if (data.success) {
-              showMessage("✅ تم إضافة المود بنجاح!", "success");
+              showMessage("✅ تم إضافة المود بنجاح! ID: " + data.id, "success");
               document.getElementById("modForm").reset();
-              loadMods();
+
+              // الانتقال لإدارة المودات
+              document.querySelector('[data-tab="manage"]').click();
+              setTimeout(() => selectMod(data.id), 500);
             } else {
               showMessage("❌ خطأ: " + data.error, "error");
             }
@@ -234,37 +608,223 @@
         try {
           const response = await fetch(API_URL);
           const mods = await response.json();
-
           const list = document.getElementById("modsList");
 
           if (mods.length === 0) {
-            list.innerHTML = "<p style='color:#888'>لا توجد مودات بعد.</p>";
+            list.innerHTML =
+              "<p style='color:#888;text-align:center;padding:20px;'>لا توجد مودات بعد.</p>";
             return;
           }
 
           list.innerHTML = mods
             .map(
               (mod) => `
-          <div class="mod-item">
-            <h3>${mod.title}</h3>
-            <button onclick="deleteMod(${mod.id})">حذف</button>
-          </div>
-        `,
+              <div class="mod-item">
+                <div class="mod-item-info">
+                  <img src="${mod.image_url}" alt="${mod.title}">
+                  <div>
+                    <h3>${mod.title}</h3>
+                    <p>${mod.edition === "bedrock" ? "🟢 Bedrock" : "🟠 Java"} | ${mod.category}</p>
+                  </div>
+                </div>
+                <div class="mod-item-actions">
+                  <button class="btn btn-secondary" onclick="selectMod(${mod.id})">📝 تفاصيل</button>
+                  <button class="btn btn-danger" onclick="deleteMod(${mod.id})">🗑 حذف</button>
+                </div>
+              </div>
+            `,
             )
             .join("");
         } catch (error) {
           document.getElementById("modsList").innerHTML =
-            "<p style='color:#ff3333'>خطأ في تحميل المودات</p>";
+            "<p style='color:#ff5555'>خطأ في تحميل المودات</p>";
+        }
+      }
+
+      // ===== تحديد مود =====
+      async function selectMod(id) {
+        currentModId = id;
+        document.getElementById("modDetailsPanel").style.display = "block";
+        document
+          .getElementById("modDetailsPanel")
+          .scrollIntoView({ behavior: "smooth" });
+
+        try {
+          const response = await fetch(`${API_URL}/${id}`);
+          const mod = await response.json();
+
+          document.getElementById("selectedModTitle").textContent =
+            `📝 تفاصيل: ${mod.title}`;
+
+          // ===== الإصدارات =====
+          const versionsList = document.getElementById("versionsList");
+          if (mod.versions && mod.versions.length > 0) {
+            versionsList.innerHTML = mod.versions
+              .map(
+                (v) => `
+                <div class="version-row">
+                  <input type="text" value="${v.version}" placeholder="الإصدار">
+                  <input type="text" value="${v.minecraft_version || ""}" placeholder="إصدار اللعبة">
+                  <input type="text" value="${v.download_url}" placeholder="رابط التحميل">
+                  <input type="text" value="${v.changelog || ""}" placeholder="الوصف">
+                  <button class="btn btn-danger" onclick="deleteVersion(${v.id})">🗑</button>
+                </div>
+              `,
+              )
+              .join("");
+          } else {
+            versionsList.innerHTML =
+              "<p style='color:#888;text-align:center;padding:15px;'>لا توجد إصدارات بعد.</p>";
+          }
+
+          // ===== الصور =====
+          const imagesList = document.getElementById("imagesList");
+          if (mod.images && mod.images.length > 0) {
+            imagesList.innerHTML = mod.images
+              .map(
+                (img) => `
+                <div class="image-item">
+                  <img src="${img.image_url}" alt="صورة">
+                  <button onclick="deleteImage(${img.id})">×</button>
+                </div>
+              `,
+              )
+              .join("");
+          } else {
+            imagesList.innerHTML =
+              "<p style='color:#888;text-align:center;padding:15px;grid-column:1/-1;'>لا توجد صور إضافية.</p>";
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      // ===== إضافة صف إصدار =====
+      function addVersionRow() {
+        const versionsList = document.getElementById("versionsList");
+        const row = document.createElement("div");
+        row.className = "version-row";
+        row.innerHTML = `
+          <input type="text" placeholder="الإصدار (مثلاً 1.0.0)">
+          <input type="text" placeholder="إصدار اللعبة (1.20)">
+          <input type="text" placeholder="رابط التحميل">
+          <input type="text" placeholder="الوصف / التغييرات">
+          <button class="btn btn-danger" onclick="this.parentElement.remove()">🗑</button>
+        `;
+        versionsList.appendChild(row);
+      }
+
+      // ===== حفظ الإصدارات =====
+      async function saveVersions() {
+        if (!currentModId) return;
+
+        const rows = document.querySelectorAll("#versionsList .version-row");
+        let saved = 0;
+
+        for (const row of rows) {
+          const inputs = row.querySelectorAll("input");
+          const version = inputs[0].value;
+          const minecraft_version = inputs[1].value;
+          const download_url = inputs[2].value;
+          const changelog = inputs[3].value;
+
+          // تجاهل الصفوف الفارغة
+          if (!version || !download_url) continue;
+
+          // إذا كان الصف موجوداً (له ID)، تجاهله (لأننا لا ندعم التعديل حالياً)
+          // نضيف فقط الصفوف الجديدة
+          if (row.dataset.saved === "true") continue;
+
+          try {
+            await fetch(`${API_URL}/${currentModId}/versions`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                version,
+                minecraft_version,
+                download_url,
+                changelog,
+              }),
+            });
+            saved++;
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+        if (saved > 0) {
+          showMessage(`✅ تم حفظ ${saved} إصدار جديد`, "success");
+          setTimeout(() => selectMod(currentModId), 500);
+        } else {
+          showMessage("⚠️ لا توجد إصدارات جديدة للحفظ", "error");
+        }
+      }
+
+      // ===== حذف إصدار =====
+      async function deleteVersion(id) {
+        if (!confirm("هل أنت متأكد من حذف هذا الإصدار؟")) return;
+
+        try {
+          await fetch(
+            `https://leon-at.leon-at.workers.dev/api/versions/${id}`,
+            {
+              method: "DELETE",
+            },
+          );
+          showMessage("✅ تم حذف الإصدار", "success");
+          setTimeout(() => selectMod(currentModId), 500);
+        } catch (error) {
+          showMessage("❌ خطأ في الحذف", "error");
+        }
+      }
+
+      // ===== إضافة صورة =====
+      async function addImage() {
+        if (!currentModId) return;
+
+        const imageUrl = document.getElementById("newImageUrl").value;
+        if (!imageUrl) {
+          showMessage("⚠️ الرجاء إدخال رابط الصورة", "error");
+          return;
+        }
+
+        try {
+          await fetch(`${API_URL}/${currentModId}/images`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ image_url: imageUrl }),
+          });
+
+          document.getElementById("newImageUrl").value = "";
+          showMessage("✅ تم إضافة الصورة", "success");
+          setTimeout(() => selectMod(currentModId), 500);
+        } catch (error) {
+          showMessage("❌ خطأ في الإضافة", "error");
+        }
+      }
+
+      // ===== حذف صورة =====
+      async function deleteImage(id) {
+        if (!confirm("هل أنت متأكد من حذف هذه الصورة؟")) return;
+
+        try {
+          await fetch(`https://leon-at.leon-at.workers.dev/api/images/${id}`, {
+            method: "DELETE",
+          });
+          showMessage("✅ تم حذف الصورة", "success");
+          setTimeout(() => selectMod(currentModId), 500);
+        } catch (error) {
+          showMessage("❌ خطأ في الحذف", "error");
         }
       }
 
       // ===== حذف مود =====
       async function deleteMod(id) {
-        if (!confirm("هل أنت متأكد من الحذف؟")) return;
+        if (!confirm("هل أنت متأكد من حذف هذا المود بالكامل؟")) return;
 
         try {
-          await fetch(API_URL + "/" + id, { method: "DELETE" });
-          showMessage("✅ تم الحذف", "success");
+          await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+          showMessage("✅ تم حذف المود", "success");
           loadMods();
         } catch (error) {
           showMessage("❌ خطأ في الحذف", "error");
@@ -282,7 +842,7 @@
         }, 4000);
       }
 
-      // تحميل المودات عند الفتح
+      // ===== تحميل المودات عند الفتح =====
       loadMods();
     </script>
   </body>
