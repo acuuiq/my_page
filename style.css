@@ -920,8 +920,8 @@ img {
     font-size: 15px;
     padding: 5px 10px;
   }
-  /* ===== تمييز القسم عند الوصول إليه ===== */
-  section[id] {
-    scroll-margin-top: 100px;
-  }
+}
+/* ===== تمييز القسم عند الوصول إليه ===== */
+section[id] {
+  scroll-margin-top: 100px;
 }
