@@ -36,35 +36,68 @@
       </div>
     </nav>
 
-    <!-- القسم الرئيسي -->
+    <!-- القسم الرئيسي - السلايدر -->
     <section class="hero">
       <div class="hero-slider">
-        <div
-          class="hero-slide active"
-          style="background-image: url(&quot;images/java.jpg&quot;)"
-        ></div>
-        <div
-          class="hero-slide"
-          style="background-image: url(&quot;images/bedrok.jpg&quot;)"
-        ></div>
-        <div
-          class="hero-slide"
-          style="background-image: url(&quot;images/games.jpg&quot;)"
-        ></div>
-        <div
-          class="hero-slide"
-          style="background-image: url(&quot;images/app.jpg&quot;)"
-        ></div>
+        <!-- شريحة 1: Java -->
+        <div class="hero-slide active" data-slide="0">
+          <div
+            class="slide-bg"
+            style="background-image: url(&quot;images/java.jpg&quot;)"
+          ></div>
+          <div class="slide-content">
+            <h1>إضافات ماين كرافت - Java Edition</h1>
+            <p>مودات، ريسورس باكات، شيدرز، وعوالم لإصدار الجافا</p>
+            <a href="addons-java.html" class="btn-primary">تصفح الإضافات</a>
+          </div>
+        </div>
+
+        <!-- شريحة 2: Bedrock -->
+        <div class="hero-slide" data-slide="1">
+          <div
+            class="slide-bg"
+            style="background-image: url(&quot;images/bedrok.jpg&quot;)"
+          ></div>
+          <div class="slide-content">
+            <h1>إضافات ماين كرافت - Bedrock Edition</h1>
+            <p>إضافات، ريسورس باكات، وعوالم لإصدار البيدروك</p>
+            <a href="addons-bedrock.html" class="btn-primary">تصفح الإضافات</a>
+          </div>
+        </div>
+
+        <!-- شريحة 3: Games -->
+        <div class="hero-slide" data-slide="2">
+          <div
+            class="slide-bg"
+            style="background-image: url(&quot;images/games.jpg&quot;)"
+          ></div>
+          <div class="slide-content">
+            <h1>الألعاب</h1>
+            <p>تصفح مجموعة الألعاب المتاحة للتحميل مع شرح كامل</p>
+            <a href="games.html" class="btn-primary">تصفح الألعاب</a>
+          </div>
+        </div>
+
+        <!-- شريحة 4: Apps -->
+        <div class="hero-slide" data-slide="3">
+          <div
+            class="slide-bg"
+            style="background-image: url(&quot;images/app.jpg&quot;)"
+          ></div>
+          <div class="slide-content">
+            <h1>التطبيقات</h1>
+            <p>تطبيقات مختارة ومفيدة، مع روابط تحميل مباشرة</p>
+            <a href="apps.html" class="btn-primary">تصفح التطبيقات</a>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-        <h1>حمّل أفضل المودات والتطبيقات</h1>
-        <p>
-          كل ما تحتاجه من مودات الألعاب والتطبيقات، في مكان واحد، مع شرح كامل
-          على قناتي.
-        </p>
+      <!-- مؤشرات السلايدر (نقاط) -->
+      <div class="hero-dots">
+        <button class="dot active" data-dot="0"></button>
+        <button class="dot" data-dot="1"></button>
+        <button class="dot" data-dot="2"></button>
+        <button class="dot" data-dot="3"></button>
       </div>
     </section>
 
