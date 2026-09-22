@@ -375,62 +375,89 @@ img {
     font-size: 15px;
   }
 }
-
 /* ===== الجوال (أقل من 768px) ===== */
 @media (max-width: 768px) {
   .hero {
-    height: 600px;
-    min-height: 600px;
+    position: relative;
+    height: auto;
+    min-height: 0;
+    background: var(--dark);
+    overflow: visible;
+    display: block;
   }
 
-  /* الصورة تركز على الجانب الأيمن (الشخصية) */
-  .slide-image {
-    background-position: 75% center;
-    background-size: cover;
+  .hero-slider {
+    position: relative;
+    height: auto;
+    overflow: visible;
   }
 
-  /* لا تكبير على الجوال (لتجنب اهتزاز الصورة) */
-  .hero-slide.active .slide-image {
-    transform: none;
-  }
-
-  /* النص في الأسفل فوق الصورة */
   .hero-slide {
-    align-items: flex-end;
+    position: relative;
+    transform: none !important;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
   }
 
+  .hero-slide.active {
+    display: flex;
+    transform: none !important;
+  }
+
+  .hero-slide.exit-right {
+    display: none;
+  }
+
+  /* الصورة: تظهر كاملة بنسبة 16:9 (مثل فيديو يوتيوب) */
+  .slide-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background-size: cover;
+    background-position: center;
+    transform: none !important;
+  }
+
+  .hero-slide.active .slide-image {
+    transform: none !important;
+  }
+
+  /* النص: تحت الصورة، على خلفية داكنة */
   .slide-content {
+    position: relative;
     max-width: 100%;
     margin: 0;
-    padding: 30px 20px 80px 20px;
+    padding: 24px 20px 90px 20px;
     text-align: center;
-    background: linear-gradient(
-      to top,
-      rgba(10, 14, 26, 0.95) 0%,
-      rgba(10, 14, 26, 0.7) 50%,
-      transparent 100%
-    );
-    border-radius: 0;
+    background: var(--dark);
+    animation: slideContentIn 0.5s ease-out;
   }
 
   .slide-content h1 {
-    font-size: 28px;
+    font-size: 24px;
     margin-bottom: 12px;
   }
 
   .slide-content p {
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 20px;
   }
 
   .slide-content .btn-primary {
-    padding: 12px 26px;
+    padding: 12px 28px;
     font-size: 14px;
   }
 
+  /* النقاط في الأسفل */
   .hero-dots {
-    bottom: 15px;
-    gap: 8px;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+    z-index: 10;
   }
 
   .dot {
@@ -439,27 +466,22 @@ img {
   }
 
   .dot.active {
-    width: 28px;
+    width: 30px;
   }
 }
 
 /* ===== الجوال الصغير (أقل من 480px) ===== */
 @media (max-width: 480px) {
-  .hero {
-    height: 550px;
-    min-height: 550px;
-  }
-
   .slide-content {
-    padding: 25px 16px 70px 16px;
+    padding: 20px 16px 80px 16px;
   }
 
   .slide-content h1 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .slide-content p {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .slide-content .btn-primary {
@@ -1364,5 +1386,67 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+/* ===== الجوال الأفقي (العرض > الطول) ===== */
+@media (max-width: 900px) and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+    min-height: 400px;
+  }
+
+  .hero-slider {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-slide.active {
+    display: flex;
+  }
+
+  .slide-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    background-size: cover;
+    background-position: center right;
+  }
+
+  .slide-content {
+    position: relative;
+    max-width: 55%;
+    margin-left: 5%;
+    margin-right: auto;
+    padding: 0 20px;
+    text-align: right;
+    background: none;
+  }
+
+  .slide-content h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .slide-content p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+
+  .hero-dots {
+    bottom: 15px;
   }
 }
