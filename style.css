@@ -242,7 +242,7 @@ img {
   z-index: 1;
 }
 
-.slide-bg {
+.slide-image {
   position: absolute;
   inset: 0;
   background-size: cover;
@@ -250,11 +250,11 @@ img {
   transition: transform 8s ease-out;
 }
 
-.hero-slide.active .slide-bg {
+.hero-slide.active .slide-image {
   transform: scale(1.08);
 }
 
-.slide-bg::after {
+.slide-image::after {
   content: "";
   position: absolute;
   inset: 0;
