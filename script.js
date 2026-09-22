@@ -79,3 +79,44 @@ if (filterButtons.length > 0 && cards.length > 0) {
     });
   });
 }
+// ===== شاشة التحميل عند الانتقال بين الصفحات =====
+const loadingOverlay = document.getElementById("loadingOverlay");
+
+if (loadingOverlay) {
+  // اعتراض النقر على الروابط الداخلية (بين صفحات الموقع)
+  document.querySelectorAll('a[href$=".html"]').forEach((link) => {
+    // تجاهل الروابط الخارجية أو التي تبدأ بـ #
+    const href = link.getAttribute("href");
+    if (
+      !href ||
+      href.startsWith("#") ||
+      href.startsWith("http") ||
+      href.startsWith("mailto:")
+    ) {
+      return;
+    }
+
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetUrl = link.href;
+
+      // إظهار شاشة التحميل
+      loadingOverlay.classList.add("active");
+
+      // الانتقال بعد 600ms
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 600);
+    });
+  });
+
+  // إخفاء شاشة التحميل عند تحميل الصفحة الجديدة
+  window.addEventListener("pageshow", () => {
+    loadingOverlay.classList.remove("active");
+  });
+
+  // إخفاء شاشة التحميل بعد فترة (احتياط)
+  setTimeout(() => {
+    loadingOverlay.classList.remove("active");
+  }, 1500);
+}

@@ -1,113 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>إضافات Bedrock | LEON_AT</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
-</head>
-<body>
-
-  <nav class="navbar">
-    <div class="nav-container">
-<a href="index.html" class="logo">
-  <img src="images/logo.png" alt="LEON_AT" class="logo-img" />
-  <span>LEON_AT</span>
-</a>      <ul class="nav-links">
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="addons-java.html">إضافات Java</a></li>
-        <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
-        <li><a href="games.html">الألعاب</a></li>
-        <li><a href="apps.html">التطبيقات</a></li>
-        <li><a href="contact.html">تواصل معي</a></li>
-      </ul>
-      <a href="https://youtube.com/@leon-at" target="_blank" class="subscribe-btn">اشترك</a>
-    </div>
-  </nav>
-
-  <section class="page-header">
-    <h1>إضافات Bedrock Edition</h1>
-    <p>كل إضافات ماين كرافت الخاصة بإصدار البيدروك في مكان واحد</p>
-  </section>
-
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">الكل</button>
-    <button class="filter-btn" data-filter="mods">إضافات</button>
-    <button class="filter-btn" data-filter="packs">ريسورس باكات</button>
-    <button class="filter-btn" data-filter="worlds">عوالم</button>
-  </div>
-
-  <section class="filter-section">
-    <div class="cards-grid" id="cardsGrid">
-
-      <a href="bedrock-addon-1.html" class="card" data-category="mods">
-        <div class="card-image">
-          <img src="https://via.placeholder.com/400x220/1a1a2e/00d4ff?text=Addon+1" alt="إضافة">
-          <span class="card-badge">جديد</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إضافات Bedrock | LEON_AT</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="top">
+    <!-- شاشة التحميل -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loader">
+        <div class="loader-logo">
+          <img src="images/logo.png" alt="LEON_AT" />
         </div>
-        <div class="card-body">
-          <h3>اسم الإضافة الأولى</h3>
-          <p>وصف مختصر للإضافة ووظيفتها.</p>
-          <span class="card-btn">تحميل</span>
-        </div>
-      </a>
-
-      <a href="bedrock-addon-2.html" class="card" data-category="mods">
-        <div class="card-image">
-          <img src="https://via.placeholder.com/400x220/16213e/00d4ff?text=Addon+2" alt="إضافة">
-        </div>
-        <div class="card-body">
-          <h3>اسم الإضافة الثانية</h3>
-          <p>وصف مختصر للإضافة ووظيفتها.</p>
-          <span class="card-btn">تحميل</span>
-        </div>
-      </a>
-
-      <a href="bedrock-pack-1.html" class="card" data-category="packs">
-        <div class="card-image">
-          <img src="https://via.placeholder.com/400x220/0f3460/00d4ff?text=Resource+Pack" alt="باك">
-        </div>
-        <div class="card-body">
-          <h3>ريسورس باك مميز</h3>
-          <p>وصف مختصر للباك ومميزاته.</p>
-          <span class="card-btn">تحميل</span>
-        </div>
-      </a>
-
-      <a href="bedrock-world-1.html" class="card" data-category="worlds">
-        <div class="card-image">
-          <img src="https://via.placeholder.com/400x220/533483/00d4ff?text=World" alt="عالم">
-        </div>
-        <div class="card-body">
-          <h3>عالم مغامرات</h3>
-          <p>خريطة جاهزة للمغامرات والتحديات.</p>
-          <span class="card-btn">تحميل</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h4>LEON_AT</h4>
-        <p>موقعك الأول لتحميل المودات والتطبيقات المشروحة على قناتي.</p>
+        <div class="loader-spinner"></div>
+        <p class="loader-text">جارٍ التحميل...</p>
       </div>
-      <div class="footer-col">
-        <h4>روابط سريعة</h4>
-        <ul>
+    </div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="LEON_AT" class="logo-img" />
+          <span>LEON_AT</span>
+        </a>
+        <ul class="nav-links">
           <li><a href="index.html">الرئيسية</a></li>
           <li><a href="addons-java.html">إضافات Java</a></li>
           <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
           <li><a href="games.html">الألعاب</a></li>
           <li><a href="apps.html">التطبيقات</a></li>
+          <li><a href="contact.html">تواصل معي</a></li>
         </ul>
+        <a
+          href="https://youtube.com/@leon-at"
+          target="_blank"
+          class="subscribe-btn"
+          >اشترك</a
+        >
       </div>
-      <div class="footer-col">
-        <h4>تابعني</h4>
-        <ul>
-          <li><a href="https://youtube.com/@leon-at" target="_blank">يوتيوب</a></li>
-          <li><a href="#">تيليجرام</a></li>
-          <li><a
+    </nav>
+
+    <section class="page-header">
+      <h1>إضافات Bedrock Edition</h1>
+      <p>كل إضافات ماين كرافت الخاصة بإصدار البيدروك في مكان واحد</p>
+    </section>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="mods">إضافات</button>
+      <button class="filter-btn" data-filter="packs">ريسورس باكات</button>
+      <button class="filter-btn" data-filter="worlds">عوالم</button>
+    </div>
+
+    <section class="filter-section">
+      <div class="cards-grid" id="cardsGrid">
+        <a href="bedrock-addon-1.html" class="card" data-category="mods">
+          <div class="card-image">
+            <img
+              src="https://via.placeholder.com/400x220/1a1a2e/00d4ff?text=Addon+1"
+              alt="إضافة"
+            />
+            <span class="card-badge">جديد</span>
+          </div>
+          <div class="card-body">
+            <h3>اسم الإضافة الأولى</h3>
+            <p>وصف مختصر للإضافة ووظيفتها.</p>
+            <span class="card-btn">تحميل</span>
+          </div>
+        </a>
+
+        <a href="bedrock-addon-2.html" class="card" data-category="mods">
+          <div class="card-image">
+            <img
+              src="https://via.placeholder.com/400x220/16213e/00d4ff?text=Addon+2"
+              alt="إضافة"
+            />
+          </div>
+          <div class="card-body">
+            <h3>اسم الإضافة الثانية</h3>
+            <p>وصف مختصر للإضافة ووظيفتها.</p>
+            <span class="card-btn">تحميل</span>
+          </div>
+        </a>
+
+        <a href="bedrock-pack-1.html" class="card" data-category="packs">
+          <div class="card-image">
+            <img
+              src="https://via.placeholder.com/400x220/0f3460/00d4ff?text=Resource+Pack"
+              alt="باك"
+            />
+          </div>
+          <div class="card-body">
+            <h3>ريسورس باك مميز</h3>
+            <p>وصف مختصر للباك ومميزاته.</p>
+            <span class="card-btn">تحميل</span>
+          </div>
+        </a>
+
+        <a href="bedrock-world-1.html" class="card" data-category="worlds">
+          <div class="card-image">
+            <img
+              src="https://via.placeholder.com/400x220/533483/00d4ff?text=World"
+              alt="عالم"
+            />
+          </div>
+          <div class="card-body">
+            <h3>عالم مغامرات</h3>
+            <p>خريطة جاهزة للمغامرات والتحديات.</p>
+            <span class="card-btn">تحميل</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>LEON_AT</h4>
+          <p>موقعك الأول لتحميل المودات والتطبيقات المشروحة على قناتي.</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="addons-java.html">إضافات Java</a></li>
+            <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
+            <li><a href="games.html">الألعاب</a></li>
+            <li><a href="apps.html">التطبيقات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تابعني</h4>
+          <ul>
+            <li>
+              <a href="https://youtube.com/@leon-at" target="_blank">يوتيوب</a>
+            </li>
+            <li><a href="#">تيليجرام</a></li>
+            <li><a href="#">إنستجرام</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
