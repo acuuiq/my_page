@@ -202,16 +202,12 @@ img {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(41, 214, 255, 0.5);
 }
-
 /* ===== القسم الرئيسي - السلايدر ===== */
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 650px;
-  height: 650px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 600px;
+  background: var(--dark);
 }
 
 .hero-slider {
@@ -229,7 +225,6 @@ img {
   will-change: transform;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .hero-slide.active {
@@ -242,37 +237,45 @@ img {
   z-index: 1;
 }
 
+/* الصورة - على اليمين فقط */
 .slide-image {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 75%;
   background-size: cover;
-  background-position: center;
+  background-position: center right;
   transition: transform 8s ease-out;
 }
 
 .hero-slide.active .slide-image {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
-.slide-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 14, 26, 0.2) 0%,
-    rgba(10, 14, 26, 0.3) 40%,
-    rgba(10, 14, 26, 0.85) 100%
-  );
-}
-
+/* بطاقة النص الزجاجية - على اليسار */
 .slide-content {
   position: relative;
   z-index: 3;
-  max-width: 850px;
-  padding: 0 24px;
-  text-align: center;
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: 4%;
+  padding: 40px 36px;
+  text-align: right;
   animation: slideContentIn 1s ease-out;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 24, 39, 0.95) 0%,
+    rgba(10, 14, 26, 0.9) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(41, 214, 255, 0.25);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(41, 214, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 @keyframes slideContentIn {
@@ -287,28 +290,35 @@ img {
 }
 
 .slide-content h1 {
-  font-size: 58px;
+  font-size: 36px;
   font-weight: 900;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #ffffff 0%, #29d6ff 50%, #7c3aed 100%);
+  margin-bottom: 18px;
+  line-height: 1.3;
+  color: #ffffff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.slide-content h1 span {
+  background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1.15;
-  filter: drop-shadow(0 0 30px rgba(41, 214, 255, 0.4));
+  display: inline-block;
+  filter: drop-shadow(0 0 20px rgba(41, 214, 255, 0.5));
 }
 
 .slide-content p {
-  font-size: 20px;
-  color: #fff;
-  margin-bottom: 35px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  font-size: 15px;
+  color: #bbb;
+  margin-bottom: 28px;
+  line-height: 1.8;
 }
 
 .slide-content .btn-primary {
   display: inline-block;
 }
 
+/* النقاط (Dots) */
 .hero-dots {
   position: absolute;
   bottom: 30px;
@@ -342,7 +352,6 @@ img {
   border-radius: 8px;
   box-shadow: 0 0 15px var(--primary-glow);
 }
-
 /* ===== الأزرار ===== */
 .btn-primary {
   background: var(--gradient-1);
@@ -966,19 +975,41 @@ section[id] {
 
   /* السلايدر */
   .hero {
-    min-height: 500px;
-    height: 500px;
+    height: auto;
+    min-height: 580px;
+  }
+
+  .slide-image {
+    width: 100%;
+    background-position: center;
+  }
+
+  .hero-slide {
+    align-items: flex-end;
   }
 
   .slide-content {
-    padding: 0 16px;
+    max-width: 100%;
+    margin: 0;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 20px 20px 0 0;
   }
 
   .slide-content h1 {
-    font-size: 28px;
-    margin-bottom: 14px;
+    font-size: 24px;
   }
 
+  .slide-content p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 12px 26px;
+    font-size: 14px;
+  }
   .slide-content p {
     font-size: 15px;
     margin-bottom: 24px;
