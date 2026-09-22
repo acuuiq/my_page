@@ -115,7 +115,56 @@ export default {
         return errorResponse(e.message, 500, corsHeaders);
       }
     }
+    // تعديل مود
+    if (path.match(/^\/api\/mods\/\d+$/) && request.method === "PUT") {
+      try {
+        const id = path.split("/")[3];
+        const body = await request.json();
+        const {
+          title,
+          description,
+          full_description,
+          image_url,
+          download_url,
+          category,
+          edition,
+          video_url,
+        } = body;
 
+        if (!title) {
+          return errorResponse("Title is required", 400, corsHeaders);
+        }
+
+        await env.DB.prepare(
+          `UPDATE mods SET 
+            title = ?, 
+            description = ?, 
+            full_description = ?, 
+            image_url = ?, 
+            download_url = ?, 
+            category = ?, 
+            edition = ?, 
+            video_url = ? 
+           WHERE id = ?`,
+        )
+          .bind(
+            title,
+            description || "",
+            full_description || "",
+            image_url || "",
+            download_url || "",
+            category || "mods",
+            edition || "java",
+            video_url || "",
+            id,
+          )
+          .run();
+
+        return jsonResponse({ success: true }, corsHeaders);
+      } catch (e) {
+        return errorResponse(e.message, 500, corsHeaders);
+      }
+    }
     // حذف مود
     if (path.match(/^\/api\/mods\/\d+$/) && request.method === "DELETE") {
       try {

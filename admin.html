@@ -487,6 +487,89 @@
           <div class="mods-list" id="modsList">جارٍ التحميل...</div>
         </div>
 
+        <!-- تعديل المود -->
+        <div id="editModPanel" style="display: none">
+          <div class="panel-card">
+            <h2 id="editModTitle">✏️ تعديل المود</h2>
+
+            <form id="editModForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>اسم المود *</label>
+                  <input type="text" id="edit_title" required />
+                </div>
+
+                <div class="form-group">
+                  <label>نوع الإصدار *</label>
+                  <select id="edit_edition" required>
+                    <option value="java">Java Edition</option>
+                    <option value="bedrock">Bedrock Edition</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>التصنيف *</label>
+                <select id="edit_category" required>
+                  <option value="mods">مودات</option>
+                  <option value="packs">ريسورس باكات</option>
+                  <option value="shaders">شيدرز</option>
+                  <option value="worlds">عوالم</option>
+                  <option value="games">ألعاب</option>
+                  <option value="apps">تطبيقات</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>الوصف المختصر *</label>
+                <textarea
+                  id="edit_description"
+                  required
+                  style="min-height: 80px"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>الوصف الكامل</label>
+                <textarea
+                  id="edit_full_description"
+                  style="min-height: 150px"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>رابط الصورة الرئيسية *</label>
+                <input type="text" id="edit_image_url" required />
+              </div>
+
+              <div class="form-group">
+                <label>رابط التحميل الرئيسي</label>
+                <input type="text" id="edit_download_url" />
+              </div>
+
+              <div class="form-group">
+                <label>رابط فيديو الشرح (اختياري)</label>
+                <input type="text" id="edit_video_url" />
+              </div>
+
+              <div style="display: flex; gap: 10px">
+                <button type="submit" class="btn btn-primary" style="flex: 1">
+                  💾 حفظ التعديلات
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  onclick="closeEditPanel()"
+                >
+                  ❌ إلغاء
+                </button>
+              </div>
+            </form>
+
+            <div id="editMessage"></div>
+          </div>
+        </div>
+
         <!-- تفاصيل المود المحدد -->
         <div id="modDetailsPanel" style="display: none">
           <div class="panel-card">
@@ -627,9 +710,10 @@
                     <p>${mod.edition === "bedrock" ? "🟢 Bedrock" : "🟠 Java"} | ${mod.category}</p>
                   </div>
                 </div>
-                <div class="mod-item-actions">
-                  <button class="btn btn-secondary" onclick="selectMod(${mod.id})">📝 تفاصيل</button>
-                  <button class="btn btn-danger" onclick="deleteMod(${mod.id})">🗑 حذف</button>
+                              <div class="mod-item-actions">
+                  <button class="btn btn-secondary" onclick="editMod(${mod.id})">✏️ تعديل</button>
+                  <button class="btn btn-secondary" onclick="selectMod(${mod.id})">📦 إصدارات</button>
+                  <button class="btn btn-danger" onclick="deleteMod(${mod.id})">🗑</button>
                 </div>
               </div>
             `,
@@ -641,7 +725,105 @@
         }
       }
 
-      // ===== تحديد مود =====
+      // ===== تعديل مود =====
+      async function editMod(id) {
+        // إخفاء لوحة الإصدارات
+        document.getElementById("modDetailsPanel").style.display = "none";
+
+        // إظهار لوحة التعديل
+        document.getElementById("editModPanel").style.display = "block";
+        document
+          .getElementById("editModPanel")
+          .scrollIntoView({ behavior: "smooth" });
+
+        try {
+          const response = await fetch(`${API_URL}/${id}`);
+          const mod = await response.json();
+
+          // تعبئة الحقول
+          document.getElementById("editModTitle").textContent =
+            `✏️ تعديل: ${mod.title}`;
+          document.getElementById("edit_title").value = mod.title || "";
+          document.getElementById("edit_edition").value = mod.edition || "java";
+          document.getElementById("edit_category").value =
+            mod.category || "mods";
+          document.getElementById("edit_description").value =
+            mod.description || "";
+          document.getElementById("edit_full_description").value =
+            mod.full_description || "";
+          document.getElementById("edit_image_url").value = mod.image_url || "";
+          document.getElementById("edit_download_url").value =
+            mod.download_url || "";
+          document.getElementById("edit_video_url").value = mod.video_url || "";
+
+          // تخزين ID المود الحالي
+          document.getElementById("editModForm").dataset.modId = id;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      // ===== حفظ تعديلات المود =====
+      document
+        .getElementById("editModForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const modId = e.target.dataset.modId;
+
+          const updatedMod = {
+            title: document.getElementById("edit_title").value,
+            edition: document.getElementById("edit_edition").value,
+            category: document.getElementById("edit_category").value,
+            description: document.getElementById("edit_description").value,
+            full_description: document.getElementById("edit_full_description")
+              .value,
+            image_url: document.getElementById("edit_image_url").value,
+            download_url: document.getElementById("edit_download_url").value,
+            video_url: document.getElementById("edit_video_url").value,
+          };
+
+          try {
+            const response = await fetch(`${API_URL}/${modId}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(updatedMod),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+              showEditMessage("✅ تم حفظ التعديلات بنجاح!", "success");
+              setTimeout(() => {
+                closeEditPanel();
+                loadMods();
+              }, 1500);
+            } else {
+              showEditMessage("❌ خطأ: " + data.error, "error");
+            }
+          } catch (error) {
+            showEditMessage("❌ خطأ في الاتصال: " + error.message, "error");
+          }
+        });
+
+      // ===== إغلاق لوحة التعديل =====
+      function closeEditPanel() {
+        document.getElementById("editModPanel").style.display = "none";
+        document.getElementById("editModForm").reset();
+      }
+
+      // ===== رسالة التعديل =====
+      function showEditMessage(text, type) {
+        const msg = document.getElementById("editMessage");
+        msg.className = "message " + type;
+        msg.textContent = text;
+        setTimeout(() => {
+          msg.textContent = "";
+          msg.className = "";
+        }, 4000);
+      }
+
+      // ===== تحديد مود (الإصدارات والصور) =====
       async function selectMod(id) {
         currentModId = id;
         document.getElementById("modDetailsPanel").style.display = "block";
