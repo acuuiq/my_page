@@ -256,6 +256,7 @@ img {
   );
   z-index: 1;
 }
+
 @keyframes float {
   0%,
   100% {
