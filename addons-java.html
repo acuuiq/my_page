@@ -112,30 +112,25 @@
               "<p style='color:#888;text-align:center;padding:40px;grid-column:1/-1;'>لا توجد مودات بعد.</p>";
             return;
           }
-
           grid.innerHTML = mods
             .map((mod) => {
               const badge = mod.badge
                 ? `<span class="card-badge">${mod.badge}</span>`
                 : "";
-              const videoBtn = mod.video
-                ? `<a href="${mod.video}" target="_blank" class="card-video-btn">▶ شرح</a>`
-                : "";
 
               return `
-              <a href="${mod.download_url}" target="_blank" class="card" data-category="${mod.category}">
-                <div class="card-image">
-                  <img src="${mod.image_url}" alt="${mod.title}">
-                  ${badge}
-                </div>
-                <div class="card-body">
-                  <h3>${mod.title}</h3>
-                  <p>${mod.description}</p>
-                  <span class="card-btn">تحميل الآن</span>
-                  ${videoBtn}
-                </div>
-              </a>
-            `;
+    <a href="mod.html?id=${mod.id}" class="card" data-category="${mod.category}">
+      <div class="card-image">
+        <img src="${mod.image_url}" alt="${mod.title}">
+        ${badge}
+      </div>
+      <div class="card-body">
+        <h3>${mod.title}</h3>
+        <p>${mod.description}</p>
+        <span class="card-btn">عرض التفاصيل</span>
+      </div>
+    </a>
+  `;
             })
             .join("");
         } catch (error) {

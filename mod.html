@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تفاصيل المود | LEON_AT</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== صفحة تفاصيل المود ===== */
+      .mod-detail {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .mod-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 50px;
+        background: var(--dark-2);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(41, 214, 255, 0.15);
+      }
+
+      .mod-main-image {
+        position: relative;
+        min-height: 350px;
+        background: var(--dark-3);
+        overflow: hidden;
+      }
+
+      .mod-main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+      }
+
+      .mod-info {
+        padding: 35px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .mod-info h1 {
+        font-size: 32px;
+        font-weight: 900;
+        margin-bottom: 15px;
+        background: linear-gradient(135deg, #ffffff 0%, #29d6ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.3;
+      }
+
+      .mod-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .mod-meta-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 700;
+        background: rgba(41, 214, 255, 0.1);
+        color: var(--primary);
+        border: 1px solid rgba(41, 214, 255, 0.3);
+      }
+
+      .mod-meta-badge.edition-java {
+        background: rgba(255, 165, 0, 0.1);
+        color: #ffa500;
+        border-color: rgba(255, 165, 0, 0.3);
+      }
+
+      .mod-meta-badge.edition-bedrock {
+        background: rgba(0, 212, 100, 0.1);
+        color: #00d464;
+        border-color: rgba(0, 212, 100, 0.3);
+      }
+
+      .mod-description {
+        color: #bbb;
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+      }
+
+      .mod-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .mod-actions .btn-primary,
+      .mod-actions .btn-secondary {
+        flex: 1;
+        min-width: 150px;
+        text-align: center;
+        padding: 14px 24px;
+      }
+
+      /* الأقسام */
+      .mod-section {
+        margin-bottom: 50px;
+      }
+
+      .mod-section-title {
+        font-size: 24px;
+        font-weight: 900;
+        color: var(--white);
+        margin-bottom: 20px;
+        padding-right: 18px;
+        position: relative;
+      }
+
+      .mod-section-title::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 26px;
+        background: var(--gradient-1);
+        border-radius: 3px;
+        box-shadow: 0 0 15px var(--primary-glow);
+      }
+
+      .full-description {
+        background: var(--dark-2);
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: #bbb;
+        font-size: 16px;
+        line-height: 1.9;
+        white-space: pre-wrap;
+      }
+
+      /* معرض الصور */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 12px;
+        cursor: pointer;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        border: 2px solid transparent;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(41, 214, 255, 0.3);
+        border-color: var(--primary);
+      }
+
+      /* جدول الإصدارات */
+      .versions-list {
+        background: var(--dark-2);
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .version-item {
+        display: grid;
+        grid-template-columns: 120px 150px 1fr 130px;
+        align-items: center;
+        padding: 18px 22px;
+        gap: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition: background 0.3s;
+      }
+
+      .version-item:last-child {
+        border-bottom: none;
+      }
+
+      .version-item:hover {
+        background: rgba(41, 214, 255, 0.05);
+      }
+
+      .version-tag {
+        background: var(--gradient-1);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 13px;
+        text-align: center;
+        display: inline-block;
+      }
+
+      .version-mc {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .version-changelog {
+        color: #999;
+        font-size: 13px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .version-download {
+        background: var(--gradient-1);
+        color: white;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 13px;
+        text-align: center;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .version-download:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
+      }
+
+      /* رسالة عدم وجود بيانات */
+      .empty-state {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+        font-size: 15px;
+      }
+
+      /* استجابة الجوال */
+      @media (max-width: 768px) {
+        .mod-header {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
+        .mod-main-image {
+          min-height: 220px;
+        }
+
+        .mod-info {
+          padding: 25px 20px;
+        }
+
+        .mod-info h1 {
+          font-size: 22px;
+        }
+
+        .mod-section-title {
+          font-size: 20px;
+        }
+
+        .version-item {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          padding: 15px;
+        }
+
+        .version-changelog {
+          white-space: normal;
+        }
+
+        .mod-actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <!-- شاشة التحميل -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loader">
+        <div class="loader-logo">
+          <img src="images/logo.png" alt="LEON_AT" />
+        </div>
+        <div class="loader-spinner"></div>
+        <p class="loader-text">جارٍ التحميل...</p>
+      </div>
+    </div>
+
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="LEON_AT" class="logo-img" />
+          <span>LEON_AT</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="addons-java.html">إضافات Java</a></li>
+          <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
+          <li><a href="games.html">الألعاب</a></li>
+          <li><a href="apps.html">التطبيقات</a></li>
+          <li><a href="contact.html">تواصل معي</a></li>
+        </ul>
+        <a
+          href="https://youtube.com/@leon-at"
+          target="_blank"
+          class="subscribe-btn"
+          >زيارة القناة</a
+        >
+      </div>
+    </nav>
+
+    <!-- محتوى صفحة المود -->
+    <div class="mod-detail" id="modDetail">
+      <div class="empty-state">جارٍ تحميل التفاصيل...</div>
+    </div>
+
+    <!-- التذييل -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>LEON_AT</h4>
+          <p>موقعك الأول لتحميل المودات والتطبيقات المشروحة على قناتي.</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="addons-java.html">إضافات Java</a></li>
+            <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
+            <li><a href="games.html">الألعاب</a></li>
+            <li><a href="apps.html">التطبيقات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تابعني</h4>
+          <ul>
+            <li>
+              <a href="https://youtube.com/@leon-at" target="_blank">يوتيوب</a>
+            </li>
+            <li><a href="#">تيليجرام</a></li>
+            <li><a href="#">إنستجرام</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 LEON_AT — جميع الحقوق محفوظة</p>
+      </div>
+    </footer>
+
+    <script>
+      const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
+
+      // جلب ID المود من الرابط
+      const params = new URLSearchParams(window.location.search);
+      const modId = params.get("id");
+
+      async function loadModDetails() {
+        const container = document.getElementById("modDetail");
+
+        if (!modId) {
+          container.innerHTML =
+            "<div class='empty-state'>❌ لم يتم تحديد مود</div>";
+          return;
+        }
+
+        try {
+          const response = await fetch(`${API_URL}/${modId}`);
+          const mod = await response.json();
+
+          if (mod.error) {
+            container.innerHTML =
+              "<div class='empty-state'>❌ المود غير موجود</div>";
+            return;
+          }
+
+          // تحديد لون الإصدار
+          const editionClass =
+            mod.edition === "bedrock" ? "edition-bedrock" : "edition-java";
+          const editionText =
+            mod.edition === "bedrock" ? "Bedrock Edition" : "Java Edition";
+
+          // بناء قسم الصور
+          const imagesHTML =
+            mod.images && mod.images.length > 0
+              ? `
+              <div class="mod-section">
+                <h2 class="mod-section-title">📸 معرض الصور</h2>
+                <div class="gallery">
+                  ${mod.images
+                    .map(
+                      (img) =>
+                        `<img src="${img.image_url}" alt="صورة" onclick="window.open('${img.image_url}', '_blank')">`,
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `
+              : "";
+
+          // بناء قسم الإصدارات
+          const versionsHTML =
+            mod.versions && mod.versions.length > 0
+              ? `
+              <div class="mod-section">
+                <h2 class="mod-section-title">📦 الإصدارات المتاحة</h2>
+                <div class="versions-list">
+                  ${mod.versions
+                    .map(
+                      (v) => `
+                    <div class="version-item">
+                      <span class="version-tag">${v.version}</span>
+                      <span class="version-mc">${v.minecraft_version || "-"}</span>
+                      <span class="version-changelog">${v.changelog || "لا يوجد وصف"}</span>
+                      <a href="${v.download_url}" target="_blank" class="version-download">تحميل</a>
+                    </div>
+                  `,
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `
+              : `
+              <div class="mod-section">
+                <h2 class="mod-section-title">📦 الإصدارات المتاحة</h2>
+                <div class="full-description" style="text-align:center;color:#666;">
+                  لا توجد إصدارات مضافة بعد
+                </div>
+              </div>
+            `;
+
+          // بناء الوصف الكامل
+          const fullDescHTML = mod.full_description
+            ? `
+              <div class="mod-section">
+                <h2 class="mod-section-title">📝 الوصف الكامل</h2>
+                <div class="full-description">${mod.full_description}</div>
+              </div>
+            `
+            : "";
+
+          // زر الفيديو
+          const videoBtn = mod.video_url
+            ? `<a href="${mod.video_url}" target="_blank" class="btn-secondary">▶ مشاهدة الشرح</a>`
+            : "";
+
+          // بناء الصفحة
+          container.innerHTML = `
+            <div class="mod-header">
+              <div class="mod-main-image">
+                <img src="${mod.image_url}" alt="${mod.title}">
+              </div>
+              <div class="mod-info">
+                <h1>${mod.title}</h1>
+                <div class="mod-meta">
+                  <span class="mod-meta-badge ${editionClass}">🎮 ${editionText}</span>
+                  <span class="mod-meta-badge">📁 ${mod.category}</span>
+                  ${mod.developer ? `<span class="mod-meta-badge">👤 ${mod.developer}</span>` : ""}
+                  ${mod.rating ? `<span class="mod-meta-badge">⭐ ${mod.rating}</span>` : ""}
+                  ${mod.downloads ? `<span class="mod-meta-badge">⬇ ${mod.downloads}</span>` : ""}
+                </div>
+                <p class="mod-description">${mod.description}</p>
+                <div class="mod-actions">
+                  <a href="${mod.download_url}" target="_blank" class="btn-primary">⬇ تحميل مباشر</a>
+                  ${videoBtn}
+                </div>
+              </div>
+            </div>
+
+            ${fullDescHTML}
+            ${imagesHTML}
+            ${versionsHTML}
+          `;
+        } catch (error) {
+          container.innerHTML =
+            "<div class='empty-state'>❌ خطأ في تحميل البيانات</div>";
+          console.error(error);
+        }
+      }
+
+      loadModDetails();
+
+      // ===== شاشة التحميل =====
+      const loadingOverlay = document.getElementById("loadingOverlay");
+      if (loadingOverlay) {
+        document.querySelectorAll('a[href$=".html"]').forEach((link) => {
+          const href = link.getAttribute("href");
+          if (!href || href.startsWith("#") || href.startsWith("http")) return;
+
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            loadingOverlay.classList.add("active");
+            setTimeout(() => {
+              window.location.href = link.href;
+            }, 600);
+          });
+        });
+
+        window.addEventListener("pageshow", () => {
+          loadingOverlay.classList.remove("active");
+        });
+      }
+    </script>
+  </body>
+</html>
