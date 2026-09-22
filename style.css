@@ -203,45 +203,59 @@ img {
 
 /* ===== القسم الرئيسي ===== */
 .hero {
-  background: var(--gradient-hero);
-  padding: 120px 24px;
+  padding: 140px 24px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero::before {
-  content: "";
+/* خلفية الصور المتغيرة */
+.hero-slider {
   position: absolute;
-  top: -30%;
-  right: -15%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(
-    circle,
-    rgba(41, 214, 255, 0.2) 0%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  animation: float 8s ease-in-out infinite;
+  inset: 0;
+  z-index: 0;
 }
 
-.hero::after {
-  content: "";
+.hero-slide {
   position: absolute;
-  bottom: -30%;
-  left: -15%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(124, 58, 237, 0.15) 0%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  animation: float 10s ease-in-out infinite reverse;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  transform: scale(1.05);
 }
 
+.hero-slide.active {
+  opacity: 1;
+  animation: kenBurns 8s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+  0% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+/* طبقة داكنة فوق الصور */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 26, 0.85) 0%,
+    rgba(16, 24, 39, 0.75) 50%,
+    rgba(19, 26, 51, 0.85) 100%
+  );
+  z-index: 1;
+}
 @keyframes float {
   0%,
   100% {
