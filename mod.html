@@ -13,12 +13,12 @@
       /* ===== Breadcrumb ===== */
       .breadcrumb {
         max-width: 1100px;
-        margin: 30px auto 0;
+        margin: 20px auto 0;
         padding: 0 24px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        font-size: 14px;
+        gap: 8px;
+        font-size: 12px;
         color: #888;
         flex-wrap: wrap;
       }
@@ -44,25 +44,25 @@
       /* ===== بطاقة المود الرئيسية ===== */
       .mod-card {
         max-width: 1100px;
-        margin: 20px auto 0;
+        margin: 15px auto 0;
         padding: 0 24px;
       }
 
       .mod-header {
         background: var(--dark-2);
-        border-radius: 20px;
-        padding: 30px;
+        border-radius: 14px;
+        padding: 18px;
         border: 1px solid rgba(41, 214, 255, 0.15);
         display: grid;
-        grid-template-columns: 180px 1fr;
-        gap: 30px;
+        grid-template-columns: 100px 1fr;
+        gap: 18px;
         align-items: start;
       }
 
       .mod-image {
-        width: 180px;
-        height: 180px;
-        border-radius: 16px;
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
         overflow: hidden;
         border: 2px solid rgba(41, 214, 255, 0.3);
         flex-shrink: 0;
@@ -75,9 +75,9 @@
       }
 
       .mod-info h1 {
-        font-size: 28px;
+        font-size: 20px;
         font-weight: 900;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
         background: linear-gradient(135deg, #ffffff 0%, #29d6ff 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -88,17 +88,17 @@
       .mod-badges {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 15px;
+        gap: 6px;
+        margin-bottom: 10px;
       }
 
       .badge {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        padding: 5px 12px;
-        border-radius: 8px;
-        font-size: 12px;
+        gap: 4px;
+        padding: 3px 9px;
+        border-radius: 6px;
+        font-size: 11px;
         font-weight: 700;
       }
 
@@ -134,52 +134,52 @@
 
       .mod-description {
         color: #bbb;
-        font-size: 15px;
-        line-height: 1.8;
-        margin-bottom: 20px;
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 12px;
       }
 
       .mod-actions {
         display: flex;
-        gap: 12px;
+        gap: 8px;
         flex-wrap: wrap;
       }
 
       .mod-actions a {
-        padding: 12px 24px;
-        font-size: 14px;
-        border-radius: 10px;
+        padding: 8px 18px;
+        font-size: 12px;
+        border-radius: 8px;
       }
 
       /* ===== التبويبات ===== */
       .tabs-container {
         max-width: 1100px;
-        margin: 40px auto;
+        margin: 25px auto;
         padding: 0 24px;
       }
 
       .tabs-header {
         display: flex;
-        gap: 5px;
+        gap: 4px;
         background: var(--dark-2);
-        padding: 6px;
-        border-radius: 14px;
+        padding: 5px;
+        border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.06);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         overflow-x: auto;
       }
 
       .tab-btn {
         flex: 1;
-        padding: 12px 24px;
+        padding: 10px 20px;
         background: transparent;
         border: none;
         color: #888;
         font-family: "Cairo", sans-serif;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 13px;
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 8px;
         transition: all 0.3s;
         white-space: nowrap;
       }
@@ -192,7 +192,7 @@
       .tab-btn.active {
         background: var(--gradient-1);
         color: white;
-        box-shadow: 0 6px 20px rgba(41, 214, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(41, 214, 255, 0.3);
       }
 
       .tab-content {
@@ -218,11 +218,11 @@
       /* ===== الوصف ===== */
       .description-box {
         background: var(--dark-2);
-        padding: 30px;
-        border-radius: 16px;
+        padding: 20px;
+        border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.06);
         color: #bbb;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1.9;
         white-space: pre-wrap;
       }
@@ -230,15 +230,15 @@
       /* ===== معرض الصور ===== */
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
       }
 
       .gallery img {
         width: 100%;
-        height: 160px;
+        height: 140px;
         object-fit: cover;
-        border-radius: 12px;
+        border-radius: 10px;
         cursor: pointer;
         transition:
           transform 0.3s,
@@ -255,31 +255,31 @@
       /* ===== الإصدارات ===== */
       .versions-list {
         background: var(--dark-2);
-        border-radius: 16px;
+        border-radius: 12px;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
 
       .version-header {
         display: grid;
-        grid-template-columns: 120px 150px 1fr 130px;
-        padding: 16px 22px;
+        grid-template-columns: 100px 130px 1fr 110px;
+        padding: 12px 18px;
         background: rgba(41, 214, 255, 0.05);
         border-bottom: 1px solid rgba(41, 214, 255, 0.15);
         color: var(--primary);
         font-weight: 700;
-        font-size: 13px;
+        font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        gap: 15px;
+        gap: 12px;
       }
 
       .version-item {
         display: grid;
-        grid-template-columns: 120px 150px 1fr 130px;
+        grid-template-columns: 100px 130px 1fr 110px;
         align-items: center;
-        padding: 18px 22px;
-        gap: 15px;
+        padding: 14px 18px;
+        gap: 12px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         transition: background 0.3s;
       }
@@ -295,10 +295,10 @@
       .version-tag {
         background: var(--gradient-1);
         color: white;
-        padding: 5px 12px;
-        border-radius: 8px;
+        padding: 4px 10px;
+        border-radius: 6px;
         font-weight: 700;
-        font-size: 13px;
+        font-size: 12px;
         text-align: center;
         display: inline-block;
         width: fit-content;
@@ -307,12 +307,12 @@
       .version-mc {
         color: var(--primary);
         font-weight: 600;
-        font-size: 14px;
+        font-size: 13px;
       }
 
       .version-changelog {
         color: #999;
-        font-size: 13px;
+        font-size: 12px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -321,10 +321,10 @@
       .version-download {
         background: var(--gradient-1);
         color: white;
-        padding: 10px 18px;
-        border-radius: 8px;
+        padding: 8px 14px;
+        border-radius: 6px;
         font-weight: 700;
-        font-size: 13px;
+        font-size: 12px;
         text-align: center;
         transition:
           transform 0.3s,
@@ -340,17 +340,17 @@
       /* ===== الحالات الفارغة ===== */
       .empty-state {
         text-align: center;
-        padding: 60px 40px;
+        padding: 40px 30px;
         background: var(--dark-2);
-        border-radius: 16px;
+        border-radius: 12px;
         border: 1px dashed rgba(41, 214, 255, 0.2);
         color: #666;
-        font-size: 15px;
+        font-size: 13px;
       }
 
       .empty-state-icon {
-        font-size: 48px;
-        margin-bottom: 15px;
+        font-size: 36px;
+        margin-bottom: 10px;
         opacity: 0.5;
       }
 
@@ -358,26 +358,26 @@
       @media (max-width: 768px) {
         .mod-header {
           grid-template-columns: 1fr;
-          padding: 20px;
-          gap: 20px;
+          padding: 15px;
+          gap: 15px;
         }
 
         .mod-image {
           width: 100%;
-          height: 200px;
+          height: 180px;
         }
 
         .mod-info h1 {
-          font-size: 22px;
+          font-size: 18px;
         }
 
         .tabs-container {
-          margin: 30px auto;
+          margin: 20px auto;
         }
 
         .tab-btn {
-          padding: 10px 16px;
-          font-size: 13px;
+          padding: 8px 14px;
+          font-size: 12px;
         }
 
         .version-header {
@@ -386,8 +386,8 @@
 
         .version-item {
           grid-template-columns: 1fr;
-          gap: 10px;
-          padding: 15px;
+          gap: 8px;
+          padding: 12px;
         }
 
         .version-changelog {
@@ -400,7 +400,7 @@
         }
 
         .breadcrumb {
-          font-size: 12px;
+          font-size: 11px;
         }
       }
     </style>
@@ -580,9 +580,8 @@
                   ${downloadsBadge}
                 </div>
                 <p class="mod-description">${mod.description}</p>
-                <div class="mod-actions">
-                  <a href="#" class="btn-primary" id="showVersionsBtn">⬇ عرض الإصدارات</a>
-                  ${videoBtn}
+                                <div class="mod-actions">
+                  ${videoBtn || ""}
                 </div>
               </div>
             </div>
@@ -660,30 +659,6 @@
               </div>
             `;
           }
-
-          // ===== زر "عرض الإصدارات" =====
-          document
-            .getElementById("showVersionsBtn")
-            .addEventListener("click", (e) => {
-              e.preventDefault();
-              // فتح تبويب الإصدارات
-              document.querySelectorAll(".tab-btn").forEach((btn) => {
-                btn.classList.remove("active");
-              });
-              document
-                .querySelector('[data-tab="versions"]')
-                .classList.add("active");
-
-              document.querySelectorAll(".tab-content").forEach((content) => {
-                content.classList.remove("active");
-              });
-              document.getElementById("tab-versions").classList.add("active");
-
-              // تمرير إلى التبويبات
-              document
-                .getElementById("tabsContainer")
-                .scrollIntoView({ behavior: "smooth" });
-            });
         } catch (error) {
           cardContainer.innerHTML =
             "<div class='empty-state'><div class='empty-state-icon'>❌</div>خطأ في تحميل البيانات</div>";
