@@ -32,6 +32,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* لتسريع التمرير قليلاً */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
   background-color: var(--dark);
@@ -912,5 +919,9 @@ img {
   .logo {
     font-size: 15px;
     padding: 5px 10px;
+  }
+  /* ===== تمييز القسم عند الوصول إليه ===== */
+  section[id] {
+    scroll-margin-top: 100px;
   }
 }
