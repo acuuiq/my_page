@@ -212,12 +212,12 @@ img {
   align-items: center;
   justify-content: center;
 }
-
-/* خلفية الصور المتغيرة */
+/* خلفية الصور المتغيرة - انزلاق أفقي */
 .hero-slider {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .hero-slide {
@@ -225,23 +225,16 @@ img {
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-  transform: scale(1.05);
+  transform: translateX(100%);
+  transition: transform 1s ease-in-out;
 }
 
 .hero-slide.active {
-  opacity: 1;
-  animation: kenBurns 8s ease-in-out infinite alternate;
+  transform: translateX(0);
 }
 
-@keyframes kenBurns {
-  0% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1.15);
-  }
+.hero-slide.exit-left {
+  transform: translateX(-100%);
 }
 
 /* طبقة داكنة فوق الصور */

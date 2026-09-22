@@ -1,8 +1,32 @@
-// ===== سلايدر الخلفية =====
+// ===== سلايدر الخلفية - انزلاق أفقي =====
 const heroSlides = document.querySelectorAll(".hero-slide");
 let currentSlide = 0;
 
 if (heroSlides.length > 0) {
+  // الصورة الأولى مفعّلة
+  heroSlides[0].classList.add("active");
+
+  setInterval(() => {
+    const current = heroSlides[currentSlide];
+    const nextIndex = (currentSlide + 1) % heroSlides.length;
+    const next = heroSlides[nextIndex];
+
+    // الصورة الحالية تخرج لليسار
+    current.classList.remove("active");
+    current.classList.add("exit-left");
+
+    // الصورة الجديدة تأتي من اليمين
+    next.classList.add("active");
+
+    // بعد انتهاء الحركة، نُزيل exit-left من الصورة القديمة
+    setTimeout(() => {
+      current.classList.remove("exit-left");
+    }, 1000);
+
+    currentSlide = nextIndex;
+  }, 4000);
+}
+{
   setInterval(() => {
     heroSlides[currentSlide].classList.remove("active");
     currentSlide = (currentSlide + 1) % heroSlides.length;
