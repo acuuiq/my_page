@@ -353,6 +353,166 @@
         margin-bottom: 10px;
         opacity: 0.5;
       }
+      /* ===== نافذة عرض الصور (Lightbox) ===== */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .lightbox.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .lightbox-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: lightboxIn 0.4s ease-out;
+      }
+
+      @keyframes lightboxIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .lightbox-content img {
+        max-width: 90vw;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.6),
+          0 0 80px rgba(41, 214, 255, 0.2);
+        border: 2px solid rgba(41, 214, 255, 0.3);
+      }
+
+      .lightbox-counter {
+        margin-top: 15px;
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 14px;
+        padding: 6px 16px;
+        background: rgba(41, 214, 255, 0.1);
+        border-radius: 20px;
+        border: 1px solid rgba(41, 214, 255, 0.3);
+      }
+
+      /* زر الإغلاق */
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255, 50, 50, 0.9);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        font-size: 22px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10001;
+        box-shadow: 0 4px 20px rgba(255, 50, 50, 0.4);
+      }
+
+      .lightbox-close:hover {
+        background: #ff3333;
+        transform: scale(1.1) rotate(90deg);
+        box-shadow: 0 6px 30px rgba(255, 50, 50, 0.7);
+      }
+
+      /* أزرار التنقل */
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: rgba(41, 214, 255, 0.15);
+        color: var(--primary);
+        border: 2px solid rgba(41, 214, 255, 0.4);
+        font-size: 36px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10001;
+        backdrop-filter: blur(10px);
+        line-height: 1;
+        padding-bottom: 6px;
+      }
+
+      .lightbox-nav:hover {
+        background: rgba(41, 214, 255, 0.3);
+        border-color: var(--primary);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 0 30px rgba(41, 214, 255, 0.5);
+      }
+
+      .lightbox-prev {
+        right: 30px;
+      }
+
+      .lightbox-next {
+        left: 30px;
+      }
+
+      /* استجابة الجوال */
+      @media (max-width: 768px) {
+        .lightbox-close {
+          top: 15px;
+          right: 15px;
+          width: 42px;
+          height: 42px;
+          font-size: 18px;
+        }
+
+        .lightbox-nav {
+          width: 44px;
+          height: 44px;
+          font-size: 28px;
+        }
+
+        .lightbox-prev {
+          right: 10px;
+        }
+
+        .lightbox-next {
+          left: 10px;
+        }
+
+        .lightbox-content img {
+          max-width: 95vw;
+          max-height: 70vh;
+        }
+      }
 
       /* ===== استجابة الجوال ===== */
       @media (max-width: 768px) {
@@ -478,6 +638,29 @@
 
       <div class="tab-content" id="tab-versions">
         <div id="versionsContent">جارٍ التحميل...</div>
+      </div>
+    </div>
+    <!-- ===== نافذة عرض الصور (Lightbox) ===== -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose" title="إغلاق">✕</button>
+      <button
+        class="lightbox-nav lightbox-prev"
+        id="lightboxPrev"
+        title="السابق"
+      >
+        ‹
+      </button>
+      <button
+        class="lightbox-nav lightbox-next"
+        id="lightboxNext"
+        title="التالي"
+      >
+        ›
+      </button>
+
+      <div class="lightbox-content">
+        <img src="" alt="صورة" id="lightboxImage" />
+        <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
       </div>
     </div>
 
@@ -611,12 +794,15 @@
               <div class="gallery">
                 ${mod.images
                   .map(
-                    (img) =>
-                      `<img src="${img.image_url}" alt="صورة" onclick="window.open('${img.image_url}', '_blank')">`,
+                    (img, index) =>
+                      `<img src="${img.image_url}" alt="صورة" data-index="${index}" class="gallery-img" style="cursor:pointer;">`,
                   )
                   .join("")}
               </div>
             `;
+
+            // تخزين الصور للاستخدام في Lightbox
+            window.galleryImages = mod.images.map((img) => img.image_url);
           } else {
             imagesContent.innerHTML = `
               <div class="empty-state">
@@ -708,6 +894,86 @@
 
       // ===== تحميل الصفحة =====
       loadModDetails();
+      // ===== معرض الصور (Lightbox) =====
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightboxImage");
+      const lightboxCounter = document.getElementById("lightboxCounter");
+      const lightboxClose = document.getElementById("lightboxClose");
+      const lightboxPrev = document.getElementById("lightboxPrev");
+      const lightboxNext = document.getElementById("lightboxNext");
+
+      let currentImageIndex = 0;
+
+      // فتح Lightbox عند النقر على صورة
+      document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("gallery-img")) {
+          const index = parseInt(e.target.dataset.index);
+          openLightbox(index);
+        }
+      });
+
+      function openLightbox(index) {
+        if (!window.galleryImages || window.galleryImages.length === 0) return;
+
+        currentImageIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function updateLightboxImage() {
+        const images = window.galleryImages;
+        lightboxImage.src = images[currentImageIndex];
+        lightboxCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+
+        // إخفاء أزرار التنقل إذا كانت صورة واحدة
+        if (images.length <= 1) {
+          lightboxPrev.style.display = "none";
+          lightboxNext.style.display = "none";
+        } else {
+          lightboxPrev.style.display = "flex";
+          lightboxNext.style.display = "flex";
+        }
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      function nextImage() {
+        const images = window.galleryImages;
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateLightboxImage();
+      }
+
+      function prevImage() {
+        const images = window.galleryImages;
+        currentImageIndex =
+          (currentImageIndex - 1 + images.length) % images.length;
+        updateLightboxImage();
+      }
+
+      // أحداث الأزرار
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightboxNext.addEventListener("click", nextImage);
+      lightboxPrev.addEventListener("click", prevImage);
+
+      // إغلاق عند النقر على الخلفية
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      // دعم لوحة المفاتيح
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("active")) return;
+
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") prevImage();
+        if (e.key === "ArrowLeft") nextImage();
+      });
     </script>
   </body>
 </html>
