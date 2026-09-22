@@ -66,7 +66,7 @@ img {
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 16px 24px;
   display: flex;
@@ -407,7 +407,7 @@ img {
 
 /* ===== الإحصائيات ===== */
 .stats {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 40px auto 0;
   padding: 0 24px 60px;
   display: grid;
@@ -477,7 +477,7 @@ img {
 
 /* ===== قسم المودات ===== */
 .featured {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 60px 24px;
 }
@@ -750,7 +750,7 @@ img {
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -859,7 +859,7 @@ img {
 
 /* ===== أزرار التصنيف ===== */
 .filter-bar {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 40px auto 0;
   padding: 0 24px;
   display: flex;
@@ -897,7 +897,7 @@ img {
 }
 
 .filter-section {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
