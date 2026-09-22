@@ -79,29 +79,53 @@ img {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--primary);
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
   letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  position: relative;
+  background: var(--dark-2);
   transition: transform 0.3s;
 }
 
+/* الإطار المتدرج حول الشعار + الاسم */
+.logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+.logo:hover::before {
+  opacity: 1;
+}
+
 .logo:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
 }
 
 .logo-img {
-  width: 55px;
-  height: 55px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
-  transition: transform 0.4s;
-  filter: drop-shadow(0 0 8px var(--primary-glow));
+  transition: transform 0.3s;
 }
 
 .logo:hover .logo-img {
   transform: scale(1.1) rotate(-5deg);
-  filter: drop-shadow(0 0 15px var(--primary-glow));
 }
 
 .nav-links {
@@ -871,7 +895,12 @@ img {
   }
 
   .logo-img {
-    width: 45px;
-    height: 45px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .logo {
+    font-size: 15px;
+    padding: 5px 10px;
   }
 }
