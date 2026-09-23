@@ -1374,3 +1374,92 @@ section[id] {
     font-size: 10px;
   }
 }
+/* ============================================
+   الأسهم + السحب السلس بالماوس
+   ============================================ */
+
+/* حاوية السلايدر: زر + سلايدر + زر */
+.cards-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* الأسهم */
+.slider-arrow {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(16, 24, 39, 0.9);
+  border: 2px solid rgba(41, 214, 255, 0.3);
+  color: var(--primary);
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 5;
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.slider-arrow:hover {
+  background: var(--gradient-1);
+  color: white;
+  border-color: transparent;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
+}
+
+.slider-arrow:active {
+  transform: scale(0.95);
+}
+
+.slider-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* تعطيل سحب الرابط من البطاقة */
+.cards-slider .card {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+.cards-slider a {
+  -webkit-user-drag: none;
+}
+
+.cards-slider img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* عند السحب: شكل المؤشر */
+.cards-slider {
+  cursor: grab;
+}
+
+.cards-slider.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none; /* ⭐ تعطيل snap أثناء السحب */
+  scroll-behavior: auto; /* ⭐ سحب فوري بدون تأخير */
+}
+
+/* إخفاء الأسهم على الجوال */
+@media (max-width: 768px) {
+  .slider-arrow {
+    display: none;
+  }
+
+  .cards-slider-wrapper {
+    gap: 0;
+  }
+}
