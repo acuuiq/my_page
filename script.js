@@ -1,29 +1,14 @@
-// ===== سلايدر الخلفية - انزلاق من اليسار إلى اليمين =====
+// ===== سلايدر الخلفية - موحّد لكل الأجهزة =====
 const heroSlides = document.querySelectorAll(".hero-slide");
 const dots = document.querySelectorAll(".dot");
 let currentSlide = 0;
 let slideInterval;
 
 function goToSlide(index) {
-  // إزالة active من كل الشرائح
-  heroSlides.forEach((slide) => {
-    slide.classList.remove("active", "exit-right");
-  });
-
-  // إزالة active من كل النقاط
+  heroSlides.forEach((slide) => slide.classList.remove("active"));
   dots.forEach((dot) => dot.classList.remove("active"));
 
-  // الصورة الحالية تخرج لليمين
-  const current = heroSlides[currentSlide];
-  const next = heroSlides[index];
-
-  if (currentSlide !== index) {
-    current.classList.add("exit-right");
-    setTimeout(() => current.classList.remove("exit-right"), 1200);
-  }
-
-  // الصورة الجديدة تأتي من اليسار
-  next.classList.add("active");
+  heroSlides[index].classList.add("active");
   dots[index].classList.add("active");
 
   currentSlide = index;
@@ -43,11 +28,9 @@ function resetSlider() {
   startSlider();
 }
 
-// بدء السلايدر
 if (heroSlides.length > 0) {
   startSlider();
 
-  // النقر على النقاط
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
       const index = parseInt(dot.dataset.dot);
@@ -79,13 +62,12 @@ if (filterButtons.length > 0 && cards.length > 0) {
     });
   });
 }
+
 // ===== شاشة التحميل عند الانتقال بين الصفحات =====
 const loadingOverlay = document.getElementById("loadingOverlay");
 
 if (loadingOverlay) {
-  // اعتراض النقر على الروابط الداخلية (بين صفحات الموقع)
   document.querySelectorAll('a[href$=".html"]').forEach((link) => {
-    // تجاهل الروابط الخارجية أو التي تبدأ بـ #
     const href = link.getAttribute("href");
     if (
       !href ||
@@ -100,22 +82,18 @@ if (loadingOverlay) {
       e.preventDefault();
       const targetUrl = link.href;
 
-      // إظهار شاشة التحميل
       loadingOverlay.classList.add("active");
 
-      // الانتقال بعد 600ms
       setTimeout(() => {
         window.location.href = targetUrl;
       }, 600);
     });
   });
 
-  // إخفاء شاشة التحميل عند تحميل الصفحة الجديدة
   window.addEventListener("pageshow", () => {
     loadingOverlay.classList.remove("active");
   });
 
-  // إخفاء شاشة التحميل بعد فترة (احتياط)
   setTimeout(() => {
     loadingOverlay.classList.remove("active");
   }, 1500);
