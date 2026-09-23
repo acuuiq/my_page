@@ -214,17 +214,25 @@ img {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(41, 214, 255, 0.5);
 }
-
 /* ===== القسم الرئيسي - السلايدر الموحّد ===== */
 .hero {
   position: relative;
   background: var(--dark);
   overflow: hidden;
+  padding: 30px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .hero-slider {
   position: relative;
   width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(41, 214, 255, 0.1);
+  border: 1px solid rgba(41, 214, 255, 0.15);
 }
 
 .hero-slide {
@@ -244,10 +252,10 @@ img {
   z-index: 2;
 }
 
-/* الصورة: نسبة ثابتة 16:9 في كل الأجهزة */
+/* الصورة: نسبة 21:9 سينمائية (أنسب للشاشات العريضة) */
 .slide-media {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 21 / 9;
   overflow: hidden;
   position: relative;
   background: var(--dark-2);
@@ -261,30 +269,30 @@ img {
   display: block;
 }
 
-/* طبقة تعتيم أسفل الصورة لتحسين قراءة النص */
+/* طبقة تعتيم أسفل الصورة */
 .slide-media::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 50%,
-    rgba(10, 14, 26, 0.85) 100%
+    transparent 55%,
+    rgba(10, 14, 26, 0.9) 100%
   );
   pointer-events: none;
 }
 
-/* النص: دائماً تحت الصورة على كل الأجهزة */
+/* النص أسفل الصورة */
 .slide-content {
   background: var(--dark);
-  padding: 30px 24px 80px;
+  padding: 30px 40px 70px;
   text-align: center;
   max-width: 900px;
   margin: 0 auto;
 }
 
 .slide-content h1 {
-  font-size: 36px;
+  font-size: clamp(24px, 2.5vw, 38px);
   font-weight: 900;
   color: #fff;
   margin-bottom: 14px;
@@ -300,11 +308,11 @@ img {
 
 .slide-content p {
   color: #bbb;
-  font-size: 17px;
+  font-size: clamp(14px, 1.1vw, 17px);
   margin-bottom: 24px;
 }
 
-/* النقاط (Dots) */
+/* النقاط */
 .hero-dots {
   position: absolute;
   bottom: 20px;
@@ -339,6 +347,56 @@ img {
   box-shadow: 0 0 15px var(--primary-glow);
 }
 
+/* ===== الجوال: السلايدر يمتد بعرض الشاشة ===== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .hero-slider {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .slide-media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .slide-content {
+    padding: 20px 16px 70px;
+  }
+
+  .slide-content h1 {
+    font-size: 22px;
+  }
+
+  .slide-content p {
+    font-size: 14px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+}
+
+/* ===== الجوال الصغير ===== */
+@media (max-width: 480px) {
+  .slide-content h1 {
+    font-size: 18px;
+  }
+
+  .slide-content p {
+    font-size: 13px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 9px 20px;
+    font-size: 12px;
+  }
+}
 /* ===== الأزرار ===== */
 .btn-primary {
   background: var(--gradient-1);
