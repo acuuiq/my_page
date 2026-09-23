@@ -1250,3 +1250,117 @@ section[id] {
     font-size: 22px;
   }
 }
+/* ============================================
+   سلايدر البطاقات الأفقي (قابل للسحب)
+   ============================================ */
+.cards-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 10px 4px 25px;
+  margin: 0 -4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(255, 255, 255, 0.05);
+  cursor: grab;
+}
+
+.cards-slider:active {
+  cursor: grabbing;
+}
+
+/* شريط التمرير المخصص */
+.cards-slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.cards-slider::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.cards-slider::-webkit-scrollbar-thumb {
+  background: var(--gradient-1);
+  border-radius: 10px;
+  transition: opacity 0.3s;
+}
+
+.cards-slider::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* البطاقة داخل السلايدر */
+.cards-slider .card {
+  flex: 0 0 280px; /* ← عرض ثابت */
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+/* ===== الجوال ===== */
+@media (max-width: 768px) {
+  .cards-slider {
+    gap: 14px;
+    padding: 8px 0 20px;
+    margin: 0;
+  }
+
+  .cards-slider .card {
+    flex: 0 0 200px; /* ← عرض أصغر للجوال */
+  }
+
+  .cards-slider .card-image {
+    height: 110px;
+  }
+
+  .cards-slider .card-body {
+    padding: 12px;
+  }
+
+  .cards-slider .card-body h3 {
+    font-size: 13px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .cards-slider .card-body p {
+    font-size: 11px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .cards-slider .card-btn {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  /* شريط التمرير مخفي على الجوال */
+  .cards-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards-slider {
+    scrollbar-width: none;
+  }
+}
+
+/* ===== الجوال الصغير ===== */
+@media (max-width: 480px) {
+  .cards-slider .card {
+    flex: 0 0 170px;
+  }
+
+  .cards-slider .card-image {
+    height: 95px;
+  }
+
+  .cards-slider .card-body h3 {
+    font-size: 12px;
+  }
+
+  .cards-slider .card-body p {
+    font-size: 10px;
+  }
+}
