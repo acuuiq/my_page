@@ -99,31 +99,43 @@ if (loadingOverlay) {
   }, 1500);
 }
 // ===== إظهار/إخفاء البطاقات الإضافية (كمبيوتر فقط) =====
+// ===== إظهار/إخفاء البطاقات الإضافية (يدعم كل الأقسام) =====
 (function () {
-  const showMoreBtn = document.getElementById("showMoreBtn");
-  const hideMoreBtn = document.getElementById("hideMoreBtn");
-  const slider = document.getElementById("cardsSlider");
+  const sections = [
+    {
+      showBtn: "showMoreBtn",
+      hideBtn: "hideMoreBtn",
+      slider: "cardsSlider",
+    },
+    {
+      showBtn: "showGamesBtn",
+      hideBtn: "hideGamesBtn",
+      slider: "gamesSlider",
+    },
+  ];
 
-  if (!showMoreBtn || !hideMoreBtn || !slider) return;
+  sections.forEach(({ showBtn, hideBtn, slider }) => {
+    const showMoreBtn = document.getElementById(showBtn);
+    const hideMoreBtn = document.getElementById(hideBtn);
+    const sliderEl = document.getElementById(slider);
 
-  // إظهار المزيد
-  showMoreBtn.addEventListener("click", () => {
-    slider.classList.add("expanded");
+    if (!showMoreBtn || !hideMoreBtn || !sliderEl) return;
 
-    // تمرير سلس لقسم الإضافات
-    setTimeout(() => {
-      slider.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  });
+    // إظهار المزيد
+    showMoreBtn.addEventListener("click", () => {
+      sliderEl.classList.add("expanded");
+      setTimeout(() => {
+        sliderEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    });
 
-  // إخفاء
-  hideMoreBtn.addEventListener("click", () => {
-    slider.classList.remove("expanded");
-
-    // عودة لأعلى القسم
-    setTimeout(() => {
-      slider.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+    // إخفاء
+    hideMoreBtn.addEventListener("click", () => {
+      sliderEl.classList.remove("expanded");
+      setTimeout(() => {
+        sliderEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    });
   });
 })();
 // ===== فلترة البطاقات داخل قسم الألعاب والتطبيقات =====

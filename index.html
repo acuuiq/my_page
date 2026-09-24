@@ -267,160 +267,98 @@
         <h2>الألعاب والتطبيقات</h2>
       </div>
 
-      <!-- ⭐ شريط الفلاتر -->
-      <div class="filter-bar filter-bar-inline">
-        <button class="filter-btn active" data-filter="all">الكل</button>
-        <button class="filter-btn" data-filter="games">ألعاب</button>
-        <button class="filter-btn" data-filter="apps">تطبيقات</button>
-        <button class="filter-btn" data-filter="emulators">محاكيات</button>
-        <button class="filter-btn" data-filter="websites">مواقع</button>
-      </div>
-
       <div class="cards-container">
         <div class="cards-slider" id="gamesSlider">
-          <!-- الألعاب -->
-          <a
-            href="games.html"
-            class="card"
-            data-category="games"
-            draggable="false"
-          >
+          <!-- 1. الألعاب -->
+          <a href="games.html" class="card" draggable="false">
             <div class="card-image">
-              <img src="images/games.jpg" alt="لعبة" draggable="false" />
-              <span class="card-badge">لعبة</span>
+              <img src="images/games.jpg" alt="الألعاب" draggable="false" />
             </div>
             <div class="card-body">
-              <h3>اسم اللعبة</h3>
-              <p>وصف مختصر للعبة.</p>
-              <span class="card-btn">تحميل</span>
+              <h3>الألعاب</h3>
+              <p>تصفح مجموعة الألعاب المتاحة للتحميل مع شرح كامل.</p>
+              <span class="card-btn">تصفح</span>
             </div>
           </a>
 
-          <!-- التطبيقات -->
-          <a
-            href="apps.html"
-            class="card"
-            data-category="apps"
-            draggable="false"
-          >
+          <!-- 2. التطبيقات -->
+          <a href="apps.html" class="card" draggable="false">
             <div class="card-image">
-              <img src="images/app.jpg" alt="تطبيق" draggable="false" />
-              <span class="card-badge">تطبيق</span>
+              <img src="images/app.jpg" alt="التطبيقات" draggable="false" />
             </div>
             <div class="card-body">
-              <h3>اسم التطبيق</h3>
-              <p>وصف مختصر للتطبيق.</p>
-              <span class="card-btn">تحميل</span>
+              <h3>التطبيقات</h3>
+              <p>تطبيقات مختارة ومفيدة، مع روابط تحميل مباشرة.</p>
+              <span class="card-btn">تصفح</span>
             </div>
           </a>
 
-          <!-- المحاكيات -->
-          <a
-            href="emulators.html"
-            class="card"
-            data-category="emulators"
-            draggable="false"
-          >
+          <!-- 3. المحاكيات -->
+          <a href="emulators.html" class="card" draggable="false">
             <div class="card-image">
-              <img src="images/emulator1.jpg" alt="محاكي" draggable="false" />
-              <span class="card-badge">محاكي</span>
+              <img
+                src="images/emulator1.jpg"
+                alt="المحاكيات"
+                draggable="false"
+              />
             </div>
             <div class="card-body">
-              <h3>اسم المحاكي</h3>
-              <p>وصف مختصر للمحاكي.</p>
-              <span class="card-btn">تحميل</span>
+              <h3>المحاكيات</h3>
+              <p>محاكيات متنوعة لتشغيل الألعاب على أي جهاز.</p>
+              <span class="card-btn">تصفح</span>
             </div>
           </a>
 
-          <!-- المواقع -->
-          <a
-            href="websites.html"
-            class="card"
-            data-category="websites"
-            draggable="false"
-          >
+          <!-- 4. المواقع (مخفي) -->
+          <a href="websites.html" class="card card-extra" draggable="false">
             <div class="card-image">
-              <img src="images/site1.jpg" alt="موقع" draggable="false" />
-              <span class="card-badge">موقع</span>
+              <img src="images/site1.jpg" alt="المواقع" draggable="false" />
             </div>
             <div class="card-body">
-              <h3>اسم الموقع</h3>
-              <p>وصف مختصر للموقع.</p>
-              <span class="card-btn">زيارة</span>
+              <h3>مواقع مفيدة</h3>
+              <p>مواقع مختارة ومفيدة للمستخدم العربي.</p>
+              <span class="card-btn">تصفح</span>
             </div>
           </a>
 
-          <!-- بطاقات مخفية (تظهر عند إظهار المزيد) -->
+          <!-- 5. ألعاب ماين كرافت (مخفي) -->
+          <a href="minecraft.html" class="card card-extra" draggable="false">
+            <div class="card-image">
+              <img
+                src="images/games.jpg"
+                alt="ألعاب ماين كرافت"
+                draggable="false"
+              />
+            </div>
+            <div class="card-body">
+              <h3>ألعاب ماين كرافت</h3>
+              <p>مجموعة ألعاب ماين كرافت المتنوعة.</p>
+              <span class="card-btn">تصفح</span>
+            </div>
+          </a>
+
+          <!-- 6. محاكيات ماين كرافت (مخفي) -->
           <a
-            href="#"
+            href="minecraft-emu.html"
             class="card card-extra"
-            data-category="games"
             draggable="false"
           >
             <div class="card-image">
-              <img src="images/games.jpg" alt="لعبة" draggable="false" />
-              <span class="card-badge">لعبة</span>
+              <img
+                src="images/emulator1.jpg"
+                alt="محاكيات ماين كرافت"
+                draggable="false"
+              />
             </div>
             <div class="card-body">
-              <h3>لعبة 5</h3>
-              <p>وصف مختصر.</p>
-              <span class="card-btn">تحميل</span>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="card card-extra"
-            data-category="apps"
-            draggable="false"
-          >
-            <div class="card-image">
-              <img src="images/app.jpg" alt="تطبيق" draggable="false" />
-              <span class="card-badge">تطبيق</span>
-            </div>
-            <div class="card-body">
-              <h3>تطبيق 6</h3>
-              <p>وصف مختصر.</p>
-              <span class="card-btn">تحميل</span>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="card card-extra"
-            data-category="emulators"
-            draggable="false"
-          >
-            <div class="card-image">
-              <img src="images/emulator1.jpg" alt="محاكي" draggable="false" />
-              <span class="card-badge">محاكي</span>
-            </div>
-            <div class="card-body">
-              <h3>محاكي 7</h3>
-              <p>وصف مختصر.</p>
-              <span class="card-btn">تحميل</span>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="card card-extra"
-            data-category="websites"
-            draggable="false"
-          >
-            <div class="card-image">
-              <img src="images/site1.jpg" alt="موقع" draggable="false" />
-              <span class="card-badge">موقع</span>
-            </div>
-            <div class="card-body">
-              <h3>موقع 8</h3>
-              <p>وصف مختصر.</p>
-              <span class="card-btn">زيارة</span>
+              <h3>محاكيات ماين كرافت</h3>
+              <p>محاكيات خاصة لتشغيل ماين كرافت.</p>
+              <span class="card-btn">تصفح</span>
             </div>
           </a>
         </div>
 
-        <!-- أزرار التحكم -->
+        <!-- أزرار إظهار/إخفاء المزيد -->
         <div class="cards-toggle-buttons">
           <button class="toggle-btn" id="showGamesBtn">
             <span>إظهار المزيد</span>
