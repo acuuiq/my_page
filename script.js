@@ -98,3 +98,31 @@ if (loadingOverlay) {
     loadingOverlay.classList.remove("active");
   }, 1500);
 }
+// ===== إظهار/إخفاء البطاقات الإضافية (كمبيوتر فقط) =====
+(function () {
+  const showMoreBtn = document.getElementById("showMoreBtn");
+  const hideMoreBtn = document.getElementById("hideMoreBtn");
+  const slider = document.getElementById("cardsSlider");
+
+  if (!showMoreBtn || !hideMoreBtn || !slider) return;
+
+  // إظهار المزيد
+  showMoreBtn.addEventListener("click", () => {
+    slider.classList.add("expanded");
+
+    // تمرير سلس لقسم الإضافات
+    setTimeout(() => {
+      slider.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  });
+
+  // إخفاء
+  hideMoreBtn.addEventListener("click", () => {
+    slider.classList.remove("expanded");
+
+    // عودة لأعلى القسم
+    setTimeout(() => {
+      slider.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  });
+})();

@@ -1251,8 +1251,14 @@ section[id] {
   }
 }
 /* ============================================
-   سلايدر البطاقات الأفقي — سلس وأصلي
+   بطاقات الإضافات - نظام موحّد
    ============================================ */
+
+.cards-container {
+  position: relative;
+}
+
+/* ===== الجوال: سلايدر أفقي (كما كان) ===== */
 .cards-slider {
   display: flex;
   gap: 18px;
@@ -1261,24 +1267,15 @@ section[id] {
   scroll-snap-type: x proximity;
   padding: 10px 4px 20px;
   margin: 0 -4px;
-
-  /* ⭐ السر: تسريع التمرير على iOS */
   -webkit-overflow-scrolling: touch;
-
-  /* ⭐ منع تحديد النص أثناء التمرير */
   user-select: none;
   -webkit-user-select: none;
-
-  /* ⭐ تمرير أفقي فقط */
   overscroll-behavior-x: contain;
   overscroll-behavior-y: auto;
-
-  /* شريط تمرير رقيق */
   scrollbar-width: thin;
   scrollbar-color: var(--primary) rgba(255, 255, 255, 0.05);
 }
 
-/* شريط التمرير المخصص */
 .cards-slider::-webkit-scrollbar {
   height: 6px;
 }
@@ -1286,7 +1283,6 @@ section[id] {
 .cards-slider::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
-  margin: 0 4px;
 }
 
 .cards-slider::-webkit-scrollbar-thumb {
@@ -1294,23 +1290,127 @@ section[id] {
   border-radius: 10px;
 }
 
-.cards-slider::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-}
-
-/* البطاقة */
 .cards-slider .card {
   flex: 0 0 280px;
   scroll-snap-align: start;
   min-width: 0;
-  will-change: transform;
 }
 
-/* ⭐ مهم: منع سحب الصور */
 .cards-slider img {
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+/* ===== أزرار إظهار/إخفاء (مخفية افتراضياً) ===== */
+.cards-toggle-buttons {
+  display: none;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 12px;
+  background: rgba(41, 214, 255, 0.08);
+  color: var(--primary);
+  border: 2px solid rgba(41, 214, 255, 0.3);
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: var(--gradient-1);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(41, 214, 255, 0.4);
+}
+
+.toggle-btn.hide-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #aaa;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.toggle-btn.hide-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   💻 الكمبيوتر: شبكة 3 أعمدة
+   ============================================ */
+@media (min-width: 769px) {
+  /* تحويل السلايدر إلى شبكة */
+  .cards-slider {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    scroll-snap-type: none;
+    cursor: default;
+  }
+
+  .cards-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards-slider .card {
+    flex: unset;
+    width: 100%;
+    scroll-snap-align: none;
+  }
+
+  /* إخفاء البطاقات الإضافية */
+  .cards-slider .card-extra {
+    display: none;
+  }
+
+  /* عند الضغط على "إظهار المزيد" */
+  .cards-slider.expanded .card-extra {
+    display: flex;
+    animation: fadeInCard 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeInCard {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* إظهار الأزرار */
+  .cards-toggle-buttons {
+    display: flex;
+  }
+
+  /* إظهار زر واحد فقط حسب الحالة */
+  .cards-toggle-buttons .hide-btn {
+    display: none;
+  }
+
+  .cards-slider.expanded ~ .cards-toggle-buttons .toggle-btn:not(.hide-btn) {
+    display: none;
+  }
+
+  .cards-slider.expanded ~ .cards-toggle-buttons .hide-btn {
+    display: inline-flex;
+  }
 }
 
 /* ===== الجوال ===== */
@@ -1354,6 +1454,11 @@ section[id] {
     padding: 8px;
     font-size: 12px;
   }
+
+  /* ⭐ أخفِ أزرار "إظهار المزيد" على الجوال */
+  .cards-toggle-buttons {
+    display: none !important;
+  }
 }
 
 /* ===== الجوال الصغير ===== */
@@ -1372,94 +1477,5 @@ section[id] {
 
   .cards-slider .card-body p {
     font-size: 10px;
-  }
-}
-/* ============================================
-   الأسهم + السحب السلس بالماوس
-   ============================================ */
-
-/* حاوية السلايدر: زر + سلايدر + زر */
-.cards-slider-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* الأسهم */
-.slider-arrow {
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(16, 24, 39, 0.9);
-  border: 2px solid rgba(41, 214, 255, 0.3);
-  color: var(--primary);
-  font-size: 22px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  z-index: 5;
-  line-height: 1;
-  padding-bottom: 2px;
-}
-
-.slider-arrow:hover {
-  background: var(--gradient-1);
-  color: white;
-  border-color: transparent;
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
-}
-
-.slider-arrow:active {
-  transform: scale(0.95);
-}
-
-.slider-arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* تعطيل سحب الرابط من البطاقة */
-.cards-slider .card {
-  -webkit-user-drag: none;
-  user-drag: none;
-}
-
-.cards-slider a {
-  -webkit-user-drag: none;
-}
-
-.cards-slider img {
-  pointer-events: none;
-  -webkit-user-drag: none;
-  user-select: none;
-}
-
-/* عند السحب: شكل المؤشر */
-.cards-slider {
-  cursor: grab;
-}
-
-.cards-slider.dragging {
-  cursor: grabbing;
-  scroll-snap-type: none; /* ⭐ تعطيل snap أثناء السحب */
-  scroll-behavior: auto; /* ⭐ سحب فوري بدون تأخير */
-}
-
-/* إخفاء الأسهم على الجوال */
-@media (max-width: 768px) {
-  .slider-arrow {
-    display: none;
-  }
-
-  .cards-slider-wrapper {
-    gap: 0;
   }
 }
