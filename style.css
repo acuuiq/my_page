@@ -84,7 +84,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* ← منع الالتفاف */
   gap: 12px;
 }
 
