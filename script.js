@@ -126,3 +126,32 @@ if (loadingOverlay) {
     }, 100);
   });
 })();
+// ===== فلترة البطاقات داخل قسم الألعاب والتطبيقات =====
+(function () {
+  const filterBar = document.querySelector(".filter-bar-inline");
+  const slider = document.getElementById("gamesSlider");
+
+  if (!filterBar || !slider) return;
+
+  const filterButtons = filterBar.querySelectorAll(".filter-btn");
+  const cards = slider.querySelectorAll(".card");
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // تحديث الأزرار
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+
+      // فلترة البطاقات
+      cards.forEach((card) => {
+        if (filter === "all" || card.dataset.category === filter) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+})();

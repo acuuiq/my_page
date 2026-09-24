@@ -1479,3 +1479,30 @@ section[id] {
     font-size: 10px;
   }
 }
+/* ===== شريط فلاتر داخل الأقسام ===== */
+.filter-bar-inline {
+  margin: 0 0 20px 0 !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  flex-wrap: wrap;
+}
+
+.filter-bar-inline .filter-btn {
+  padding: 8px 18px;
+  font-size: 13px;
+  border-radius: 20px;
+}
+
+/* على الجوال: وسط */
+@media (max-width: 768px) {
+  .filter-bar-inline {
+    justify-content: center !important;
+    gap: 6px;
+    margin-bottom: 16px !important;
+  }
+
+  .filter-bar-inline .filter-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
