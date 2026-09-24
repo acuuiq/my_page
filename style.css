@@ -347,56 +347,6 @@ img {
   box-shadow: 0 0 15px var(--primary-glow);
 }
 
-/* ===== الجوال: السلايدر يمتد بعرض الشاشة ===== */
-@media (max-width: 768px) {
-  .hero {
-    padding: 0;
-    max-width: 100%;
-  }
-
-  .hero-slider {
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-  }
-
-  .slide-media {
-    aspect-ratio: 16 / 9;
-  }
-
-  .slide-content {
-    padding: 20px 16px 70px;
-  }
-
-  .slide-content h1 {
-    font-size: 22px;
-  }
-
-  .slide-content p {
-    font-size: 14px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 10px 24px;
-    font-size: 13px;
-  }
-}
-
-/* ===== الجوال الصغير ===== */
-@media (max-width: 480px) {
-  .slide-content h1 {
-    font-size: 18px;
-  }
-
-  .slide-content p {
-    font-size: 13px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 9px 20px;
-    font-size: 12px;
-  }
-}
 /* ===== الأزرار ===== */
 .btn-primary {
   background: var(--gradient-1);
@@ -1506,87 +1456,54 @@ section[id] {
     font-size: 12px;
   }
 }
-/* ============================================
-   تصغير الشعار وزر الاشتراك على الجوال والتابلت
-   ============================================ */
 
-/* ===== التابلت (769px - 992px) ===== */
+/* ============================================
+   ✅ إصلاح نهائي لشريط التنقل
+   ============================================ */
 @media (max-width: 992px) {
   .nav-container {
-    padding: 10px 16px;
+    flex-wrap: nowrap !important;
+    padding: 8px 12px !important;
     gap: 8px;
   }
 
-  .logo {
-    font-size: 13px;
-    padding: 4px 10px;
-    gap: 6px;
-  }
-
-  .logo-img {
-    width: 22px;
-    height: 22px;
-  }
-
-  .subscribe-btn {
-    padding: 7px 14px;
-    font-size: 12px;
-    border-radius: 8px;
-  }
-}
-
-/* ===== الجوال (أقل من 768px) ===== */
-@media (max-width: 768px) {
-  .nav-container {
-    padding: 8px 12px;
-    gap: 6px;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-  }
-
-  .logo {
-    font-size: 12px;
-    padding: 3px 8px;
-    gap: 5px;
-    border-radius: 8px;
-  }
-
-  .logo::before {
-    border-radius: 8px;
-  }
-
-  .logo-img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .subscribe-btn {
-    padding: 6px 12px;
-    font-size: 11px;
-    border-radius: 7px;
-    box-shadow: 0 3px 10px rgba(41, 214, 255, 0.3);
-  }
-
-  /* التأكد من ظهور باقي المحتوى */
   .nav-links {
-    display: none;
+    display: none !important;
   }
-}
 
-/* ===== الجوال الصغير جداً (أقل من 400px) ===== */
-@media (max-width: 400px) {
   .logo {
-    font-size: 11px;
-    padding: 3px 6px;
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+    gap: 5px;
+    flex-shrink: 0;
   }
 
   .logo-img {
-    width: 18px;
-    height: 18px;
+    width: 20px !important;
+    height: 20px !important;
   }
 
   .subscribe-btn {
-    padding: 5px 10px;
-    font-size: 10px;
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 11px !important;
+    padding: 3px 7px !important;
+  }
+
+  .logo-img {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .subscribe-btn {
+    padding: 5px 10px !important;
+    font-size: 10px !important;
   }
 }
