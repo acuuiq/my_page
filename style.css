@@ -1506,3 +1506,87 @@ section[id] {
     font-size: 12px;
   }
 }
+/* ============================================
+   تصغير الشعار وزر الاشتراك على الجوال والتابلت
+   ============================================ */
+
+/* ===== التابلت (769px - 992px) ===== */
+@media (max-width: 992px) {
+  .nav-container {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 13px;
+    padding: 4px 10px;
+    gap: 6px;
+  }
+
+  .logo-img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .subscribe-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+}
+
+/* ===== الجوال (أقل من 768px) ===== */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 8px 12px;
+    gap: 6px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 12px;
+    padding: 3px 8px;
+    gap: 5px;
+    border-radius: 8px;
+  }
+
+  .logo::before {
+    border-radius: 8px;
+  }
+
+  .logo-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .subscribe-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+    border-radius: 7px;
+    box-shadow: 0 3px 10px rgba(41, 214, 255, 0.3);
+  }
+
+  /* التأكد من ظهور باقي المحتوى */
+  .nav-links {
+    display: none;
+  }
+}
+
+/* ===== الجوال الصغير جداً (أقل من 400px) ===== */
+@media (max-width: 400px) {
+  .logo {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  .logo-img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .subscribe-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}
