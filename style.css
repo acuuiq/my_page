@@ -1546,19 +1546,29 @@ section[id] {
     gap: 6px !important;
     flex-wrap: nowrap !important;
     justify-content: space-between !important;
-  }
 
+    /* ⭐ منع أي تمرير عمودي */
+    overflow: hidden;
+    height: auto !important;
+    min-height: unset;
+  }
   .nav-links {
     display: flex !important;
     gap: 6px !important;
     flex-wrap: nowrap !important;
     flex: 1;
     justify-content: center;
+
+    /* ⭐ تحديد الاتجاه فقط */
     overflow-x: auto;
+    overflow-y: hidden;
+
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-  }
 
+    /* ⭐ تثبيت القائمة */
+    position: relative;
+  }
   .nav-links::-webkit-scrollbar {
     display: none;
   }
