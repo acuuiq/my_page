@@ -180,11 +180,34 @@ if (loadingOverlay) {
     mobileMenu.classList.toggle("active");
   });
 
-  // إغلاق القائمة عند النقر على رابط
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
+  // إغلاق القائمة عند النقر على رابط + النزول الصحيح
+  mobileMenu.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+
+      // 1. أغلق القائمة أولاً
       menuToggle.classList.remove("active");
       mobileMenu.classList.remove("active");
+
+      // 2. انتظر اختفاء القائمة (400ms = مدة الأنيميشن)
+      setTimeout(() => {
+        // 3. احسب الموضع الصحيح
+        const headerOffset = 70; // ارتفاع الشريط الثابت
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }, 400);
     });
   });
 
