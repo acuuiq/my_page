@@ -13,7 +13,9 @@
     />
   </head>
   <body id="top">
-    <!-- شاشة التحميل -->
+    <!-- ============================================
+         شاشة التحميل
+         ============================================ -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loader">
         <div class="loader-logo">
@@ -24,6 +26,9 @@
       </div>
     </div>
 
+    <!-- ============================================
+         شريط التنقل
+         ============================================ -->
     <nav class="navbar">
       <div class="nav-container">
         <!-- الشعار -->
@@ -40,7 +45,7 @@
           <li><a href="contact.html">تواصل معي</a></li>
         </ul>
 
-        <!-- زر الاشتراك -->
+        <!-- زر الاشتراك (كمبيوتر/تابلت) -->
         <a
           href="https://youtube.com/@leon-at"
           target="_blank"
@@ -62,16 +67,15 @@
         <a href="#addons">📦 تصفح الإضافات</a>
         <a href="#games-apps">🎮 الألعاب والتطبيقات</a>
         <a href="contact.html">💬 تواصل معي</a>
-        <a
-          href="https://youtube.com/@leon-at"
-          target="_blank"
-          class="mobile-subscribe"
-        >
+        <a href="https://youtube.com/@leon-at" target="_blank">
           ▶ زيارة القناة
         </a>
       </div>
     </nav>
-    <!-- القسم الرئيسي - السلايدر الموحّد -->
+
+    <!-- ============================================
+         القسم الرئيسي - السلايدر
+         ============================================ -->
     <section class="hero">
       <div class="hero-slider">
         <!-- شريحة 1: Java -->
@@ -132,7 +136,9 @@
       </div>
     </section>
 
-    <!-- الإحصائيات -->
+    <!-- ============================================
+         الإحصائيات
+         ============================================ -->
     <section class="stats">
       <div class="stat-item">
         <h3>+50</h3>
@@ -151,13 +157,15 @@
         <p>مشترك</p>
       </div>
     </section>
-    <!-- قسم الإضافات -->
+
+    <!-- ============================================
+         قسم الإضافات
+         ============================================ -->
     <section class="featured" id="addons">
       <div class="section-header">
         <h2>أحدث الإضافات</h2>
       </div>
 
-      <!-- حاوية مشتركة -->
       <div class="cards-container">
         <div class="cards-slider" id="cardsSlider">
           <a href="addons-java.html" class="card" draggable="false">
@@ -193,7 +201,6 @@
             </div>
           </a>
 
-          <!-- ⭐ البطاقات المخفية (تظهر عند الضغط على "إظهار المزيد") -->
           <a href="#" class="card card-extra" draggable="false">
             <div class="card-image">
               <img src="images/bedrok.jpg" alt="إضافة 4" draggable="false" />
@@ -250,7 +257,7 @@
           </a>
         </div>
 
-        <!-- ⭐ أزرار التحكم (كمبيوتر فقط) -->
+        <!-- أزرار إظهار/إخفاء المزيد -->
         <div class="cards-toggle-buttons">
           <button class="toggle-btn" id="showMoreBtn">
             <span>إظهار المزيد</span>
@@ -285,7 +292,10 @@
         </div>
       </div>
     </section>
-    <!-- قسم الألعاب والتطبيقات -->
+
+    <!-- ============================================
+         قسم الألعاب والتطبيقات
+         ============================================ -->
     <section class="featured" id="games-apps">
       <div class="section-header">
         <h2>الألعاب والتطبيقات</h2>
@@ -293,7 +303,6 @@
 
       <div class="cards-container">
         <div class="cards-slider" id="gamesSlider">
-          <!-- 1. الألعاب -->
           <a href="games.html" class="card" draggable="false">
             <div class="card-image">
               <img src="images/games.jpg" alt="الألعاب" draggable="false" />
@@ -305,7 +314,6 @@
             </div>
           </a>
 
-          <!-- 2. التطبيقات -->
           <a href="apps.html" class="card" draggable="false">
             <div class="card-image">
               <img src="images/app.jpg" alt="التطبيقات" draggable="false" />
@@ -317,7 +325,6 @@
             </div>
           </a>
 
-          <!-- 3. المحاكيات -->
           <a href="emulators.html" class="card" draggable="false">
             <div class="card-image">
               <img
@@ -333,7 +340,6 @@
             </div>
           </a>
 
-          <!-- 4. المواقع (مخفي) -->
           <a href="websites.html" class="card card-extra" draggable="false">
             <div class="card-image">
               <img src="images/site1.jpg" alt="المواقع" draggable="false" />
@@ -345,7 +351,6 @@
             </div>
           </a>
 
-          <!-- 5. ألعاب ماين كرافت (مخفي) -->
           <a href="minecraft.html" class="card card-extra" draggable="false">
             <div class="card-image">
               <img
@@ -361,7 +366,6 @@
             </div>
           </a>
 
-          <!-- 6. محاكيات ماين كرافت (مخفي) -->
           <a
             href="minecraft-emu.html"
             class="card card-extra"
@@ -382,7 +386,6 @@
           </a>
         </div>
 
-        <!-- أزرار إظهار/إخفاء المزيد -->
         <div class="cards-toggle-buttons">
           <button class="toggle-btn" id="showGamesBtn">
             <span>إظهار المزيد</span>
@@ -418,7 +421,9 @@
       </div>
     </section>
 
-    <!-- دعوة للاشتراك -->
+    <!-- ============================================
+         دعوة للاشتراك
+         ============================================ -->
     <section class="cta">
       <h2>لم تجد ما تبحث عنه؟</h2>
       <p>اشترك في القناة ليصلك كل جديد من المودات والتطبيقات أولاً بأول.</p>
@@ -427,7 +432,9 @@
       >
     </section>
 
-    <!-- التذييل -->
+    <!-- ============================================
+         التذييل
+         ============================================ -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">

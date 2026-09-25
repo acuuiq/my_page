@@ -907,18 +907,14 @@ img {
 }
 
 /* ⭐ إصلاح موضع الروابط عند النزول */
-section[id],
-div[id],
-h2[id] {
-  scroll-margin-top: 90px; /* ارتفاع الشريط + مسافة صغيرة */
+section[id] {
+  scroll-margin-top: 80px;
 }
 
 /* على الجوال: الشريط أصغر */
 @media (max-width: 900px) {
-  section[id],
-  div[id],
-  h2[id] {
-    scroll-margin-top: 80px;
+  section[id] {
+    scroll-margin-top: 70px;
   }
 }
 
