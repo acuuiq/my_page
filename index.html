@@ -24,28 +24,53 @@
       </div>
     </div>
 
-    <!-- شريط التنقل -->
     <nav class="navbar">
       <div class="nav-container">
+        <!-- الشعار -->
         <a href="#top" class="logo">
           <img src="images/logo.png" alt="LEON_AT" class="logo-img" />
           <span>LEON_AT</span>
         </a>
+
+        <!-- القائمة العادية (كمبيوتر/تابلت) -->
         <ul class="nav-links">
           <li><a href="#top">الرئيسية</a></li>
-          <li><a href="#addons">الإضافات</a></li>
+          <li><a href="#addons">تصفح الإضافات</a></li>
           <li><a href="#games-apps">الألعاب والتطبيقات</a></li>
           <li><a href="contact.html">تواصل معي</a></li>
         </ul>
+
+        <!-- زر الاشتراك -->
         <a
           href="https://youtube.com/@leon-at"
           target="_blank"
           class="subscribe-btn"
           >زيارة القناة</a
         >
+
+        <!-- زر القائمة (جوال فقط) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- القائمة المنسدلة (جوال) -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#top">🏠 الرئيسية</a>
+        <a href="#addons">📦 تصفح الإضافات</a>
+        <a href="#games-apps">🎮 الألعاب والتطبيقات</a>
+        <a href="contact.html">💬 تواصل معي</a>
+        <a
+          href="https://youtube.com/@leon-at"
+          target="_blank"
+          class="mobile-subscribe"
+        >
+          ▶ زيارة القناة
+        </a>
       </div>
     </nav>
-
     <!-- القسم الرئيسي - السلايدر الموحّد -->
     <section class="hero">
       <div class="hero-slider">

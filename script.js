@@ -167,3 +167,32 @@ if (loadingOverlay) {
     });
   });
 })();
+// ===== قائمة الجوال المنسدلة =====
+(function () {
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (!menuToggle || !mobileMenu) return;
+
+  // فتح/إغلاق القائمة
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    mobileMenu.classList.toggle("active");
+  });
+
+  // إغلاق القائمة عند النقر على رابط
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle.classList.remove("active");
+      mobileMenu.classList.remove("active");
+    });
+  });
+
+  // إغلاق القائمة عند النقر خارجها
+  document.addEventListener("click", (e) => {
+    if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+      menuToggle.classList.remove("active");
+      mobileMenu.classList.remove("active");
+    }
+  });
+})();
