@@ -12,7 +12,7 @@
     <style>
       /* ===== صفحة التواصل ===== */
       .contact-page {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
         padding: 60px 24px 100px;
         text-align: center;
@@ -40,20 +40,20 @@
         margin-bottom: 50px;
       }
 
-      /* شبكة الروابط */
+      /* ===== شبكة الروابط ===== */
       .social-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
       }
 
       .social-card {
         display: flex;
         align-items: center;
-        gap: 18px;
-        padding: 24px 26px;
+        gap: 16px;
+        padding: 22px 24px;
         border-radius: 18px;
         background: linear-gradient(
           135deg,
@@ -94,10 +94,10 @@
         box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
       }
 
-      /* أيقونة */
+      /* ===== الأيقونة ===== */
       .social-icon {
-        width: 58px;
-        height: 58px;
+        width: 54px;
+        height: 54px;
         border-radius: 14px;
         display: flex;
         align-items: center;
@@ -111,12 +111,17 @@
       }
 
       .social-icon svg {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
         fill: white;
       }
 
-      /* ألوان كل منصة */
+      /* ===== ألوان كل منصة ===== */
+      .social-icon.youtube {
+        background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+        box-shadow: 0 8px 25px rgba(255, 0, 0, 0.35);
+      }
+
       .social-icon.telegram {
         background: linear-gradient(135deg, #0088cc 0%, #00bfff 100%);
         box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4);
@@ -139,16 +144,27 @@
         box-shadow: 0 8px 25px rgba(37, 244, 238, 0.3);
       }
 
-      /* محتوى البطاقة */
+      .social-icon.kick {
+        background: linear-gradient(135deg, #53fc18 0%, #2bb50c 100%);
+        box-shadow: 0 8px 25px rgba(83, 252, 24, 0.3);
+      }
+
+      .social-icon.discord {
+        background: linear-gradient(135deg, #5865f2 0%, #404eed 100%);
+        box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+      }
+
+      /* ===== محتوى البطاقة ===== */
       .social-info {
         flex: 1;
         text-align: right;
+        min-width: 0;
       }
 
       .social-info h3 {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
         color: var(--white);
         transition: color 0.3s;
       }
@@ -158,17 +174,21 @@
       }
 
       .social-info p {
-        font-size: 13px;
+        font-size: 12px;
         color: #888;
         direction: ltr;
         text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
-      /* سهم */
+      /* ===== سهم ===== */
       .social-arrow {
         color: #555;
-        font-size: 22px;
+        font-size: 20px;
         transition: all 0.3s;
+        flex-shrink: 0;
       }
 
       .social-card:hover .social-arrow {
@@ -176,57 +196,15 @@
         transform: translateX(-5px);
       }
 
-      /* بطاقة الاشتراك المميزة */
-      .subscribe-cta {
-        margin-top: 60px;
-        padding: 40px 30px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, #101827 0%, #1a2444 100%);
-        border: 1px solid rgba(41, 214, 255, 0.15);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .subscribe-cta::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(
-          circle,
-          rgba(41, 214, 255, 0.1) 0%,
-          transparent 60%
-        );
-        pointer-events: none;
-      }
-
-      .subscribe-cta h2 {
-        font-size: 24px;
-        font-weight: 900;
-        margin-bottom: 10px;
-        color: var(--white);
-        position: relative;
-        z-index: 2;
-      }
-
-      .subscribe-cta p {
-        color: #bbb;
-        font-size: 15px;
-        margin-bottom: 24px;
-        position: relative;
-        z-index: 2;
-      }
-
-      .subscribe-cta .btn-primary {
-        position: relative;
-        z-index: 2;
+      /* ===== التابلت ===== */
+      @media (max-width: 900px) {
+        .social-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       /* ===== الجوال ===== */
-      @media (max-width: 768px) {
+      @media (max-width: 600px) {
         .contact-page {
           padding: 40px 16px 80px;
         }
@@ -242,40 +220,31 @@
 
         .social-grid {
           grid-template-columns: 1fr;
-          gap: 14px;
+          gap: 12px;
         }
 
         .social-card {
-          padding: 18px 20px;
+          padding: 16px 18px;
           gap: 14px;
         }
 
         .social-icon {
-          width: 50px;
-          height: 50px;
+          width: 48px;
+          height: 48px;
           border-radius: 12px;
         }
 
         .social-icon svg {
-          width: 26px;
-          height: 26px;
+          width: 24px;
+          height: 24px;
         }
 
         .social-info h3 {
-          font-size: 16px;
+          font-size: 15px;
         }
 
         .social-info p {
-          font-size: 12px;
-        }
-
-        .subscribe-cta {
-          margin-top: 40px;
-          padding: 30px 20px;
-        }
-
-        .subscribe-cta h2 {
-          font-size: 20px;
+          font-size: 11px;
         }
       }
     </style>
@@ -324,6 +293,27 @@
       </div>
 
       <div class="social-grid">
+        <!-- يوتيوب -->
+        <a
+          href="https://youtube.com/@leon-at"
+          target="_blank"
+          rel="noopener"
+          class="social-card"
+        >
+          <div class="social-icon youtube">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+              />
+            </svg>
+          </div>
+          <div class="social-info">
+            <h3>يوتيوب</h3>
+            <p>@leon-at</p>
+          </div>
+          <span class="social-arrow">‹</span>
+        </a>
+
         <!-- تليجرام -->
         <a
           href="https://t.me/+Bi171V9lCHkwZDVi"
@@ -344,6 +334,7 @@
           </div>
           <span class="social-arrow">‹</span>
         </a>
+
         <!-- إنستغرام -->
         <a
           href="https://www.instagram.com/le0n_at"
@@ -385,18 +376,48 @@
           </div>
           <span class="social-arrow">‹</span>
         </a>
-      </div>
 
-      <!-- دعوة للاشتراك -->
-      <div class="subscribe-cta">
-        <h2>لا تفوّت أي جديد! 🎬</h2>
-        <p>اشترك في القناة على يوتيوب ليصلك كل جديد من المودات والتطبيقات</p>
+        <!-- كيك -->
         <a
-          href="https://youtube.com/@leon-at"
+          href="https://kick.com/leon-at"
           target="_blank"
-          class="btn-primary"
-          >اشترك الآن</a
+          rel="noopener"
+          class="social-card"
         >
+          <div class="social-icon kick">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1.333 0h8v5.333h2.667V2.667h2.667V0h8v8h-2.667v2.667h-2.667v2.667h2.667V16h2.667v8h-8v-2.667h-2.667v-2.667h-2.667V24h-8V0zm5.334 5.333v13.334h2.666v-2.667h2.667v-2.667h2.667V10.667h-2.667V8h-2.667V5.333H6.667z"
+              />
+            </svg>
+          </div>
+          <div class="social-info">
+            <h3>كيك</h3>
+            <p>@leon-at</p>
+          </div>
+          <span class="social-arrow">‹</span>
+        </a>
+
+        <!-- ديسكورد -->
+        <a
+          href="https://discord.gg/5ubAZfBNW"
+          target="_blank"
+          rel="noopener"
+          class="social-card"
+        >
+          <div class="social-icon discord">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20.317 4.3698a19.7913 19.7913 0 0 0-4.8851-1.5152.0741.0741 0 0 0-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 0 0-.0785-.037 19.7363 19.7363 0 0 0-4.8852 1.515.0699.0699 0 0 0-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 0 0 .0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 0 0 .0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 0 0-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 0 1-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 0 1 .0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 0 1 .0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 0 1-.0066.1276 12.2986 12.2986 0 0 1-1.873.8914.0766.0766 0 0 0-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 0 0 .0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 0 0 .0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 0 0-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"
+              />
+            </svg>
+          </div>
+          <div class="social-info">
+            <h3>ديسكورد</h3>
+            <p>سيرفر LEON_AT</p>
+          </div>
+          <span class="social-arrow">‹</span>
+        </a>
       </div>
     </section>
 
@@ -429,6 +450,17 @@
             <li>
               <a href="https://www.instagram.com/le0n_at" target="_blank"
                 >إنستغرام</a
+              >
+            </li>
+            <li>
+              <a href="https://kick.com/leon-at" target="_blank">كيك</a>
+            </li>
+            <li>
+              <a href="https://discord.gg/5ubAZfBNW" target="_blank">ديسكورد</a>
+            </li>
+            <li>
+              <a href="https://t.me/+Bi171V9lCHkwZDVi" target="_blank"
+                >تليجرام</a
               >
             </li>
           </ul>
