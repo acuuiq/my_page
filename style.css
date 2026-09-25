@@ -906,8 +906,20 @@ img {
   padding: 40px 24px 80px;
 }
 
-section[id] {
-  scroll-margin-top: 100px;
+/* ⭐ إصلاح موضع الروابط عند النزول */
+section[id],
+div[id],
+h2[id] {
+  scroll-margin-top: 90px; /* ارتفاع الشريط + مسافة صغيرة */
+}
+
+/* على الجوال: الشريط أصغر */
+@media (max-width: 900px) {
+  section[id],
+  div[id],
+  h2[id] {
+    scroll-margin-top: 80px;
+  }
 }
 
 /* ===== شاشة التحميل ===== */
@@ -1732,45 +1744,29 @@ section[id] {
   transform: scale(0.97);
 }
 
-/* ===== زر الاشتراك ===== */
+/* ===== زر زيارة القناة (مثل باقي الأزرار) ===== */
 .subscribe-btn {
-  padding: 9px 20px;
-  background: var(--gradient-1);
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
+  padding: 8px 16px;
+  background: transparent;
+  color: #b8c1d1;
+  font-size: 14px;
+  font-weight: 600;
   border-radius: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(41, 214, 255, 0.25);
   white-space: nowrap;
+  border: none;
   position: relative;
-  overflow: hidden;
-}
-
-.subscribe-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s;
-}
-
-.subscribe-btn:hover::before {
-  transform: translateX(100%);
 }
 
 .subscribe-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(41, 214, 255, 0.4);
+  color: var(--primary);
+  background: rgba(41, 214, 255, 0.08);
 }
 
+.subscribe-btn:active {
+  transform: scale(0.97);
+}
 /* ===== زر القائمة (جوال) - مخفي افتراضياً ===== */
 .menu-toggle {
   display: none;
