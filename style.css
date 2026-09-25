@@ -1459,75 +1459,76 @@ section[id] {
   }
 }
 /* ============================================
-   ⭐ التعديلات النهائية على شريط التنقل
+   ⭐ شريط التنقل - نظام موحد
    ============================================ */
 
-/* ===== الشعار: حواف مضبوطة ===== */
-.logo {
-  padding: 6px 14px !important;
-  gap: 8px !important;
-  border-radius: 12px !important;
-  font-size: 16px !important;
+/* ===== الكمبيوتر (993px+): القائمة العادية + زر زيارة القناة ===== */
+@media (min-width: 993px) {
+  .nav-links {
+    display: flex !important;
+  }
+
+  .subscribe-btn {
+    display: inline-flex !important;
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .mobile-menu {
+    display: none !important;
+  }
 }
 
-.logo::before {
-  border-radius: 12px !important;
-  padding: 1.5px !important;
-}
+/* ===== التابلت والجوال (992px وأقل): قائمة منسدلة ===== */
+@media (max-width: 992px) {
+  /* إخفاء القائمة العادية */
+  .nav-links {
+    display: none !important;
+  }
 
-.logo-img {
-  width: 26px !important;
-  height: 26px !important;
-}
+  /* إخفاء زر زيارة القناة من الشريط */
+  .subscribe-btn {
+    display: none !important;
+  }
 
-/* ===== زر زيارة القناة: مثل الشعار + إطار بتدرج ===== */
-.subscribe-btn {
-  /* إطار متدرج مثل الشعار */
-  position: relative !important;
-  padding: 6px 14px !important;
-  background: var(--dark-2) !important;
-  border-radius: 12px !important;
-  font-size: 15px !important;
-  font-weight: 700 !important;
-  color: var(--white) !important;
-  box-shadow: none !important;
-  border: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: transform 0.3s ease !important;
-}
+  /* إظهار زر ☰ */
+  .menu-toggle {
+    display: flex !important;
+    margin-right: auto;
+  }
 
-.subscribe-btn::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  border-radius: 12px !important;
-  padding: 1.5px !important;
-  background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%) !important;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0) !important;
-  -webkit-mask-composite: xor !important;
-  mask-composite: exclude !important;
-  pointer-events: none !important;
-  display: block !important;
-  transform: none !important;
-}
-
-.subscribe-btn:hover {
-  transform: translateY(-2px) !important;
-  color: var(--primary) !important;
-  background: var(--dark-2) !important;
+  /* إظهار القائمة المنسدلة */
+  .mobile-menu {
+    display: flex !important;
+  }
 }
 
 /* ============================================
-   💻 الكمبيوتر (993px+)
+   📱 ضبط ارتفاع الشريط حسب الجهاز
    ============================================ */
+
+/* ===== الكمبيوتر ===== */
 @media (min-width: 993px) {
   .nav-container {
     height: 62px !important;
     padding: 10px 24px !important;
+  }
+
+  .logo {
+    font-size: 16px !important;
+    padding: 6px 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .logo::before {
+    border-radius: 12px !important;
+  }
+
+  .logo-img {
+    width: 26px !important;
+    height: 26px !important;
   }
 
   .nav-links a {
@@ -1537,38 +1538,30 @@ section[id] {
 
   .subscribe-btn {
     font-size: 14px !important;
-    padding: 6px 14px !important;
+    padding: 8px 18px !important;
+    background: var(--gradient-1) !important;
+    color: white !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 15px rgba(41, 214, 255, 0.3) !important;
   }
 
-  .logo {
-    font-size: 16px !important;
-    padding: 6px 14px !important;
+  .subscribe-btn::before {
+    display: none !important;
   }
 
-  .logo-img {
-    width: 26px !important;
-    height: 26px !important;
+  .subscribe-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(41, 214, 255, 0.5) !important;
   }
 }
 
-/* ============================================
-   📱 التابلت (769px - 992px)
-   ============================================ */
+/* ===== التابلت ===== */
 @media (min-width: 769px) and (max-width: 992px) {
   .nav-container {
     height: 54px !important;
     padding: 8px 16px !important;
     gap: 10px !important;
-  }
-
-  .nav-links a {
-    font-size: 13px !important;
-    padding: 6px 12px !important;
-  }
-
-  .subscribe-btn {
-    font-size: 12px !important;
-    padding: 5px 12px !important;
   }
 
   .logo {
@@ -1581,11 +1574,14 @@ section[id] {
     width: 22px !important;
     height: 22px !important;
   }
+
+  .menu-toggle {
+    width: 38px !important;
+    height: 38px !important;
+  }
 }
 
-/* ============================================
-   📱 الجوال (768px وأقل)
-   ============================================ */
+/* ===== الجوال ===== */
 @media (max-width: 768px) {
   .nav-container {
     height: 52px !important;
@@ -1614,7 +1610,6 @@ section[id] {
     height: 20px !important;
   }
 
-  /* زر القائمة */
   .menu-toggle {
     width: 36px !important;
     height: 36px !important;
@@ -1626,9 +1621,7 @@ section[id] {
   }
 }
 
-/* ============================================
-   📱 الجوال الصغير (400px وأقل)
-   ============================================ */
+/* ===== الجوال الصغير ===== */
 @media (max-width: 400px) {
   .nav-container {
     height: 48px !important;
@@ -1653,55 +1646,5 @@ section[id] {
 
   .menu-toggle span {
     width: 16px !important;
-  }
-}
-/* ============================================
-   ⭐ إظهار/إخفاء زر زيارة القناة حسب الجهاز
-   ============================================ */
-
-/* ===== الكمبيوتر (993px+): زر زيارة القناة يظهر ===== */
-@media (min-width: 993px) {
-  .subscribe-btn {
-    display: inline-flex !important;
-  }
-
-  .menu-toggle {
-    display: none !important;
-  }
-
-  .mobile-menu {
-    display: none !important;
-  }
-}
-
-/* ===== التابلت (769px - 992px): زر زيارة القناة مخفي ===== */
-@media (min-width: 769px) and (max-width: 992px) {
-  .subscribe-btn {
-    display: none !important;
-  }
-
-  .menu-toggle {
-    display: flex !important;
-    margin-right: auto;
-  }
-
-  .mobile-menu {
-    display: flex !important;
-  }
-}
-
-/* ===== الجوال (768px وأقل): زر زيارة القناة مخفي ===== */
-@media (max-width: 768px) {
-  .subscribe-btn {
-    display: none !important;
-  }
-
-  .menu-toggle {
-    display: flex !important;
-    margin-right: auto;
-  }
-
-  .mobile-menu {
-    display: flex !important;
   }
 }
