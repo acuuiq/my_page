@@ -1285,41 +1285,6 @@ section[id] {
   }
 }
 
-/* ============================================
-   📱 الجوال والتابلت (900px وأقل)
-   ============================================ */
-@media (max-width: 900px) {
-  .nav-container {
-    padding: 10px 14px;
-    height: 60px;
-    gap: 10px;
-  }
-
-  .nav-links,
-  .subscribe-btn {
-    display: none !important;
-  }
-
-  .menu-toggle {
-    display: flex;
-    margin-right: auto;
-  }
-
-  .mobile-menu {
-    display: flex;
-  }
-
-  .logo {
-    font-size: 15px;
-    padding: 5px 12px;
-  }
-
-  .logo-img {
-    width: 24px;
-    height: 24px;
-  }
-}
-
 /* ===== الجوال الصغير جداً ===== */
 @media (max-width: 400px) {
   .nav-container {
@@ -1688,5 +1653,55 @@ section[id] {
 
   .menu-toggle span {
     width: 16px !important;
+  }
+}
+/* ============================================
+   ⭐ إظهار/إخفاء زر زيارة القناة حسب الجهاز
+   ============================================ */
+
+/* ===== الكمبيوتر (993px+): زر زيارة القناة يظهر ===== */
+@media (min-width: 993px) {
+  .subscribe-btn {
+    display: inline-flex !important;
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ===== التابلت (769px - 992px): زر زيارة القناة مخفي ===== */
+@media (min-width: 769px) and (max-width: 992px) {
+  .subscribe-btn {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+    margin-right: auto;
+  }
+
+  .mobile-menu {
+    display: flex !important;
+  }
+}
+
+/* ===== الجوال (768px وأقل): زر زيارة القناة مخفي ===== */
+@media (max-width: 768px) {
+  .subscribe-btn {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+    margin-right: auto;
+  }
+
+  .mobile-menu {
+    display: flex !important;
   }
 }
