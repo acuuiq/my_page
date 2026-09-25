@@ -1011,7 +1011,7 @@ section[id] {
 }
 
 /* ===== استجابة التابلت ===== */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .nav-links {
     gap: 16px;
   }
@@ -1510,7 +1510,7 @@ section[id] {
 /* ============================================
    📱 قائمة الجوال: إظهار 3 أزرار بدل إخفائها
    ============================================ */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   /* ✅ لا تخفِ القائمة */
   .nav-links {
     display: flex !important;
