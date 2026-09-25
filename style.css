@@ -1548,7 +1548,7 @@ section[id] {
     justify-content: space-between !important;
 
     /* ⭐ منع أي تمرير عمودي */
-    overflow: hidden;
+    overflow: visible;
     height: auto !important;
     min-height: unset;
   }
