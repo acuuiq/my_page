@@ -1,4 +1,6 @@
-/* ===== إعادة تعيين ===== */
+/* ============================================
+   🎨 إعادة تعيين عامة
+   ============================================ */
 * {
   margin: 0;
   padding: 0;
@@ -10,15 +12,11 @@
   --primary-dark: #00b8e0;
   --primary-glow: rgba(41, 214, 255, 0.4);
   --accent: #7c3aed;
-  --accent-2: #06b6d4;
   --dark: #0a0e1a;
   --dark-2: #101827;
-  --dark-3: #151c30;
   --light: #f5f5f7;
-  --gray: #888;
   --white: #ffffff;
   --gradient-1: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
-  --gradient-2: linear-gradient(135deg, #06b6d4 0%, #29d6ff 50%, #7c3aed 100%);
   --gradient-hero: linear-gradient(
     135deg,
     #0a0e1a 0%,
@@ -66,42 +64,59 @@ img {
   display: block;
 }
 
-/* ===== شريط التنقل ===== */
+/* ============================================
+   ⭐ إصلاح موضع الروابط عند النزول
+   ============================================ */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+@media (max-width: 900px) {
+  section[id] {
+    scroll-margin-top: 70px;
+  }
+}
+
+/* ============================================
+   🎨 شريط التنقل الاحترافي
+   ============================================ */
 .navbar {
-  background-color: rgba(10, 14, 26, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid rgba(41, 214, 255, 0.1);
+  background: rgba(10, 14, 26, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(41, 214, 255, 0.08);
+  transition: all 0.3s ease;
 }
 
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap; /* ← منع الالتفاف */
-  gap: 12px;
+  gap: 16px;
+  height: 68px;
 }
 
+/* ===== الشعار ===== */
 .logo {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 900;
   color: var(--white);
-  letter-spacing: 0.5px;
   padding: 6px 14px;
   border-radius: 12px;
-  position: relative;
   background: var(--dark-2);
-  transition: transform 0.3s;
+  position: relative;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+  letter-spacing: 0.5px;
 }
 
 .logo::before {
@@ -109,7 +124,7 @@ img {
   position: absolute;
   inset: 0;
   border-radius: 12px;
-  padding: 2px;
+  padding: 1.5px;
   background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -117,12 +132,6 @@ img {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  opacity: 0.9;
-  transition: opacity 0.3s;
-}
-
-.logo:hover::before {
-  opacity: 1;
 }
 
 .logo:hover {
@@ -130,91 +139,160 @@ img {
 }
 
 .logo-img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover .logo-img {
-  transform: scale(1.1) rotate(-5deg);
+  transform: rotate(-8deg) scale(1.1);
 }
 
+/* ===== القائمة ===== */
 .nav-links {
   display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-links a {
+  font-size: 14px;
   font-weight: 600;
-  color: var(--light);
-  transition: color 0.3s;
+  color: #b8c1d1;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
   position: relative;
-  font-size: 15px;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-1);
-  transition: width 0.3s;
-  border-radius: 2px;
 }
 
 .nav-links a:hover {
   color: var(--primary);
+  background: rgba(41, 214, 255, 0.08);
 }
 
-.nav-links a:hover::after {
-  width: 100%;
+.nav-links a:active {
+  transform: scale(0.97);
 }
 
+/* ===== زر زيارة القناة (مثل باقي الأزرار) ===== */
 .subscribe-btn {
-  background: var(--gradient-1);
-  color: white;
-  padding: 10px 24px;
-  border-radius: 10px;
-  font-weight: 700;
-  position: relative;
-  overflow: hidden;
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
-  box-shadow: 0 4px 15px rgba(41, 214, 255, 0.3);
-  font-size: 15px;
+  padding: 8px 16px;
+  background: transparent !important;
+  color: #b8c1d1 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  transition: all 0.25s ease;
   flex-shrink: 0;
-}
-
-.subscribe-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.subscribe-btn:hover::before {
-  left: 100%;
+  white-space: nowrap;
+  border: none !important;
+  position: relative;
+  box-shadow: none !important;
 }
 
 .subscribe-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(41, 214, 255, 0.5);
+  color: var(--primary) !important;
+  background: rgba(41, 214, 255, 0.08) !important;
+  transform: none !important;
 }
-/* ===== القسم الرئيسي - السلايدر الموحّد ===== */
+
+.subscribe-btn:active {
+  transform: scale(0.97);
+}
+
+.subscribe-btn::before {
+  display: none !important;
+}
+
+/* ===== زر القائمة (جوال) ===== */
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  background: rgba(41, 214, 255, 0.08);
+  border: 1px solid rgba(41, 214, 255, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle:active {
+  transform: scale(0.95);
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== القائمة المنسدلة (جوال) ===== */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 16px;
+  max-height: 0;
+  overflow: hidden;
+  background: rgba(10, 14, 26, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(41, 214, 255, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu.active {
+  max-height: 500px;
+  padding: 12px 16px 16px;
+}
+
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #b8c1d1;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:active {
+  background: rgba(41, 214, 255, 0.08);
+  color: var(--primary);
+  border-color: rgba(41, 214, 255, 0.2);
+}
+
+/* ============================================
+   🎬 السلايدر الرئيسي
+   ============================================ */
 .hero {
   position: relative;
   background: var(--dark);
@@ -252,7 +330,6 @@ img {
   z-index: 2;
 }
 
-/* الصورة: نسبة 21:9 سينمائية (أنسب للشاشات العريضة) */
 .slide-media {
   width: 100%;
   aspect-ratio: 21 / 9;
@@ -269,7 +346,6 @@ img {
   display: block;
 }
 
-/* طبقة تعتيم أسفل الصورة */
 .slide-media::after {
   content: "";
   position: absolute;
@@ -282,7 +358,6 @@ img {
   pointer-events: none;
 }
 
-/* النص أسفل الصورة */
 .slide-content {
   background: var(--dark);
   padding: 20px 30px 25px;
@@ -312,12 +387,12 @@ img {
   margin-bottom: 24px;
 }
 
-/* ===== النقاط داخل السلايدر (بدون فراغ) ===== */
+/* ===== النقاط ===== */
 .hero-dots {
   display: flex;
   justify-content: center;
   gap: 10px;
-  padding: 15px 0 20px; /* ← فوق السلايدر بقليل */
+  padding: 15px 0 20px;
   background: var(--dark);
   max-width: 1100px;
   margin: 0 auto;
@@ -347,7 +422,9 @@ img {
   box-shadow: 0 0 15px var(--primary-glow);
 }
 
-/* ===== الأزرار ===== */
+/* ============================================
+   🎨 الأزرار العامة
+   ============================================ */
 .btn-primary {
   background: var(--gradient-1);
   color: white;
@@ -409,7 +486,9 @@ img {
   transform: translateY(-3px);
 }
 
-/* ===== الإحصائيات ===== */
+/* ============================================
+   📊 الإحصائيات
+   ============================================ */
 .stats {
   max-width: 1400px;
   margin: 0 auto;
@@ -432,10 +511,7 @@ img {
   border-radius: 16px;
   text-align: center;
   border: 1px solid rgba(41, 214, 255, 0.1);
-  transition:
-    transform 0.3s,
-    border-color 0.3s,
-    box-shadow 0.3s;
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -479,7 +555,9 @@ img {
   font-weight: 500;
 }
 
-/* ===== قسم المودات ===== */
+/* ============================================
+   📦 قسم المودات
+   ============================================ */
 .featured {
   max-width: 1400px;
   margin: 0 auto;
@@ -514,28 +592,9 @@ img {
   box-shadow: 0 0 15px var(--primary-glow);
 }
 
-.see-all {
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 15px;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.see-all:hover {
-  color: var(--white);
-  transform: translateX(-5px);
-}
-
-/* ===== البطاقات ===== */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
+/* ============================================
+   🎴 البطاقات
+   ============================================ */
 .card {
   background: linear-gradient(
     135deg,
@@ -545,10 +604,7 @@ img {
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  transition:
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s,
-    border-color 0.4s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -662,9 +718,7 @@ img {
   text-align: center;
   font-weight: 700;
   font-size: 14px;
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -693,7 +747,227 @@ img {
   box-shadow: 0 8px 25px rgba(41, 214, 255, 0.4);
 }
 
-/* ===== دعوة للاشتراك ===== */
+/* ============================================
+   🎠 بطاقات - نظام السلايدر
+   ============================================ */
+.cards-container {
+  position: relative;
+}
+
+.cards-slider {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  padding: 10px 4px 20px;
+  margin: 0 -4px;
+  -webkit-overflow-scrolling: touch;
+  user-select: none;
+  -webkit-user-select: none;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) rgba(255, 255, 255, 0.05);
+}
+
+.cards-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.cards-slider::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.cards-slider::-webkit-scrollbar-thumb {
+  background: var(--gradient-1);
+  border-radius: 10px;
+}
+
+.cards-slider .card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.cards-slider img {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ===== أزرار إظهار/إخفاء ===== */
+.cards-toggle-buttons {
+  display: none;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 12px;
+  background: rgba(41, 214, 255, 0.08);
+  color: var(--primary);
+  border: 2px solid rgba(41, 214, 255, 0.3);
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: var(--gradient-1);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(41, 214, 255, 0.4);
+}
+
+.toggle-btn.hide-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #aaa;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.toggle-btn.hide-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* ============================================
+   💻 الكمبيوتر: شبكة 3 أعمدة
+   ============================================ */
+@media (min-width: 769px) {
+  .cards-slider {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    scroll-snap-type: none;
+    cursor: default;
+  }
+
+  .cards-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards-slider .card {
+    flex: unset;
+    width: 100%;
+    scroll-snap-align: none;
+  }
+
+  .cards-slider .card-extra {
+    display: none;
+  }
+
+  .cards-slider.expanded .card-extra {
+    display: flex;
+    animation: fadeInCard 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeInCard {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cards-toggle-buttons {
+    display: flex;
+  }
+
+  .cards-toggle-buttons .hide-btn {
+    display: none;
+  }
+
+  .cards-slider.expanded ~ .cards-toggle-buttons .toggle-btn:not(.hide-btn) {
+    display: none;
+  }
+
+  .cards-slider.expanded ~ .cards-toggle-buttons .hide-btn {
+    display: inline-flex;
+  }
+}
+
+/* ===== الجوال: سلايدر أفقي ===== */
+@media (max-width: 768px) {
+  .cards-slider {
+    gap: 12px;
+    padding: 8px 16px 20px;
+    margin: 0 -16px;
+    scrollbar-width: none;
+  }
+
+  .cards-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards-slider .card {
+    flex: 0 0 200px;
+  }
+
+  .cards-slider .card-image {
+    height: 110px;
+  }
+
+  .cards-slider .card-body {
+    padding: 12px;
+  }
+
+  .cards-slider .card-body h3 {
+    font-size: 13px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .cards-slider .card-body p {
+    font-size: 11px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .cards-slider .card-btn {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .cards-toggle-buttons {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-slider .card {
+    flex: 0 0 170px;
+  }
+
+  .cards-slider .card-image {
+    height: 95px;
+  }
+
+  .cards-slider .card-body h3 {
+    font-size: 12px;
+  }
+
+  .cards-slider .card-body p {
+    font-size: 10px;
+  }
+}
+
+/* ============================================
+   🎬 دعوة للاشتراك
+   ============================================ */
 .cta {
   background: var(--gradient-dark);
   text-align: center;
@@ -746,7 +1020,9 @@ img {
   z-index: 2;
 }
 
-/* ===== التذييل ===== */
+/* ============================================
+   🔻 التذييل
+   ============================================ */
 .footer {
   background: linear-gradient(180deg, #0a0a15 0%, #060912 100%);
   padding: 70px 24px 0;
@@ -803,7 +1079,9 @@ img {
   font-size: 14px;
 }
 
-/* ===== صفحة الفلترة ===== */
+/* ============================================
+   📄 صفحة الفلترة
+   ============================================ */
 .page-header {
   background: var(--gradient-hero);
   padding: 80px 24px;
@@ -906,19 +1184,9 @@ img {
   padding: 40px 24px 80px;
 }
 
-/* ⭐ إصلاح موضع الروابط عند النزول */
-section[id] {
-  scroll-margin-top: 80px;
-}
-
-/* على الجوال: الشريط أصغر */
-@media (max-width: 900px) {
-  section[id] {
-    scroll-margin-top: 70px;
-  }
-}
-
-/* ===== شاشة التحميل ===== */
+/* ============================================
+   ⏳ شاشة التحميل
+   ============================================ */
 .loading-overlay {
   position: fixed;
   inset: 0;
@@ -957,7 +1225,6 @@ section[id] {
   width: 90px;
   height: 90px;
   margin: 0 auto 24px;
-  position: relative;
 }
 
 .loader-logo img {
@@ -1018,851 +1285,8 @@ section[id] {
   }
 }
 
-/* ===== استجابة التابلت ===== */
-@media (max-width: 768px) {
-  .nav-links {
-    gap: 16px;
-  }
-
-  .nav-links a {
-    font-size: 14px;
-  }
-
-  .slide-content h1 {
-    font-size: 30px;
-  }
-
-  .slide-content p {
-    font-size: 16px;
-  }
-
-  .page-header h1 {
-    font-size: 38px;
-  }
-
-  .section-header h2 {
-    font-size: 30px;
-  }
-}
-
-/* ===== استجابة الجوال ===== */
-@media (max-width: 768px) {
-  .nav-container {
-    padding: 12px 16px;
-  }
-
-  .logo {
-    font-size: 15px;
-    padding: 5px 10px;
-  }
-
-  .logo-img {
-    width: 28px;
-    height: 28px;
-  }
-
-  .subscribe-btn {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-
-  /* السلايدر */
-  .slide-content {
-    padding: 20px 16px 70px;
-  }
-
-  .slide-content h1 {
-    font-size: 22px;
-  }
-
-  .slide-content p {
-    font-size: 14px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 10px 24px;
-    font-size: 13px;
-  }
-
-  /* الإحصائيات */
-  .stats {
-    margin-top: 0;
-    padding: 20px 16px 15px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .stat-item {
-    padding: 20px 12px;
-  }
-
-  .stat-item h3 {
-    font-size: 26px;
-  }
-
-  .stat-item p {
-    font-size: 13px;
-  }
-
-  /* الأقسام */
-  .featured {
-    padding: 40px 16px;
-  }
-
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-
-  .section-header h2 {
-    font-size: 24px;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  /* دعوة للاشتراك */
-  .cta {
-    padding: 60px 16px;
-    margin-top: 40px;
-  }
-
-  .cta h2 {
-    font-size: 24px;
-  }
-
-  .cta p {
-    font-size: 15px;
-  }
-
-  /* التذييل */
-  .footer {
-    padding: 40px 16px 0;
-  }
-
-  .footer-container {
-    gap: 24px;
-  }
-
-  /* صفحات الفلترة */
-  .page-header {
-    padding: 50px 16px;
-  }
-
-  .page-header h1 {
-    font-size: 28px;
-  }
-
-  .page-header p {
-    font-size: 14px;
-  }
-
-  .filter-bar {
-    margin-top: 24px;
-    padding: 0 16px;
-    gap: 8px;
-  }
-
-  .filter-btn {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-
-  .filter-section {
-    padding: 24px 16px 60px;
-  }
-}
-
-/* ===== استجابة الجوال الصغير ===== */
-@media (max-width: 480px) {
-  .slide-content h1 {
-    font-size: 18px;
-  }
-
-  .slide-content p {
-    font-size: 13px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 9px 20px;
-    font-size: 12px;
-  }
-
-  .stat-item h3 {
-    font-size: 22px;
-  }
-
-  .stat-item p {
-    font-size: 12px;
-  }
-
-  .section-header h2 {
-    font-size: 22px;
-  }
-}
 /* ============================================
-   بطاقات الإضافات - نظام موحّد
-   ============================================ */
-
-.cards-container {
-  position: relative;
-}
-
-/* ===== الجوال: سلايدر أفقي (كما كان) ===== */
-.cards-slider {
-  display: flex;
-  gap: 18px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x proximity;
-  padding: 10px 4px 20px;
-  margin: 0 -4px;
-  -webkit-overflow-scrolling: touch;
-  user-select: none;
-  -webkit-user-select: none;
-  overscroll-behavior-x: contain;
-  overscroll-behavior-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) rgba(255, 255, 255, 0.05);
-}
-
-.cards-slider::-webkit-scrollbar {
-  height: 6px;
-}
-
-.cards-slider::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-.cards-slider::-webkit-scrollbar-thumb {
-  background: var(--gradient-1);
-  border-radius: 10px;
-}
-
-.cards-slider .card {
-  flex: 0 0 280px;
-  scroll-snap-align: start;
-  min-width: 0;
-}
-
-.cards-slider img {
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-/* ===== أزرار إظهار/إخفاء (مخفية افتراضياً) ===== */
-.cards-toggle-buttons {
-  display: none;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 32px;
-  border-radius: 12px;
-  background: rgba(41, 214, 255, 0.08);
-  color: var(--primary);
-  border: 2px solid rgba(41, 214, 255, 0.3);
-  font-family: "Cairo", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.toggle-btn:hover {
-  background: var(--gradient-1);
-  color: white;
-  border-color: transparent;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(41, 214, 255, 0.4);
-}
-
-.toggle-btn.hide-btn {
-  background: rgba(255, 255, 255, 0.05);
-  color: #aaa;
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.toggle-btn.hide-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-}
-
-/* ============================================
-   💻 الكمبيوتر: شبكة 3 أعمدة
-   ============================================ */
-@media (min-width: 769px) {
-  /* تحويل السلايدر إلى شبكة */
-  .cards-slider {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    overflow: visible;
-    padding: 0;
-    margin: 0;
-    scroll-snap-type: none;
-    cursor: default;
-  }
-
-  .cards-slider::-webkit-scrollbar {
-    display: none;
-  }
-
-  .cards-slider .card {
-    flex: unset;
-    width: 100%;
-    scroll-snap-align: none;
-  }
-
-  /* إخفاء البطاقات الإضافية */
-  .cards-slider .card-extra {
-    display: none;
-  }
-
-  /* عند الضغط على "إظهار المزيد" */
-  .cards-slider.expanded .card-extra {
-    display: flex;
-    animation: fadeInCard 0.4s ease-out forwards;
-  }
-
-  @keyframes fadeInCard {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* إظهار الأزرار */
-  .cards-toggle-buttons {
-    display: flex;
-  }
-
-  /* إظهار زر واحد فقط حسب الحالة */
-  .cards-toggle-buttons .hide-btn {
-    display: none;
-  }
-
-  .cards-slider.expanded ~ .cards-toggle-buttons .toggle-btn:not(.hide-btn) {
-    display: none;
-  }
-
-  .cards-slider.expanded ~ .cards-toggle-buttons .hide-btn {
-    display: inline-flex;
-  }
-}
-
-/* ===== الجوال ===== */
-@media (max-width: 768px) {
-  .cards-slider {
-    gap: 12px;
-    padding: 8px 16px 20px;
-    margin: 0 -16px;
-    scrollbar-width: none;
-  }
-
-  .cards-slider::-webkit-scrollbar {
-    display: none;
-  }
-
-  .cards-slider .card {
-    flex: 0 0 200px;
-  }
-
-  .cards-slider .card-image {
-    height: 110px;
-  }
-
-  .cards-slider .card-body {
-    padding: 12px;
-  }
-
-  .cards-slider .card-body h3 {
-    font-size: 13px;
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-
-  .cards-slider .card-body p {
-    font-size: 11px;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-
-  .cards-slider .card-btn {
-    padding: 8px;
-    font-size: 12px;
-  }
-
-  /* ⭐ أخفِ أزرار "إظهار المزيد" على الجوال */
-  .cards-toggle-buttons {
-    display: none !important;
-  }
-}
-
-/* ===== الجوال الصغير ===== */
-@media (max-width: 480px) {
-  .cards-slider .card {
-    flex: 0 0 170px;
-  }
-
-  .cards-slider .card-image {
-    height: 95px;
-  }
-
-  .cards-slider .card-body h3 {
-    font-size: 12px;
-  }
-
-  .cards-slider .card-body p {
-    font-size: 10px;
-  }
-}
-/* ===== شريط فلاتر داخل الأقسام ===== */
-.filter-bar-inline {
-  margin: 0 0 20px 0 !important;
-  justify-content: flex-start !important;
-  padding: 0 !important;
-  flex-wrap: wrap;
-}
-
-.filter-bar-inline .filter-btn {
-  padding: 8px 18px;
-  font-size: 13px;
-  border-radius: 20px;
-}
-
-/* على الجوال: وسط */
-@media (max-width: 768px) {
-  .filter-bar-inline {
-    justify-content: center !important;
-    gap: 6px;
-    margin-bottom: 16px !important;
-  }
-
-  .filter-bar-inline .filter-btn {
-    padding: 6px 14px;
-    font-size: 12px;
-  }
-}
-/* ============================================
-   ⭐ شريط التنقل النهائي - لكل الأجهزة
-   ============================================ */
-
-/* ===== التابلت والكمبيوتر (769px+): القائمة كاملة ===== */
-@media (min-width: 769px) {
-  .nav-container {
-    padding: 16px 24px !important;
-    gap: 12px !important;
-    flex-wrap: nowrap !important;
-    justify-content: space-between !important;
-  }
-
-  .nav-links {
-    display: flex !important;
-    gap: 22px !important;
-    flex: 1;
-    justify-content: center;
-    flex-wrap: nowrap !important;
-    overflow: visible !important;
-  }
-
-  .nav-links a {
-    font-size: 15px !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    white-space: nowrap;
-  }
-
-  .nav-links a::after {
-    display: block !important;
-  }
-
-  .logo {
-    font-size: 18px !important;
-    padding: 6px 14px !important;
-    gap: 8px !important;
-  }
-
-  .logo span {
-    display: inline !important;
-  }
-
-  .logo-img {
-    width: 32px !important;
-    height: 32px !important;
-  }
-
-  .subscribe-btn {
-    padding: 10px 24px !important;
-    font-size: 15px !important;
-  }
-}
-
-/* ===== التابلت الصغير (769px - 992px): تصغير خفيف ===== */
-@media (min-width: 769px) and (max-width: 992px) {
-  .nav-container {
-    padding: 10px 16px !important;
-    gap: 8px !important;
-  }
-
-  .nav-links {
-    gap: 14px !important;
-  }
-
-  .nav-links a {
-    font-size: 13px !important;
-  }
-
-  .logo {
-    font-size: 15px !important;
-    padding: 5px 10px !important;
-  }
-
-  .logo-img {
-    width: 26px !important;
-    height: 26px !important;
-  }
-
-  .subscribe-btn {
-    padding: 7px 14px !important;
-    font-size: 12px !important;
-  }
-}
-
-/* ===== الجوال (768px وأقل): 3 أزرار فقط ===== */
-@media (max-width: 768px) {
-  .nav-container {
-    padding: 14px 10px !important;
-    gap: 6px !important;
-    flex-wrap: nowrap !important;
-    justify-content: space-between !important;
-
-    /* ⭐ منع أي تمرير عمودي */
-    overflow: visible;
-    height: auto !important;
-    min-height: unset;
-  }
-  .nav-links {
-    display: flex !important;
-    gap: 6px !important;
-    flex-wrap: nowrap !important;
-    flex: 1;
-    justify-content: center;
-
-    /* ⭐ تحديد الاتجاه فقط */
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-
-    /* ⭐ تثبيت القائمة */
-    position: relative;
-  }
-  .nav-links::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* إخفاء بعض الروابط على الجوال */
-  .nav-links li:nth-child(1) /* الرئيسية */ {
-    /* التطبيقات */
-    display: none;
-  }
-
-  .nav-links a {
-    font-size: 11px !important;
-    padding: 5px 10px !important;
-    background: rgba(41, 214, 255, 0.08) !important;
-    border-radius: 8px !important;
-    white-space: nowrap;
-    border: 1px solid rgba(41, 214, 255, 0.15) !important;
-    transition: all 0.3s;
-  }
-
-  .nav-links a::after {
-    display: none !important;
-  }
-
-  .logo {
-    font-size: 11px !important;
-    padding: 4px 8px !important;
-    gap: 4px !important;
-    flex-shrink: 0;
-  }
-
-  .logo span {
-    display: none !important;
-  }
-
-  .logo-img {
-    width: 22px !important;
-    height: 22px !important;
-  }
-
-  .subscribe-btn {
-    padding: 5px 10px !important;
-    font-size: 10px !important;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-}
-
-/* ===== الجوال الصغير جداً ===== */
-@media (max-width: 480px) {
-  .nav-links a {
-    font-size: 10px !important;
-    padding: 4px 8px !important;
-  }
-
-  .subscribe-btn {
-    padding: 4px 8px !important;
-    font-size: 9px !important;
-  }
-}
-/* ============================================
-   🎨 شريط التنقل الاحترافي
-   ============================================ */
-
-/* ===== الشريط الرئيسي ===== */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(10, 14, 26, 0.75);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(41, 214, 255, 0.08);
-  transition: all 0.3s ease;
-}
-
-.nav-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 14px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  height: 68px;
-}
-
-/* ===== الشعار ===== */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 17px;
-  font-weight: 900;
-  color: var(--white);
-  padding: 6px 14px;
-  border-radius: 12px;
-  background: var(--dark-2);
-  position: relative;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-  letter-spacing: 0.5px;
-}
-
-.logo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 1.5px;
-  background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.logo:hover {
-  transform: translateY(-2px);
-}
-
-.logo-img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover .logo-img {
-  transform: rotate(-8deg) scale(1.1);
-}
-
-/* ===== القائمة ===== */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-  justify-content: center;
-}
-
-.nav-links a {
-  font-size: 14px;
-  font-weight: 600;
-  color: #b8c1d1;
-  padding: 8px 16px;
-  border-radius: 10px;
-  transition: all 0.25s ease;
-  white-space: nowrap;
-  position: relative;
-}
-
-.nav-links a:hover {
-  color: var(--primary);
-  background: rgba(41, 214, 255, 0.08);
-}
-
-.nav-links a:active {
-  transform: scale(0.97);
-}
-
-/* ===== زر زيارة القناة (مثل باقي الأزرار) ===== */
-.subscribe-btn {
-  padding: 8px 16px;
-  background: transparent;
-  color: #b8c1d1;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 10px;
-  transition: all 0.25s ease;
-  flex-shrink: 0;
-  white-space: nowrap;
-  border: none;
-  position: relative;
-}
-
-.subscribe-btn:hover {
-  color: var(--primary);
-  background: rgba(41, 214, 255, 0.08);
-}
-
-.subscribe-btn:active {
-  transform: scale(0.97);
-}
-/* ===== زر القائمة (جوال) - مخفي افتراضياً ===== */
-.menu-toggle {
-  display: none;
-  width: 42px;
-  height: 42px;
-  background: rgba(41, 214, 255, 0.08);
-  border: 1px solid rgba(41, 214, 255, 0.2);
-  border-radius: 10px;
-  cursor: pointer;
-  padding: 0;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: var(--primary);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.menu-toggle:active {
-  transform: scale(0.95);
-}
-
-/* تحويل الزر إلى X عند الفتح */
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* ===== القائمة المنسدلة (جوال) ===== */
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  padding: 0 16px;
-  max-height: 0;
-  overflow: hidden;
-  background: rgba(10, 14, 26, 0.98);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(41, 214, 255, 0.08);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mobile-menu.active {
-  max-height: 500px;
-  padding: 12px 16px 16px;
-}
-
-.mobile-menu a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #b8c1d1;
-  transition: all 0.25s ease;
-  border: 1px solid transparent;
-}
-
-.mobile-menu a:hover,
-.mobile-menu a:active {
-  background: rgba(41, 214, 255, 0.08);
-  color: var(--primary);
-  border-color: rgba(41, 214, 255, 0.2);
-}
-
-.mobile-subscribe {
-  background: var(--gradient-1) !important;
-  color: white !important;
-  justify-content: center;
-  font-weight: 700 !important;
-  margin-top: 6px;
-  box-shadow: 0 4px 15px rgba(41, 214, 255, 0.25);
-  border: none !important;
-}
-
-.mobile-subscribe:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(41, 214, 255, 0.4);
-}
-
-/* ============================================
-   📱 الجوال والتابلت الصغير (أقل من 900px)
+   📱 الجوال والتابلت (900px وأقل)
    ============================================ */
 @media (max-width: 900px) {
   .nav-container {
@@ -1871,23 +1295,20 @@ section[id] {
     gap: 10px;
   }
 
-  /* إخفاء القائمة العادية وزر الاشتراك */
   .nav-links,
   .subscribe-btn {
     display: none !important;
   }
 
-  /* إظهار زر القائمة */
   .menu-toggle {
     display: flex;
+    margin-right: auto;
   }
 
-  /* إظهار القائمة المنسدلة */
   .mobile-menu {
     display: flex;
   }
 
-  /* الشعار أصغر قليلاً */
   .logo {
     font-size: 15px;
     padding: 5px 12px;
@@ -1896,11 +1317,6 @@ section[id] {
   .logo-img {
     width: 24px;
     height: 24px;
-  }
-
-  /* دفع زر القائمة لليسار */
-  .menu-toggle {
-    margin-right: auto;
   }
 }
 
@@ -1929,5 +1345,348 @@ section[id] {
   .mobile-menu a {
     padding: 10px 14px;
     font-size: 13px;
+  }
+}
+
+/* ============================================
+   📱 استجابة الجوال - الأقسام
+   ============================================ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .hero-slider {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .slide-media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .slide-content {
+    padding: 20px 16px 70px;
+  }
+
+  .slide-content h1 {
+    font-size: 22px;
+  }
+
+  .slide-content p {
+    font-size: 14px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+
+  .stats {
+    margin-top: 0;
+    padding: 20px 16px 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-item {
+    padding: 20px 12px;
+  }
+
+  .stat-item h3 {
+    font-size: 26px;
+  }
+
+  .stat-item p {
+    font-size: 13px;
+  }
+
+  .featured {
+    padding: 40px 16px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+  }
+
+  .cta {
+    padding: 60px 16px;
+    margin-top: 40px;
+  }
+
+  .cta h2 {
+    font-size: 24px;
+  }
+
+  .cta p {
+    font-size: 15px;
+  }
+
+  .footer {
+    padding: 40px 16px 0;
+  }
+
+  .footer-container {
+    gap: 24px;
+  }
+
+  .page-header {
+    padding: 50px 16px;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+  }
+
+  .filter-bar {
+    margin-top: 24px;
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .filter-section {
+    padding: 24px 16px 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-content h1 {
+    font-size: 18px;
+  }
+
+  .slide-content p {
+    font-size: 13px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 9px 20px;
+    font-size: 12px;
+  }
+
+  .stat-item h3 {
+    font-size: 22px;
+  }
+
+  .stat-item p {
+    font-size: 12px;
+  }
+
+  .section-header h2 {
+    font-size: 22px;
+  }
+}
+/* ============================================
+   ⭐ التعديلات النهائية على شريط التنقل
+   ============================================ */
+
+/* ===== الشعار: حواف مضبوطة ===== */
+.logo {
+  padding: 6px 14px !important;
+  gap: 8px !important;
+  border-radius: 12px !important;
+  font-size: 16px !important;
+}
+
+.logo::before {
+  border-radius: 12px !important;
+  padding: 1.5px !important;
+}
+
+.logo-img {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+/* ===== زر زيارة القناة: مثل الشعار + إطار بتدرج ===== */
+.subscribe-btn {
+  /* إطار متدرج مثل الشعار */
+  position: relative !important;
+  padding: 6px 14px !important;
+  background: var(--dark-2) !important;
+  border-radius: 12px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--white) !important;
+  box-shadow: none !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.3s ease !important;
+}
+
+.subscribe-btn::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 12px !important;
+  padding: 1.5px !important;
+  background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%) !important;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0) !important;
+  -webkit-mask-composite: xor !important;
+  mask-composite: exclude !important;
+  pointer-events: none !important;
+  display: block !important;
+  transform: none !important;
+}
+
+.subscribe-btn:hover {
+  transform: translateY(-2px) !important;
+  color: var(--primary) !important;
+  background: var(--dark-2) !important;
+}
+
+/* ============================================
+   💻 الكمبيوتر (993px+)
+   ============================================ */
+@media (min-width: 993px) {
+  .nav-container {
+    height: 62px !important;
+    padding: 10px 24px !important;
+  }
+
+  .nav-links a {
+    font-size: 14px !important;
+    padding: 7px 14px !important;
+  }
+
+  .subscribe-btn {
+    font-size: 14px !important;
+    padding: 6px 14px !important;
+  }
+
+  .logo {
+    font-size: 16px !important;
+    padding: 6px 14px !important;
+  }
+
+  .logo-img {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+
+/* ============================================
+   📱 التابلت (769px - 992px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 992px) {
+  .nav-container {
+    height: 54px !important;
+    padding: 8px 16px !important;
+    gap: 10px !important;
+  }
+
+  .nav-links a {
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+  }
+
+  .subscribe-btn {
+    font-size: 12px !important;
+    padding: 5px 12px !important;
+  }
+
+  .logo {
+    font-size: 14px !important;
+    padding: 5px 12px !important;
+    gap: 6px !important;
+  }
+
+  .logo-img {
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
+
+/* ============================================
+   📱 الجوال (768px وأقل)
+   ============================================ */
+@media (max-width: 768px) {
+  .nav-container {
+    height: 52px !important;
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+
+  /* ⭐ إظهار اسم LEON_AT على الجوال */
+  .logo span {
+    display: inline !important;
+  }
+
+  .logo {
+    font-size: 13px !important;
+    padding: 5px 10px !important;
+    gap: 5px !important;
+    border-radius: 10px !important;
+  }
+
+  .logo::before {
+    border-radius: 10px !important;
+  }
+
+  .logo-img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* زر القائمة */
+  .menu-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 9px !important;
+  }
+
+  .menu-toggle span {
+    width: 18px !important;
+  }
+}
+
+/* ============================================
+   📱 الجوال الصغير (400px وأقل)
+   ============================================ */
+@media (max-width: 400px) {
+  .nav-container {
+    height: 48px !important;
+    padding: 6px 10px !important;
+  }
+
+  .logo {
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+    gap: 4px !important;
+  }
+
+  .logo-img {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .menu-toggle {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .menu-toggle span {
+    width: 16px !important;
   }
 }
