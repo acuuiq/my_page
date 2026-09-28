@@ -289,10 +289,10 @@ section[id] {
   color: var(--primary);
   border-color: rgba(41, 214, 255, 0.2);
 }
-
 /* ============================================
-   🎬 السلايدر الرئيسي
+   🎬 السلايدر الرئيسي - النسخة النهائية
    ============================================ */
+
 .hero {
   position: relative;
   background: var(--dark);
@@ -311,6 +311,7 @@ section[id] {
     0 20px 60px rgba(0, 0, 0, 0.5),
     0 0 60px rgba(41, 214, 255, 0.1);
   border: 1px solid rgba(41, 214, 255, 0.15);
+  background: var(--dark-2);
 }
 
 .hero-slide {
@@ -330,47 +331,70 @@ section[id] {
   z-index: 2;
 }
 
+/* ============================================
+   ⭐ الصورة: كاملة بدون اقتصاص
+   ============================================ */
 .slide-media {
   width: 100%;
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   position: relative;
   background: var(--dark-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* ⭐ contain بدل cover = الصورة كاملة */
   object-position: center;
   display: block;
+  background: var(--dark-2);
 }
 
+/* ⭐ إزالة طبقة التعتيم القديمة */
 .slide-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 55%,
-    rgba(10, 14, 26, 0.9) 100%
-  );
-  pointer-events: none;
+  display: none;
 }
 
+/* ============================================
+   ⭐ النص: مربع شفاف داخل السلايدر
+   ============================================ */
 .slide-content {
-  background: var(--dark);
-  padding: 20px 30px 25px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 700px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+
+  /* ⭐ مربع شفاف مع blur */
+  background: rgba(10, 14, 26, 0.65);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+
+  /* ⭐ إطار بلون الموقع */
+  border: 1px solid rgba(41, 214, 255, 0.35);
+  border-radius: 16px;
+
+  /* ⭐ ظل ناعم */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(41, 214, 255, 0.15);
+
   text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
+  z-index: 5;
 }
 
 .slide-content h1 {
-  font-size: clamp(24px, 2.5vw, 38px);
+  font-size: clamp(20px, 2.2vw, 32px);
   font-weight: 900;
   color: #fff;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   line-height: 1.3;
 }
 
@@ -382,9 +406,80 @@ section[id] {
 }
 
 .slide-content p {
-  color: #bbb;
-  font-size: clamp(14px, 1.1vw, 17px);
-  margin-bottom: 24px;
+  color: #ddd;
+  font-size: clamp(13px, 1vw, 16px);
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
+/* ⭐ زر "تصفح" بلون الموقع (بدون تغيير) */
+.slide-content .btn-primary {
+  padding: 12px 32px;
+  font-size: 15px;
+}
+
+/* ============================================
+   📱 الجوال
+   ============================================ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .hero-slider {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .slide-media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .slide-content {
+    width: calc(100% - 24px);
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+  }
+
+  .slide-content h1 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .slide-content p {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-content {
+    width: calc(100% - 16px);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .slide-content h1 {
+    font-size: 15px;
+  }
+
+  .slide-content p {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 8px 20px;
+    font-size: 12px;
+  }
 }
 
 /* ===== النقاط ===== */
