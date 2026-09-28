@@ -358,33 +358,26 @@ section[id] {
 .slide-media::after {
   display: none;
 }
-
 /* ============================================
-   ⭐ النص: مربع شفاف داخل السلايدر
+   ⭐ النص: أسفل الصورة (خارجها)
    ============================================ */
 .slide-content {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 700px;
-  padding: 24px 28px;
-  margin-bottom: 24px;
+  position: relative; /* ⭐ ليس absolute */
+  bottom: auto;
+  left: auto;
+  transform: none;
 
-  /* ⭐ مربع شفاف مع blur */
-  background: rgba(10, 14, 26, 0.65);
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  width: 100%;
+  max-width: 100%;
+  padding: 20px 28px 24px;
+  margin: 0;
 
-  /* ⭐ إطار بلون الموقع */
-  border: 1px solid rgba(41, 214, 255, 0.35);
-  border-radius: 16px;
+  /* ⭐ خلفية داكنة (بدون شفافية) */
+  background: var(--dark);
 
-  /* ⭐ ظل ناعم */
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(41, 214, 255, 0.15);
+  /* ⭐ إطار علوي فقط بلون الموقع */
+  border-top: 1px solid rgba(41, 214, 255, 0.25);
+  border-radius: 0;
 
   text-align: center;
   z-index: 5;
@@ -461,6 +454,24 @@ section[id] {
 }
 
 @media (max-width: 480px) {
+  .slide-content {
+    padding: 14px 16px 18px;
+  }
+
+  .slide-content h1 {
+    font-size: 16px;
+  }
+
+  .slide-content p {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 9px 20px;
+    font-size: 12px;
+  }
+
   .slide-content {
     width: calc(100% - 16px);
     padding: 14px 16px;
@@ -1407,11 +1418,11 @@ section[id] {
     font-size: 13px;
   }
 }
-
 /* ===========================================
    📱 استجابة الجوال - الأقسام
    ============================================ */
 @media (max-width: 768px) {
+  /* ===== السلايدر ===== */
   .hero {
     padding: 0;
     max-width: 100%;
@@ -1427,16 +1438,21 @@ section[id] {
     aspect-ratio: 16 / 9;
   }
 
+  /* ⭐ النص أسفل الصورة - الجوال */
   .slide-content {
-    padding: 20px 16px 70px;
+    padding: 16px 20px 20px;
+    width: 100%;
+    margin: 0;
   }
 
   .slide-content h1 {
-    font-size: 22px;
+    font-size: 18px;
+    margin-bottom: 8px;
   }
 
   .slide-content p {
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 14px;
   }
 
   .slide-content .btn-primary {
@@ -1444,6 +1460,7 @@ section[id] {
     font-size: 13px;
   }
 
+  /* ===== الإحصائيات ===== */
   .stats {
     margin-top: 0;
     padding: 20px 16px 15px;
@@ -1463,6 +1480,7 @@ section[id] {
     font-size: 13px;
   }
 
+  /* ===== الأقسام ===== */
   .featured {
     padding: 40px 16px;
   }
@@ -1478,6 +1496,7 @@ section[id] {
     font-size: 24px;
   }
 
+  /* ===== دعوة للاشتراك ===== */
   .cta {
     padding: 60px 16px;
     margin-top: 40px;
@@ -1491,6 +1510,7 @@ section[id] {
     font-size: 15px;
   }
 
+  /* ===== التذييل ===== */
   .footer {
     padding: 40px 16px 0;
   }
@@ -1499,6 +1519,7 @@ section[id] {
     gap: 24px;
   }
 
+  /* ===== صفحات الفلترة ===== */
   .page-header {
     padding: 50px 16px;
   }
@@ -1525,15 +1546,58 @@ section[id] {
   .filter-section {
     padding: 24px 16px 60px;
   }
+
+  /* ===== شريط التنقل على الجوال ===== */
+  .nav-container {
+    height: 52px !important;
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+
+  .logo {
+    font-size: 13px !important;
+    padding: 5px 10px !important;
+    gap: 5px !important;
+    border-radius: 10px !important;
+  }
+
+  .logo span {
+    display: inline !important;
+  }
+
+  .logo::before {
+    border-radius: 10px !important;
+  }
+
+  .logo-img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .menu-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 9px !important;
+  }
+
+  .menu-toggle span {
+    width: 18px !important;
+  }
 }
 
+/* ===== الجوال الصغير جداً ===== */
 @media (max-width: 480px) {
+  .slide-content {
+    padding: 14px 16px 18px;
+  }
+
   .slide-content h1 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .slide-content p {
-    font-size: 13px;
+    font-size: 12px;
+    margin-bottom: 12px;
   }
 
   .slide-content .btn-primary {
@@ -1553,6 +1617,7 @@ section[id] {
     font-size: 22px;
   }
 }
+
 /* ============================================
    ⭐ شريط التنقل - نظام موحد
    ============================================ */
@@ -1574,38 +1639,7 @@ section[id] {
   .mobile-menu {
     display: none !important;
   }
-}
 
-/* ===== التابلت والجوال (992px وأقل): قائمة منسدلة ===== */
-@media (max-width: 992px) {
-  /* إخفاء القائمة العادية */
-  .nav-links {
-    display: none !important;
-  }
-
-  /* إخفاء زر زيارة القناة من الشريط */
-  .subscribe-btn {
-    display: none !important;
-  }
-
-  /* إظهار زر ☰ */
-  .menu-toggle {
-    display: flex !important;
-    margin-right: auto;
-  }
-
-  /* إظهار القائمة المنسدلة */
-  .mobile-menu {
-    display: flex !important;
-  }
-}
-
-/* ============================================
-   📱 ضبط ارتفاع الشريط حسب الجهاز
-   ============================================ */
-
-/* ===== الكمبيوتر ===== */
-@media (min-width: 993px) {
   .nav-container {
     height: 62px !important;
     padding: 10px 24px !important;
@@ -1651,7 +1685,27 @@ section[id] {
   }
 }
 
-/* ===== التابلت ===== */
+/* ===== التابلت والجوال (992px وأقل): قائمة منسدلة ===== */
+@media (max-width: 992px) {
+  .nav-links {
+    display: none !important;
+  }
+
+  .subscribe-btn {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+    margin-right: auto;
+  }
+
+  .mobile-menu {
+    display: flex !important;
+  }
+}
+
+/* ===== التابلت (769px - 992px) ===== */
 @media (min-width: 769px) and (max-width: 992px) {
   .nav-container {
     height: 54px !important;
@@ -1676,47 +1730,7 @@ section[id] {
   }
 }
 
-/* ===== الجوال ===== */
-@media (max-width: 768px) {
-  .nav-container {
-    height: 52px !important;
-    padding: 8px 12px !important;
-    gap: 8px !important;
-  }
-
-  /* ⭐ إظهار اسم LEON_AT على الجوال */
-  .logo span {
-    display: inline !important;
-  }
-
-  .logo {
-    font-size: 13px !important;
-    padding: 5px 10px !important;
-    gap: 5px !important;
-    border-radius: 10px !important;
-  }
-
-  .logo::before {
-    border-radius: 10px !important;
-  }
-
-  .logo-img {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .menu-toggle {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 9px !important;
-  }
-
-  .menu-toggle span {
-    width: 18px !important;
-  }
-}
-
-/* ===== الجوال الصغير ===== */
+/* ===== الجوال الصغير جداً (400px وأقل) ===== */
 @media (max-width: 400px) {
   .nav-container {
     height: 48px !important;
