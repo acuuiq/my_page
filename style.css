@@ -178,7 +178,7 @@ section[id] {
   transform: scale(0.97);
 }
 
-/* ===== زر زيارة القناة (مثل باقي الأزرار) ===== */
+/* ===== زر زيارة القناة ===== */
 .subscribe-btn {
   padding: 8px 16px;
   background: transparent !important;
@@ -289,10 +289,10 @@ section[id] {
   color: var(--primary);
   border-color: rgba(41, 214, 255, 0.2);
 }
-/* ============================================
-   🎬 السلايدر الرئيسي - النسخة النهائية
-   ============================================ */
 
+/* ============================================
+   🎬 السلايدر الرئيسي
+   ============================================ */
 .hero {
   position: relative;
   background: var(--dark);
@@ -331,9 +331,7 @@ section[id] {
   z-index: 2;
 }
 
-/* ============================================
-   ⭐ الصورة: كاملة بدون اقتصاص
-   ============================================ */
+/* ===== الصورة: كاملة بدون اقتصاص ===== */
 .slide-media {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -348,37 +346,29 @@ section[id] {
 .slide-media img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* ⭐ contain بدل cover = الصورة كاملة */
+  object-fit: contain;
   object-position: center;
   display: block;
   background: var(--dark-2);
 }
 
-/* ⭐ إزالة طبقة التعتيم القديمة */
 .slide-media::after {
   display: none;
 }
-/* ============================================
-   ⭐ النص: أسفل الصورة (خارجها)
-   ============================================ */
+
+/* ===== النص: أسفل الصورة ===== */
 .slide-content {
-  position: relative; /* ⭐ ليس absolute */
+  position: relative;
   bottom: auto;
   left: auto;
   transform: none;
-
   width: 100%;
   max-width: 100%;
   padding: 20px 28px 24px;
   margin: 0;
-
-  /* ⭐ خلفية داكنة (بدون شفافية) */
   background: var(--dark);
-
-  /* ⭐ إطار علوي فقط بلون الموقع */
   border-top: 1px solid rgba(41, 214, 255, 0.25);
   border-radius: 0;
-
   text-align: center;
   z-index: 5;
 }
@@ -405,92 +395,9 @@ section[id] {
   line-height: 1.6;
 }
 
-/* ⭐ زر "تصفح" بلون الموقع (بدون تغيير) */
 .slide-content .btn-primary {
   padding: 12px 32px;
   font-size: 15px;
-}
-
-/* ============================================
-   📱 الجوال
-   ============================================ */
-@media (max-width: 768px) {
-  .hero {
-    padding: 0;
-    max-width: 100%;
-  }
-
-  .hero-slider {
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-  }
-
-  .slide-media {
-    aspect-ratio: 16 / 9;
-  }
-
-  .slide-content {
-    width: calc(100% - 24px);
-    padding: 18px 20px;
-    margin-bottom: 16px;
-    border-radius: 14px;
-  }
-
-  .slide-content h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .slide-content p {
-    font-size: 12px;
-    margin-bottom: 14px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 10px 24px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 480px) {
-  .slide-content {
-    padding: 14px 16px 18px;
-  }
-
-  .slide-content h1 {
-    font-size: 16px;
-  }
-
-  .slide-content p {
-    font-size: 12px;
-    margin-bottom: 12px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 9px 20px;
-    font-size: 12px;
-  }
-
-  .slide-content {
-    width: calc(100% - 16px);
-    padding: 14px 16px;
-    margin-bottom: 12px;
-  }
-
-  .slide-content h1 {
-    font-size: 15px;
-  }
-
-  .slide-content p {
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 8px 20px;
-    font-size: 12px;
-  }
 }
 
 /* ===== النقاط ===== */
@@ -854,7 +761,7 @@ section[id] {
 }
 
 /* ============================================
-   🎠 بطاقات - نظام السلايدر
+   🎠 بطاقات - نظام السلايدر (أساسي)
    ============================================ */
 .cards-container {
   position: relative;
@@ -942,133 +849,6 @@ section[id] {
 .toggle-btn.hide-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   color: white;
-}
-
-/* ============================================
-   💻 الكمبيوتر: شبكة 3 أعمدة
-   ============================================ */
-@media (min-width: 769px) {
-  .cards-slider {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    overflow: visible;
-    padding: 0;
-    margin: 0;
-    scroll-snap-type: none;
-    cursor: default;
-  }
-
-  .cards-slider::-webkit-scrollbar {
-    display: none;
-  }
-
-  .cards-slider .card {
-    flex: unset;
-    width: 100%;
-    scroll-snap-align: none;
-  }
-
-  .cards-slider .card-extra {
-    display: none;
-  }
-
-  .cards-slider.expanded .card-extra {
-    display: flex;
-    animation: fadeInCard 0.4s ease-out forwards;
-  }
-
-  @keyframes fadeInCard {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .cards-toggle-buttons {
-    display: flex;
-  }
-
-  .cards-toggle-buttons .hide-btn {
-    display: none;
-  }
-
-  .cards-slider.expanded ~ .cards-toggle-buttons .toggle-btn:not(.hide-btn) {
-    display: none;
-  }
-
-  .cards-slider.expanded ~ .cards-toggle-buttons .hide-btn {
-    display: inline-flex;
-  }
-}
-
-/* ===== الجوال: سلايدر أفقي ===== */
-@media (max-width: 768px) {
-  .cards-slider {
-    gap: 12px;
-    padding: 8px 16px 20px;
-    margin: 0 -16px;
-    scrollbar-width: none;
-  }
-
-  .cards-slider::-webkit-scrollbar {
-    display: none;
-  }
-
-  .cards-slider .card {
-    flex: 0 0 200px;
-  }
-
-  .cards-slider .card-image {
-    height: 110px;
-  }
-
-  .cards-slider .card-body {
-    padding: 12px;
-  }
-
-  .cards-slider .card-body h3 {
-    font-size: 13px;
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-
-  .cards-slider .card-body p {
-    font-size: 11px;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-
-  .cards-slider .card-btn {
-    padding: 8px;
-    font-size: 12px;
-  }
-
-  .cards-toggle-buttons {
-    display: none !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .cards-slider .card {
-    flex: 0 0 170px;
-  }
-
-  .cards-slider .card-image {
-    height: 95px;
-  }
-
-  .cards-slider .card-body h3 {
-    font-size: 12px;
-  }
-
-  .cards-slider .card-body p {
-    font-size: 10px;
-  }
 }
 
 /* ============================================
@@ -1391,239 +1171,15 @@ section[id] {
   }
 }
 
-/* ===== الجوال الصغير جداً ===== */
-@media (max-width: 400px) {
-  .nav-container {
-    padding: 8px 12px;
-    height: 56px;
-  }
-
-  .logo {
-    font-size: 13px;
-    padding: 4px 10px;
-  }
-
-  .logo-img {
-    width: 22px;
-    height: 22px;
-  }
-
-  .menu-toggle {
-    width: 38px;
-    height: 38px;
-  }
-
-  .mobile-menu a {
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-}
-/* ===========================================
-   📱 استجابة الجوال - الأقسام
+/* ============================================
+   🖱️ كشف الجهاز - نظام نهائي
    ============================================ */
-@media (max-width: 768px) {
-  /* ===== السلايدر ===== */
-  .hero {
-    padding: 0;
-    max-width: 100%;
-  }
-
-  .hero-slider {
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-  }
-
-  .slide-media {
-    aspect-ratio: 16 / 9;
-  }
-
-  /* ⭐ النص أسفل الصورة - الجوال */
-  .slide-content {
-    padding: 16px 20px 20px;
-    width: 100%;
-    margin: 0;
-  }
-
-  .slide-content h1 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .slide-content p {
-    font-size: 13px;
-    margin-bottom: 14px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 10px 24px;
-    font-size: 13px;
-  }
-
-  /* ===== الإحصائيات ===== */
-  .stats {
-    margin-top: 0;
-    padding: 20px 16px 15px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .stat-item {
-    padding: 20px 12px;
-  }
-
-  .stat-item h3 {
-    font-size: 26px;
-  }
-
-  .stat-item p {
-    font-size: 13px;
-  }
-
-  /* ===== الأقسام ===== */
-  .featured {
-    padding: 40px 16px;
-  }
-
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-
-  .section-header h2 {
-    font-size: 24px;
-  }
-
-  /* ===== دعوة للاشتراك ===== */
-  .cta {
-    padding: 60px 16px;
-    margin-top: 40px;
-  }
-
-  .cta h2 {
-    font-size: 24px;
-  }
-
-  .cta p {
-    font-size: 15px;
-  }
-
-  /* ===== التذييل ===== */
-  .footer {
-    padding: 40px 16px 0;
-  }
-
-  .footer-container {
-    gap: 24px;
-  }
-
-  /* ===== صفحات الفلترة ===== */
-  .page-header {
-    padding: 50px 16px;
-  }
-
-  .page-header h1 {
-    font-size: 28px;
-  }
-
-  .page-header p {
-    font-size: 14px;
-  }
-
-  .filter-bar {
-    margin-top: 24px;
-    padding: 0 16px;
-    gap: 8px;
-  }
-
-  .filter-btn {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-
-  .filter-section {
-    padding: 24px 16px 60px;
-  }
-
-  /* ===== شريط التنقل على الجوال ===== */
-  .nav-container {
-    height: 52px !important;
-    padding: 8px 12px !important;
-    gap: 8px !important;
-  }
-
-  .logo {
-    font-size: 13px !important;
-    padding: 5px 10px !important;
-    gap: 5px !important;
-    border-radius: 10px !important;
-  }
-
-  .logo span {
-    display: inline !important;
-  }
-
-  .logo::before {
-    border-radius: 10px !important;
-  }
-
-  .logo-img {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .menu-toggle {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 9px !important;
-  }
-
-  .menu-toggle span {
-    width: 18px !important;
-  }
-}
-
-/* ===== الجوال الصغير جداً ===== */
-@media (max-width: 480px) {
-  .slide-content {
-    padding: 14px 16px 18px;
-  }
-
-  .slide-content h1 {
-    font-size: 16px;
-  }
-
-  .slide-content p {
-    font-size: 12px;
-    margin-bottom: 12px;
-  }
-
-  .slide-content .btn-primary {
-    padding: 9px 20px;
-    font-size: 12px;
-  }
-
-  .stat-item h3 {
-    font-size: 22px;
-  }
-
-  .stat-item p {
-    font-size: 12px;
-  }
-
-  .section-header h2 {
-    font-size: 22px;
-  }
-}
 
 /* ============================================
-   ⭐ شريط التنقل - نظام موحد
+   💻 الأجهزة التي تستخدم الفأرة (كمبيوتر)
    ============================================ */
-
-/* ===== الكمبيوتر (993px+): القائمة العادية + زر زيارة القناة ===== */
-@media (min-width: 993px) {
+@media (hover: hover) and (pointer: fine) {
+  /* ===== شريط التنقل ===== */
   .nav-links {
     display: flex !important;
   }
@@ -1643,12 +1199,17 @@ section[id] {
   .nav-container {
     height: 62px !important;
     padding: 10px 24px !important;
+    gap: 12px !important;
   }
 
   .logo {
     font-size: 16px !important;
     padding: 6px 14px !important;
     border-radius: 12px !important;
+  }
+
+  .logo span {
+    display: inline !important;
   }
 
   .logo::before {
@@ -1683,10 +1244,71 @@ section[id] {
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 25px rgba(41, 214, 255, 0.5) !important;
   }
+
+  /* ===== البطاقات: شبكة 3 أعمدة + إظهار المزيد ===== */
+  .cards-slider {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    scroll-snap-type: none !important;
+    cursor: default !important;
+  }
+
+  .cards-slider::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .cards-slider .card {
+    flex: unset !important;
+    width: 100% !important;
+    scroll-snap-align: none !important;
+  }
+
+  .cards-slider .card-extra {
+    display: none;
+  }
+
+  .cards-slider.expanded .card-extra {
+    display: flex;
+    animation: fadeInCard 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeInCard {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cards-toggle-buttons {
+    display: flex !important;
+  }
+
+  .cards-toggle-buttons .hide-btn {
+    display: none;
+  }
+
+  .cards-slider.expanded ~ .cards-toggle-buttons .toggle-btn:not(.hide-btn) {
+    display: none;
+  }
+
+  .cards-slider.expanded ~ .cards-toggle-buttons .hide-btn {
+    display: inline-flex;
+  }
 }
 
-/* ===== التابلت والجوال (992px وأقل): قائمة منسدلة ===== */
-@media (max-width: 992px) {
+/* ============================================
+   📱 الأجهزة التي تستخدم اللمس (جوال/تابلت)
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  /* ===== شريط التنقل ===== */
   .nav-links {
     display: none !important;
   }
@@ -1703,35 +1325,265 @@ section[id] {
   .mobile-menu {
     display: flex !important;
   }
-}
 
-/* ===== التابلت (769px - 992px) ===== */
-@media (min-width: 769px) and (max-width: 992px) {
   .nav-container {
-    height: 54px !important;
-    padding: 8px 16px !important;
-    gap: 10px !important;
+    height: 52px !important;
+    padding: 8px 12px !important;
+    gap: 8px !important;
   }
 
   .logo {
-    font-size: 14px !important;
-    padding: 5px 12px !important;
-    gap: 6px !important;
+    font-size: 13px !important;
+    padding: 5px 10px !important;
+    border-radius: 10px !important;
+  }
+
+  .logo span {
+    display: inline !important;
+  }
+
+  .logo::before {
+    border-radius: 10px !important;
   }
 
   .logo-img {
-    width: 22px !important;
-    height: 22px !important;
+    width: 20px !important;
+    height: 20px !important;
   }
 
   .menu-toggle {
-    width: 38px !important;
-    height: 38px !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 9px !important;
+  }
+
+  .menu-toggle span {
+    width: 18px !important;
+  }
+
+  /* ===== البطاقات: سلايدر أفقي ===== */
+  .cards-slider {
+    display: flex !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 8px 16px 20px !important;
+    margin: 0 -16px !important;
+    scroll-snap-type: x proximity !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .cards-slider::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .cards-slider .card {
+    flex: 0 0 200px !important;
+    scroll-snap-align: start !important;
+    width: auto !important;
+  }
+
+  .cards-slider .card-image {
+    height: 110px !important;
+  }
+
+  .cards-slider .card-body {
+    padding: 12px !important;
+  }
+
+  .cards-slider .card-body h3 {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+    line-height: 1.4 !important;
+  }
+
+  .cards-slider .card-body p {
+    font-size: 11px !important;
+    margin-bottom: 10px !important;
+    line-height: 1.5 !important;
+  }
+
+  .cards-slider .card-btn {
+    padding: 8px !important;
+    font-size: 12px !important;
+  }
+
+  .cards-toggle-buttons {
+    display: none !important;
+  }
+
+  .cards-slider .card-extra {
+    display: flex !important;
+  }
+}
+
+/* ============================================
+   📱 تحسينات عامة للشاشات الصغيرة (حجم فقط)
+   ============================================ */
+@media (max-width: 768px) {
+  /* السلايدر */
+  .hero {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .hero-slider {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .slide-content {
+    padding: 16px 20px 20px;
+  }
+
+  .slide-content h1 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .slide-content p {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+
+  /* الإحصائيات */
+  .stats {
+    margin-top: 0;
+    padding: 20px 16px 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-item {
+    padding: 20px 12px;
+  }
+
+  .stat-item h3 {
+    font-size: 26px;
+  }
+
+  .stat-item p {
+    font-size: 13px;
+  }
+
+  /* الأقسام */
+  .featured {
+    padding: 40px 16px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+  }
+
+  /* دعوة للاشتراك */
+  .cta {
+    padding: 60px 16px;
+    margin-top: 40px;
+  }
+
+  .cta h2 {
+    font-size: 24px;
+  }
+
+  .cta p {
+    font-size: 15px;
+  }
+
+  /* التذييل */
+  .footer {
+    padding: 40px 16px 0;
+  }
+
+  .footer-container {
+    gap: 24px;
+  }
+
+  /* صفحات الفلترة */
+  .page-header {
+    padding: 50px 16px;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+  }
+
+  .filter-bar {
+    margin-top: 24px;
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .filter-section {
+    padding: 24px 16px 60px;
+  }
+}
+
+/* ===== الجوال الصغير (480px وأقل) ===== */
+@media (max-width: 480px) {
+  .slide-content {
+    padding: 14px 16px 18px;
+  }
+
+  .slide-content h1 {
+    font-size: 16px;
+  }
+
+  .slide-content p {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .slide-content .btn-primary {
+    padding: 9px 20px;
+    font-size: 12px;
+  }
+
+  .stat-item h3 {
+    font-size: 22px;
+  }
+
+  .stat-item p {
+    font-size: 12px;
+  }
+
+  .section-header h2 {
+    font-size: 22px;
   }
 }
 
 /* ===== الجوال الصغير جداً (400px وأقل) ===== */
 @media (max-width: 400px) {
+  .slide-content h1 {
+    font-size: 15px;
+  }
+
+  .slide-content p {
+    font-size: 11px;
+  }
+
   .nav-container {
     height: 48px !important;
     padding: 6px 10px !important;
