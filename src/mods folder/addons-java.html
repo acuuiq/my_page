@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إضافات Java | LEON_AT</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================
+         🎨 تصميم الصفحات الداخلية المبسّط
+         ============================================ */
+
+      /* ===== شريط التنقل المبسّط ===== */
+      .navbar-inner .nav-links,
+      .navbar-inner .subscribe-btn,
+      .navbar-inner .menu-toggle,
+      .navbar-inner .mobile-menu {
+        display: none !important;
+      }
+
+      .navbar-inner .nav-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: rgba(41, 214, 255, 0.08);
+        color: var(--primary);
+        border: 1px solid rgba(41, 214, 255, 0.3);
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 14px;
+        transition: all 0.3s;
+        margin-right: auto;
+      }
+
+      .navbar-inner .nav-back-btn:hover {
+        background: var(--gradient-1);
+        color: white;
+        border-color: transparent;
+        transform: translateX(4px);
+        box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
+      }
+
+      /* ===== شبكة البطاقات ===== */
+      .cards-grid-inner {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .cards-grid-inner .card {
+        background: linear-gradient(
+          135deg,
+          rgba(16, 24, 39, 1) 0%,
+          rgba(21, 28, 48, 1) 100%
+        );
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .cards-grid-inner .card:hover {
+        transform: translateY(-8px);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.4),
+          0 0 30px rgba(41, 214, 255, 0.15);
+        border-color: rgba(41, 214, 255, 0.3);
+      }
+
+      .cards-grid-inner .card-image {
+        height: 140px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .cards-grid-inner .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s;
+      }
+
+      .cards-grid-inner .card:hover .card-image img {
+        transform: scale(1.08);
+      }
+
+      .cards-grid-inner .card-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--gradient-1);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(41, 214, 255, 0.4);
+      }
+
+      .cards-grid-inner .card-body {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .cards-grid-inner .card-body h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: var(--white);
+        transition: color 0.3s;
+      }
+
+      .cards-grid-inner .card:hover .card-body h3 {
+        color: var(--primary);
+      }
+
+      .cards-grid-inner .card-body p {
+        color: #999;
+        font-size: 12px;
+        margin-bottom: 12px;
+        flex-grow: 1;
+        line-height: 1.5;
+      }
+
+      .cards-grid-inner .card-btn {
+        display: inline-block;
+        background: var(--gradient-1);
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 12px;
+        transition: all 0.3s;
+      }
+
+      /* ===== الجوال ===== */
+      @media (max-width: 768px) {
+        .navbar-inner .nav-back-btn {
+          padding: 8px 14px;
+          font-size: 12px;
+        }
+
+        .cards-grid-inner {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+          padding: 20px 12px;
+        }
+
+        .cards-grid-inner .card-image {
+          height: 100px;
+        }
+
+        .cards-grid-inner .card-body {
+          padding: 10px;
+        }
+
+        .cards-grid-inner .card-body h3 {
+          font-size: 12px;
+        }
+
+        .cards-grid-inner .card-body p {
+          font-size: 10px;
+        }
+
+        .cards-grid-inner .card-btn {
+          padding: 6px;
+          font-size: 10px;
+        }
+
+        .cards-grid-inner .card-badge {
+          font-size: 9px;
+          padding: 3px 8px;
+        }
+      }
+
+      /* ===== الجوال الصغير جداً ===== */
+      @media (max-width: 400px) {
+        .cards-grid-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <!-- شاشة التحميل -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loader">
+        <div class="loader-logo">
+          <img src="images/logo.png" alt="LEON_AT" />
+        </div>
+        <div class="loader-spinner"></div>
+        <p class="loader-text">جارٍ التحميل...</p>
+      </div>
+    </div>
+
+    <!-- ============================================
+         شريط التنقل المبسّط
+         ============================================ -->
+    <nav class="navbar navbar-inner">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="LEON_AT" class="logo-img" />
+          <span>LEON_AT</span>
+        </a>
+
+        <a href="index.html" class="nav-back-btn"> ← الرئيسية </a>
+      </div>
+    </nav>
+
+    <!-- ============================================
+         رأس الصفحة
+         ============================================ -->
+    <section class="page-header">
+      <h1>إضافات Java Edition</h1>
+      <p>كل إضافات ماين كرافت الخاصة بإصدار الجافا في مكان واحد</p>
+    </section>
+
+    <!-- ============================================
+         شريط الفلاتر
+         ============================================ -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="mods">مودات</button>
+      <button class="filter-btn" data-filter="packs">ريسورس باكات</button>
+      <button class="filter-btn" data-filter="shaders">شيدرز</button>
+      <button class="filter-btn" data-filter="worlds">عوالم</button>
+    </div>
+
+    <!-- ============================================
+         شبكة البطاقات
+         ============================================ -->
+    <section class="cards-grid-inner" id="javaCardsGrid">
+      <!-- المودات تُحمَّل تلقائياً من قاعدة البيانات -->
+    </section>
+
+    <!-- ============================================
+         التذييل
+         ============================================ -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>LEON_AT</h4>
+          <p>موقعك الأول لتحميل المودات والتطبيقات المشروحة على قناتي.</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="addons-java.html">إضافات Java</a></li>
+            <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
+            <li><a href="games.html">الألعاب</a></li>
+            <li><a href="apps.html">التطبيقات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تابعني</h4>
+          <ul>
+            <li>
+              <a href="https://youtube.com/@leon-at" target="_blank">يوتيوب</a>
+            </li>
+            <li><a href="#">تيليجرام</a></li>
+            <li><a href="#">إنستجرام</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 LEON_AT — جميع الحقوق محفوظة</p>
+      </div>
+    </footer>
+
+    <script>
+      // ===== جلب المودات من قاعدة البيانات =====
+      const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
+
+      async function loadModsFromDB() {
+        const grid = document.getElementById("javaCardsGrid");
+        if (!grid) return;
+
+        try {
+          const response = await fetch(API_URL);
+          const mods = await response.json();
+
+          // ⭐ فلترة: فقط مودات الجافا
+          const javaMods = mods.filter(
+            (mod) => mod.edition === "java" || mod.edition === "Java",
+          );
+
+          if (javaMods.length === 0) {
+            grid.innerHTML =
+              "<p style='color:#888;text-align:center;padding:40px;grid-column:1/-1;'>لا توجد مودات بعد.</p>";
+            return;
+          }
+
+          grid.innerHTML = javaMods
+            .map((mod) => {
+              const badge = mod.badge
+                ? `<span class="card-badge">${mod.badge}</span>`
+                : "";
+
+              return `
+                <a href="mod.html?id=${mod.id}" class="card" data-category="${mod.category}">
+                  <div class="card-image">
+                    <img src="${mod.image_url}" alt="${mod.title}">
+                    ${badge}
+                  </div>
+                  <div class="card-body">
+                    <h3>${mod.title}</h3>
+                    <p>${mod.description}</p>
+                    <span class="card-btn">عرض التفاصيل</span>
+                  </div>
+                </a>
+              `;
+            })
+            .join("");
+        } catch (error) {
+          grid.innerHTML =
+            "<p style='color:#ff3333;text-align:center;padding:40px;grid-column:1/-1;'>خطأ في تحميل المودات</p>";
+          console.error(error);
+        }
+      }
+
+      // ===== الفلترة =====
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const filter = btn.dataset.filter;
+          document.querySelectorAll("#javaCardsGrid .card").forEach((card) => {
+            if (filter === "all" || card.dataset.category === filter) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // تحميل المودات عند فتح الصفحة
+      loadModsFromDB();
+    </script>
+  </body>
+</html>
