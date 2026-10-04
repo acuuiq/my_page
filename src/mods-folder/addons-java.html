@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>إضافات Java | LEON_AT</title>
-    <!-- ⭐ المسار للمجلد الفرعي -->
     <link rel="stylesheet" href="../../style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
@@ -23,20 +22,43 @@
         display: none !important;
       }
 
+      /* ⭐ عنوان الصفحة في شريط المهام */
+      .page-title-nav {
+        font-size: 18px;
+        font-weight: 900;
+        margin: 0;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #29d6ff 50%,
+          #7c3aed 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 0.5px;
+        flex: 1;
+        text-align: center;
+        padding: 0 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       .navbar-inner .nav-back-btn {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 10px 20px;
+        padding: 8px 16px;
         background: rgba(41, 214, 255, 0.08);
         color: var(--primary);
         border: 1px solid rgba(41, 214, 255, 0.3);
         border-radius: 10px;
         font-weight: 700;
-        font-size: 14px;
+        font-size: 13px;
         transition: all 0.3s;
-        margin-right: auto;
         text-decoration: none;
+        flex-shrink: 0;
       }
 
       .navbar-inner .nav-back-btn:hover {
@@ -47,103 +69,11 @@
         box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
       }
 
-      /* ===== تخطيط الصفحة: بطاقة جانبية + محتوى ===== */
-      .page-layout {
-        max-width: 1500px;
+      /* ===== محتوى الصفحة ===== */
+      .page-content-wrapper {
+        max-width: 1400px;
         margin: 0 auto;
         padding: 30px 24px;
-        display: grid;
-        grid-template-columns: 280px 1fr;
-        gap: 30px;
-        align-items: start;
-      }
-
-      /* ===== البطاقة الجانبية ===== */
-      .sidebar-card {
-        background: linear-gradient(
-          135deg,
-          rgba(16, 24, 39, 1) 0%,
-          rgba(21, 28, 48, 1) 100%
-        );
-        border-radius: 20px;
-        padding: 28px 24px;
-        border: 1px solid rgba(41, 214, 255, 0.15);
-        position: sticky;
-        top: 90px;
-        box-shadow:
-          0 10px 40px rgba(0, 0, 0, 0.4),
-          0 0 40px rgba(41, 214, 255, 0.08);
-      }
-
-      .sidebar-card h1 {
-        font-size: 24px;
-        font-weight: 900;
-        margin-bottom: 10px;
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #29d6ff 50%,
-          #7c3aed 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1.3;
-      }
-
-      .sidebar-card p {
-        color: #aaa;
-        font-size: 13px;
-        line-height: 1.7;
-        margin-bottom: 24px;
-      }
-
-      .sidebar-stats {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .sidebar-stat {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 14px;
-        background: rgba(41, 214, 255, 0.04);
-        border-radius: 10px;
-        border: 1px solid rgba(41, 214, 255, 0.08);
-      }
-
-      .sidebar-stat-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        background: var(--gradient-1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        flex-shrink: 0;
-      }
-
-      .sidebar-stat-info h4 {
-        font-size: 16px;
-        font-weight: 900;
-        color: var(--primary);
-        margin-bottom: 2px;
-        line-height: 1;
-      }
-
-      .sidebar-stat-info span {
-        font-size: 11px;
-        color: #888;
-      }
-
-      /* ===== محتوى الصفحة ===== */
-      .page-content {
-        min-width: 0;
       }
 
       /* ===== مربع البحث ===== */
@@ -154,13 +84,13 @@
 
       .search-box input {
         width: 100%;
-        padding: 14px 50px 14px 20px;
+        padding: 16px 55px 16px 22px;
         background: rgba(16, 24, 39, 0.9);
         border: 2px solid rgba(41, 214, 255, 0.15);
         border-radius: 14px;
         color: var(--white);
         font-family: "Cairo", sans-serif;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
         transition: all 0.3s;
         outline: none;
@@ -173,16 +103,16 @@
       .search-box input:focus {
         border-color: var(--primary);
         background: rgba(16, 24, 39, 1);
-        box-shadow: 0 0 20px rgba(41, 214, 255, 0.2);
+        box-shadow: 0 0 25px rgba(41, 214, 255, 0.25);
       }
 
       .search-box-icon {
         position: absolute;
-        right: 18px;
+        right: 20px;
         top: 50%;
         transform: translateY(-50%);
         color: var(--primary);
-        font-size: 18px;
+        font-size: 20px;
         pointer-events: none;
       }
 
@@ -345,48 +275,30 @@
         opacity: 0.5;
       }
 
-      /* ===== التابلت ===== */
-      @media (max-width: 992px) {
-        .page-layout {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .sidebar-card {
-          position: static;
-        }
-
-        .sidebar-card h1 {
-          font-size: 20px;
-        }
-      }
-
       /* ===== الجوال ===== */
       @media (max-width: 768px) {
-        .navbar-inner .nav-back-btn {
-          padding: 8px 14px;
-          font-size: 12px;
+        .page-title-nav {
+          font-size: 14px;
+          padding: 0 10px;
         }
 
-        .page-layout {
+        .navbar-inner .nav-back-btn {
+          padding: 6px 12px;
+          font-size: 11px;
+        }
+
+        .page-content-wrapper {
           padding: 20px 12px;
         }
 
-        .sidebar-card {
-          padding: 20px 18px;
-        }
-
-        .sidebar-card h1 {
-          font-size: 18px;
-        }
-
-        .sidebar-card p {
-          font-size: 12px;
-        }
-
         .search-box input {
-          padding: 12px 45px 12px 16px;
+          padding: 13px 48px 13px 18px;
           font-size: 13px;
+        }
+
+        .search-box-icon {
+          font-size: 17px;
+          right: 16px;
         }
 
         .filter-bar-inline {
@@ -403,7 +315,7 @@
         .filter-bar-inline .filter-btn {
           flex-shrink: 0;
           padding: 6px 14px;
-          font-size: 12px;
+          font-size: 11px;
         }
 
         .cards-grid-inner {
@@ -433,7 +345,7 @@
         }
       }
 
-      /* ===== الجوال الصغير ===== */
+      /* ===== الجوال الصغير جداً ===== */
       @media (max-width: 400px) {
         .cards-grid-inner {
           grid-template-columns: 1fr;
@@ -454,7 +366,7 @@
     </div>
 
     <!-- ============================================
-         شريط التنقل المبسّط
+         شريط التنقل: الشعار + العنوان + زر الرجوع
          ============================================ -->
     <nav class="navbar navbar-inner">
       <div class="nav-container">
@@ -463,65 +375,41 @@
           <span>LEON_AT</span>
         </a>
 
+        <!-- ⭐ عنوان الصفحة في المنتصف -->
+        <h1 class="page-title-nav">إضافات Java Edition</h1>
+
         <a href="../../index.html" class="nav-back-btn"> ← الرئيسية </a>
       </div>
     </nav>
 
     <!-- ============================================
-         التخطيط: بطاقة جانبية + محتوى
+         محتوى الصفحة
          ============================================ -->
-    <div class="page-layout">
-      <!-- ===== البطاقة الجانبية ===== -->
-      <aside class="sidebar-card">
-        <h1>إضافات Java Edition</h1>
-        <p>كل إضافات ماين كرافت الخاصة بإصدار الجافا في مكان واحد</p>
+    <div class="page-content-wrapper">
+      <!-- ===== مربع البحث ===== -->
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="ابحث عن إضافة..."
+          autocomplete="off"
+        />
+        <span class="search-box-icon">🔍</span>
+      </div>
 
-        <div class="sidebar-stats">
-          <div class="sidebar-stat">
-            <div class="sidebar-stat-icon">📦</div>
-            <div class="sidebar-stat-info">
-              <h4 id="totalMods">0</h4>
-              <span>إضافة متاحة</span>
-            </div>
-          </div>
+      <!-- ===== شريط الفلاتر ===== -->
+      <div class="filter-bar-inline">
+        <button class="filter-btn active" data-filter="all">الكل</button>
+        <button class="filter-btn" data-filter="mods">مودات</button>
+        <button class="filter-btn" data-filter="packs">ريسورس باكات</button>
+        <button class="filter-btn" data-filter="shaders">شيدرز</button>
+        <button class="filter-btn" data-filter="worlds">عوالم</button>
+      </div>
 
-          <div class="sidebar-stat">
-            <div class="sidebar-stat-icon">🎯</div>
-            <div class="sidebar-stat-info">
-              <h4>4</h4>
-              <span>تصنيفات</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      <!-- ===== المحتوى ===== -->
-      <main class="page-content">
-        <!-- مربع البحث -->
-        <div class="search-box">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="ابحث عن إضافة..."
-            autocomplete="off"
-          />
-          <span class="search-box-icon">🔍</span>
-        </div>
-
-        <!-- شريط الفلاتر -->
-        <div class="filter-bar-inline">
-          <button class="filter-btn active" data-filter="all">الكل</button>
-          <button class="filter-btn" data-filter="mods">مودات</button>
-          <button class="filter-btn" data-filter="packs">ريسورس باكات</button>
-          <button class="filter-btn" data-filter="shaders">شيدرز</button>
-          <button class="filter-btn" data-filter="worlds">عوالم</button>
-        </div>
-
-        <!-- شبكة البطاقات -->
-        <section class="cards-grid-inner" id="javaCardsGrid">
-          <!-- المودات تُحمَّل تلقائياً -->
-        </section>
-      </main>
+      <!-- ===== شبكة البطاقات ===== -->
+      <section class="cards-grid-inner" id="javaCardsGrid">
+        <!-- المودات تُحمَّل تلقائياً -->
+      </section>
     </div>
 
     <!-- ============================================
@@ -572,15 +460,10 @@
           const response = await fetch(API_URL);
           const mods = await response.json();
 
-          // فلترة: فقط مودات الجافا
           allMods = mods.filter(
             (mod) =>
               mod.edition === "java" || mod.edition === "Java" || !mod.edition,
           );
-
-          // تحديث العدد في البطاقة الجانبية
-          const totalModsEl = document.getElementById("totalMods");
-          if (totalModsEl) totalModsEl.textContent = allMods.length;
 
           renderMods(allMods);
         } catch (error) {
@@ -640,12 +523,10 @@
 
           let filtered = allMods;
 
-          // فلترة حسب التصنيف
           if (filter !== "all") {
             filtered = filtered.filter((mod) => mod.category === filter);
           }
 
-          // فلترة حسب البحث
           if (query) {
             filtered = filtered.filter(
               (mod) =>
