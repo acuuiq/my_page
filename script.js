@@ -252,10 +252,10 @@ if (loadingOverlay) {
       localStorage.setItem(visitedKey, "true");
     }
 
-    // عرض العدد بتنسيق عربي (1,234)
-    visitsElement.textContent = views.toLocaleString("ar-EG");
+    // ⭐ عرض العدد مع علامة + (1,234+)
+    visitsElement.textContent = "+" + views.toLocaleString("ar-EG");
   } catch (error) {
     console.error("Error loading views:", error);
-    visitsElement.textContent = "—";
+    visitsElement.textContent = "+0";
   }
 })();
