@@ -1609,3 +1609,31 @@ section[id] {
     width: 16px !important;
   }
 }
+/* ============================================
+   🏷️ شارة "قريباً" - للبطاقات غير المتوفرة
+   ============================================ */
+.card-badge.badge-coming-soon {
+  background: linear-gradient(135deg, #ff8c42 0%, #ff5757 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4) !important;
+}
+
+/* البطاقات "قريباً" - تأثير شفافية خفيف */
+.card:has(.badge-coming-soon) {
+  opacity: 0.9;
+}
+
+.card:has(.badge-coming-soon):hover {
+  opacity: 1;
+  transform: translateY(-8px);
+}
+
+/* منع النقر على البطاقات "قريباً" */
+.card:has(.badge-coming-soon) {
+  cursor: not-allowed;
+}
+
+.card:has(.badge-coming-soon) .card-btn {
+  background: linear-gradient(135deg, #ff8c42 0%, #ff5757 100%);
+  cursor: not-allowed;
+}
