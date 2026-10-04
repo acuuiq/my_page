@@ -219,3 +219,43 @@ if (loadingOverlay) {
     }
   });
 })();
+// ============================================
+// 📊 عدّاد الزيارات
+// ============================================
+(async function () {
+  const visitsElement = document.getElementById("visitsCount");
+  if (!visitsElement) return;
+
+  const API_URL = "https://leon-at.leon-at.workers.dev";
+
+  // علامة "visited" لمنع العد المتكرر
+  const visitedKey = "leon_at_visited";
+  const hasVisited = localStorage.getItem(visitedKey);
+
+  try {
+    let views;
+
+    if (hasVisited) {
+      // زائر عائد — فقط اعرض العدد
+      const response = await fetch(`${API_URL}/api/views`);
+      const data = await response.json();
+      views = data.views;
+    } else {
+      // زائر جديد — أضف 1 واعرض
+      const response = await fetch(`${API_URL}/api/views/increment`, {
+        method: "POST",
+      });
+      const data = await response.json();
+      views = data.views;
+
+      // احفظ علامة "زار الموقع"
+      localStorage.setItem(visitedKey, "true");
+    }
+
+    // عرض العدد بتنسيق عربي (1,234)
+    visitsElement.textContent = views.toLocaleString("ar-EG");
+  } catch (error) {
+    console.error("Error loading views:", error);
+    visitsElement.textContent = "—";
+  }
+})();

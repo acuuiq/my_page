@@ -302,6 +302,83 @@ export default {
     }
 
     // ============================================
+    // ===== API: عدّاد الزيارات =====
+    // ============================================
+
+    // جلب عدد الزيارات
+    if (path === "/api/views" && request.method === "GET") {
+      try {
+        // إنشاء الجدول إذا لم يكن موجوداً
+        await env.DB.prepare(
+          `CREATE TABLE IF NOT EXISTS site_views (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            count INTEGER DEFAULT 0,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+          )`,
+        ).run();
+
+        // إضافة صف أولي إذا لم يكن موجوداً
+        const existing = await env.DB.prepare(
+          "SELECT COUNT(*) as c FROM site_views",
+        ).first();
+
+        if (existing.c === 0) {
+          await env.DB.prepare(
+            "INSERT INTO site_views (count) VALUES (0)",
+          ).run();
+        }
+
+        // جلب العدد
+        const row = await env.DB.prepare(
+          "SELECT count FROM site_views ORDER BY id LIMIT 1",
+        ).first();
+
+        return jsonResponse({ views: row ? row.count : 0 }, corsHeaders);
+      } catch (e) {
+        return errorResponse(e.message, 500, corsHeaders);
+      }
+    }
+
+    // زيادة عدد الزيارات
+    if (path === "/api/views/increment" && request.method === "POST") {
+      try {
+        // إنشاء الجدول إذا لم يكن موجوداً
+        await env.DB.prepare(
+          `CREATE TABLE IF NOT EXISTS site_views (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            count INTEGER DEFAULT 0,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+          )`,
+        ).run();
+
+        // إضافة صف أولي إذا لم يكن موجوداً
+        const existing = await env.DB.prepare(
+          "SELECT COUNT(*) as c FROM site_views",
+        ).first();
+
+        if (existing.c === 0) {
+          await env.DB.prepare(
+            "INSERT INTO site_views (count) VALUES (1)",
+          ).run();
+        } else {
+          // زيادة العدد
+          await env.DB.prepare(
+            "UPDATE site_views SET count = count + 1, updated_at = CURRENT_TIMESTAMP WHERE id = (SELECT id FROM site_views ORDER BY id LIMIT 1)",
+          ).run();
+        }
+
+        // جلب العدد الجديد
+        const row = await env.DB.prepare(
+          "SELECT count FROM site_views ORDER BY id LIMIT 1",
+        ).first();
+
+        return jsonResponse({ views: row ? row.count : 0 }, corsHeaders);
+      } catch (e) {
+        return errorResponse(e.message, 500, corsHeaders);
+      }
+    }
+
+    // ============================================
     // ===== الملفات الثابتة =====
     // ============================================
     if (env.ASSETS) {
