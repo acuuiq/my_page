@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>إضافات Java | LEON_AT</title>
-    <link rel="stylesheet" href="style.css" />
+    <!-- ⭐ المسار للمجلد الفرعي -->
+    <link rel="stylesheet" href="../../style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
       rel="stylesheet"
@@ -202,7 +203,8 @@
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loader">
         <div class="loader-logo">
-          <img src="images/logo.png" alt="LEON_AT" />
+          <!-- ⭐ مسار الصورة للمجلد الفرعي -->
+          <img src="../../images/logo.png" alt="LEON_AT" />
         </div>
         <div class="loader-spinner"></div>
         <p class="loader-text">جارٍ التحميل...</p>
@@ -214,12 +216,14 @@
          ============================================ -->
     <nav class="navbar navbar-inner">
       <div class="nav-container">
-        <a href="index.html" class="logo">
-          <img src="images/logo.png" alt="LEON_AT" class="logo-img" />
+        <!-- ⭐ مسار الشعار للمجلد الفرعي -->
+        <a href="../../index.html" class="logo">
+          <img src="../../images/logo.png" alt="LEON_AT" class="logo-img" />
           <span>LEON_AT</span>
         </a>
 
-        <a href="index.html" class="nav-back-btn"> ← الرئيسية </a>
+        <!-- ⭐ الرجوع للرئيسية -->
+        <a href="../../index.html" class="nav-back-btn"> ← الرئيسية </a>
       </div>
     </nav>
 
@@ -261,11 +265,12 @@
         <div class="footer-col">
           <h4>روابط سريعة</h4>
           <ul>
-            <li><a href="index.html">الرئيسية</a></li>
+            <!-- ⭐ مسارات التذييل للمجلد الفرعي -->
+            <li><a href="../../index.html">الرئيسية</a></li>
             <li><a href="addons-java.html">إضافات Java</a></li>
             <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
-            <li><a href="games.html">الألعاب</a></li>
-            <li><a href="apps.html">التطبيقات</a></li>
+            <li><a href="../../games.html">الألعاب</a></li>
+            <li><a href="../../apps.html">التطبيقات</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -298,7 +303,8 @@
 
           // ⭐ فلترة: فقط مودات الجافا
           const javaMods = mods.filter(
-            (mod) => mod.edition === "java" || mod.edition === "Java",
+            (mod) =>
+              mod.edition === "java" || mod.edition === "Java" || !mod.edition,
           );
 
           if (javaMods.length === 0) {
@@ -313,6 +319,7 @@
                 ? `<span class="card-badge">${mod.badge}</span>`
                 : "";
 
+              // ⭐ mod.html في نفس المجلد
               return `
                 <a href="mod.html?id=${mod.id}" class="card" data-category="${mod.category}">
                   <div class="card-image">
