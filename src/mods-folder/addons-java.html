@@ -320,7 +320,9 @@
         opacity: 0.5;
       }
 
-      /* ===== الجوال ===== */
+      /* ============================================
+         📱 الجوال — بطاقات صغيرة مطابقة للرئيسية
+         ============================================ */
       @media (max-width: 768px) {
         .page-title-nav {
           font-size: 14px;
@@ -363,53 +365,89 @@
           font-size: 11px;
         }
 
-        /* ===== الشبكة: عمودان مع بطاقات أصغر قليلاً ===== */
+        /* ===== الشبكة: عمودان صغيران مثل الرئيسية ===== */
         .cards-grid-inner {
           grid-template-columns: repeat(2, 1fr);
-          gap: 12px;
+          gap: 10px;
+        }
+
+        .cards-grid-inner .card {
+          border-radius: 12px;
         }
 
         .cards-grid-inner .card-image {
-          height: 110px;
+          height: 100px;
         }
 
         .cards-grid-inner .card-body {
-          padding: 12px;
+          padding: 10px;
         }
 
         .cards-grid-inner .card-body h3 {
-          font-size: 13px;
-          margin-bottom: 4px;
-          line-height: 1.35;
+          font-size: 12px;
+          margin-bottom: 3px;
+          line-height: 1.3;
         }
 
         .cards-grid-inner .card-body p {
-          font-size: 11px;
-          margin-bottom: 10px;
+          font-size: 10px;
+          margin-bottom: 8px;
+          line-height: 1.4;
           -webkit-line-clamp: 2;
         }
 
         .cards-grid-inner .card-btn {
-          padding: 8px;
-          font-size: 12px;
+          padding: 6px;
+          font-size: 10.5px;
+          border-radius: 7px;
         }
 
         .cards-grid-inner .card-badge {
-          top: 8px;
-          right: 8px;
-          padding: 3px 10px;
-          font-size: 10px;
+          top: 6px;
+          right: 6px;
+          padding: 2px 8px;
+          font-size: 9px;
+          border-radius: 5px;
+        }
+
+        /* إلغاء تأثير الرفع على الجوال */
+        .cards-grid-inner .card:hover {
+          transform: none;
+        }
+
+        .cards-grid-inner .card:hover .card-image img {
+          transform: none;
         }
       }
 
-      /* ===== الجوال الصغير جداً ===== */
+      /* ===== الجوال الصغير جداً: نُبقي عمودين ===== */
       @media (max-width: 400px) {
         .cards-grid-inner {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
         }
 
         .cards-grid-inner .card-image {
-          height: 160px;
+          height: 85px;
+        }
+
+        .cards-grid-inner .card-body {
+          padding: 8px;
+        }
+
+        .cards-grid-inner .card-body h3 {
+          font-size: 11px;
+        }
+
+        .cards-grid-inner .card-body p {
+          font-size: 9.5px;
+          -webkit-line-clamp: 2;
+          margin-bottom: 6px;
+        }
+
+        .cards-grid-inner .card-btn {
+          padding: 5px;
+          font-size: 10px;
         }
       }
     </style>
