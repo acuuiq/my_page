@@ -513,116 +513,33 @@
           max-height: 70vh;
         }
       }
+
       /* ===== استجابة الجوال ===== */
       @media (max-width: 768px) {
-        /* البطاقة الرئيسية */
-        .mod-card {
-          padding: 0 14px;
-        }
-
         .mod-header {
           grid-template-columns: 1fr;
-          padding: 14px;
-          gap: 12px;
-          border-radius: 12px;
+          padding: 15px;
+          gap: 15px;
         }
 
-        /* ⭐ الصورة: حجمها الأصلي لكن صغيرة وفي المنتصف */
         .mod-image {
-          width: auto; /* ← لا نمددها */
-          max-width: 160px; /* ← حد أقصى للعرض */
-          height: auto; /* ← ارتفاع تلقائي حسب النسبة */
-          margin: 0 auto; /* ← في المنتصف */
-          border-radius: 12px;
-          border-width: 1px;
-        }
-
-        .mod-image img {
           width: 100%;
-          height: auto; /* ← يحافظ على النسبة الأصلية */
-          object-fit: contain; /* ← لا اقتصاص */
-          display: block;
-        }
-
-        /* العنوان */
-        .mod-info {
-          text-align: center;
+          height: 180px;
         }
 
         .mod-info h1 {
-          font-size: 17px;
-          line-height: 1.4;
-          margin-bottom: 10px;
+          font-size: 18px;
         }
 
-        /* الشارات في المنتصف */
-        .mod-badges {
-          justify-content: center;
-          gap: 5px;
-        }
-
-        .badge {
-          font-size: 10px;
-          padding: 3px 8px;
-        }
-
-        /* الوصف */
-        .mod-description {
-          font-size: 12.5px;
-          line-height: 1.7;
-          text-align: right;
-          margin-bottom: 14px;
-        }
-
-        /* أزرار الإجراءات */
-        .mod-actions {
-          justify-content: center;
-          gap: 6px;
-        }
-
-        .mod-actions a {
-          flex: 0 1 auto;
-          padding: 8px 16px;
-          font-size: 12px;
-        }
-
-        /* Breadcrumb */
-        .breadcrumb {
-          font-size: 11px;
-          padding: 0 14px;
-        }
-
-        /* التبويبات */
         .tabs-container {
-          margin: 18px auto;
-          padding: 0 14px;
+          margin: 20px auto;
         }
 
         .tab-btn {
-          padding: 8px 12px;
-          font-size: 11.5px;
+          padding: 8px 14px;
+          font-size: 12px;
         }
 
-        /* الوصف الكامل */
-        .description-box {
-          padding: 16px;
-          font-size: 13px;
-          line-height: 1.8;
-        }
-
-        /* المعرض */
-        .gallery {
-          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-          gap: 8px;
-        }
-
-        .gallery img {
-          height: auto;
-          aspect-ratio: 16 / 10;
-          object-fit: cover;
-        }
-
-        /* الإصدارات */
         .version-header {
           display: none;
         }
@@ -631,55 +548,19 @@
           grid-template-columns: 1fr;
           gap: 8px;
           padding: 12px;
-          background: rgba(41, 214, 255, 0.03);
-          border-radius: 10px;
-          margin: 6px;
-          border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .version-tag {
-          font-size: 11px;
-          padding: 3px 8px;
-        }
-
-        .version-mc {
-          font-size: 12px;
         }
 
         .version-changelog {
           white-space: normal;
-          font-size: 11.5px;
         }
 
-        .version-download {
-          padding: 8px 12px;
-          font-size: 12px;
-          width: 100%;
+        .mod-actions a {
+          flex: 1;
+          text-align: center;
         }
 
-        /* الحالات الفارغة */
-        .empty-state {
-          padding: 30px 20px;
-          font-size: 12px;
-        }
-
-        .empty-state-icon {
-          font-size: 30px;
-        }
-      }
-
-      /* ===== شاشات صغيرة جداً ===== */
-      @media (max-width: 400px) {
-        .mod-image {
-          max-width: 130px; /* ← أصغر شوي */
-        }
-
-        .mod-info h1 {
-          font-size: 15px;
-        }
-
-        .mod-description {
-          font-size: 12px;
+        .breadcrumb {
+          font-size: 11px;
         }
       }
     </style>
