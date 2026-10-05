@@ -115,6 +115,7 @@ export default {
         return errorResponse(e.message, 500, corsHeaders);
       }
     }
+
     // تعديل مود
     if (path.match(/^\/api\/mods\/\d+$/) && request.method === "PUT") {
       try {
@@ -165,6 +166,7 @@ export default {
         return errorResponse(e.message, 500, corsHeaders);
       }
     }
+
     // حذف مود
     if (path.match(/^\/api\/mods\/\d+$/) && request.method === "DELETE") {
       try {
@@ -382,14 +384,52 @@ export default {
     // ===== الملفات الثابتة =====
     // ============================================
     if (env.ASSETS) {
-      return env.ASSETS.fetch(request);
+      try {
+        const assetResponse = await env.ASSETS.fetch(request);
+
+        // ✅ إذا الملف غير موجود (404) وطلبه صفحة HTML → أظهر صفحة 404 مصمّمة
+        if (assetResponse.status === 404) {
+          const acceptHeader = request.headers.get("Accept") || "";
+          const isHtmlRequest =
+            acceptHeader.includes("text/html") ||
+            path.endsWith(".html") ||
+            path === "/";
+
+          if (isHtmlRequest) {
+            return new Response(generate404Page(path), {
+              status: 404,
+              headers: { "Content-Type": "text/html; charset=utf-8" },
+            });
+          }
+        }
+
+        return assetResponse;
+      } catch (e) {
+        // ✅ في حال حدوث خطأ، أظهر صفحة 500 مصمّمة
+        return new Response(generateErrorPage(e.message), {
+          status: 500,
+          headers: { "Content-Type": "text/html; charset=utf-8" },
+        });
+      }
     }
 
-    return new Response("Not found", { status: 404 });
+    // ✅ إذا لم يكن ASSETS مربوطاً
+    return new Response(
+      generateErrorPage(
+        `env.ASSETS غير مربوط. تأكد من wrangler.toml. المسار المطلوب: ${path}`,
+      ),
+      {
+        status: 500,
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+      },
+    );
   },
 };
 
+// ============================================
 // ===== دوال مساعدة =====
+// ============================================
+
 function jsonResponse(data, corsHeaders) {
   return new Response(JSON.stringify(data), {
     headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -401,4 +441,219 @@ function errorResponse(message, status, corsHeaders) {
     status,
     headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
+}
+
+// ✅ صفحة 404 مصمّمة بنفس هوية الموقع
+function generate404Page(path) {
+  return `<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — الصفحة غير موجودة | LEON_AT</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Cairo", sans-serif;
+        background: #0a0e1a;
+        color: #f5f5f7;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+      .container {
+        max-width: 500px;
+        padding: 40px 30px;
+        background: linear-gradient(135deg, #101827 0%, #1a2444 100%);
+        border-radius: 20px;
+        border: 1px solid rgba(41, 214, 255, 0.15);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+      h1 {
+        font-size: 100px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .icon {
+        font-size: 60px;
+        margin-bottom: 15px;
+      }
+      h2 {
+        font-size: 24px;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+      p {
+        color: #999;
+        font-size: 14px;
+        margin-bottom: 10px;
+        line-height: 1.7;
+        word-break: break-all;
+      }
+      .path {
+        background: rgba(41, 214, 255, 0.08);
+        color: #29d6ff;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-family: monospace;
+        font-size: 13px;
+        margin: 20px 0;
+        border: 1px solid rgba(41, 214, 255, 0.2);
+        direction: ltr;
+        word-break: break-all;
+      }
+      .btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
+        color: white;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        margin-top: 15px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 20px rgba(41, 214, 255, 0.3);
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(41, 214, 255, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="icon">🔍</div>
+      <h1>404</h1>
+      <h2>الصفحة غير موجودة</h2>
+      <p>الملف الذي تبحث عنه غير موجود في الموقع.</p>
+      <div class="path">${escapeHtml(path)}</div>
+      <p style="font-size: 12px; color: #666;">
+        تأكد من المسار أو عد إلى الصفحة الرئيسية.
+      </p>
+      <a href="/" class="btn">← العودة للرئيسية</a>
+    </div>
+  </body>
+</html>`;
+}
+
+// ✅ صفحة 500 مصمّمة للأخطاء
+function generateErrorPage(message) {
+  return `<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>خطأ في الخادم | LEON_AT</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Cairo", sans-serif;
+        background: #0a0e1a;
+        color: #f5f5f7;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+      }
+      .container {
+        max-width: 600px;
+        padding: 40px 30px;
+        background: linear-gradient(135deg, #101827 0%, #1a2444 100%);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 100, 100, 0.2);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+      .icon {
+        font-size: 60px;
+        margin-bottom: 15px;
+      }
+      h1 {
+        font-size: 28px;
+        color: #ff5555;
+        margin-bottom: 12px;
+      }
+      p {
+        color: #999;
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 15px;
+      }
+      .error-msg {
+        background: rgba(255, 50, 50, 0.1);
+        color: #ff8888;
+        padding: 14px 18px;
+        border-radius: 10px;
+        font-family: monospace;
+        font-size: 13px;
+        margin: 20px 0;
+        border: 1px solid rgba(255, 50, 50, 0.2);
+        direction: ltr;
+        text-align: left;
+        word-break: break-all;
+      }
+      .btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #29d6ff 0%, #7c3aed 100%);
+        color: white;
+        padding: 14px 32px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        margin-top: 15px;
+        transition: all 0.3s;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="icon">⚠️</div>
+      <h1>خطأ في الخادم</h1>
+      <p>حدث خطأ أثناء معالجة الطلب.</p>
+      <div class="error-msg">${escapeHtml(message || "Unknown error")}</div>
+      <a href="/" class="btn">← العودة للرئيسية</a>
+    </div>
+  </body>
+</html>`;
+}
+
+// ✅ دالة تأمين النص من XSS
+function escapeHtml(text) {
+  if (!text) return "";
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
