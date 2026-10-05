@@ -72,12 +72,13 @@
         </a>
       </div>
     </nav>
+
     <!-- ============================================
-     القسم الرئيسي - السلايدر
-     ============================================ -->
+         القسم الرئيسي - السلايدر
+         ============================================ -->
     <section class="hero">
       <div class="hero-slider">
-        <!-- شريحة 1: الإضافات (4 ألعاب) -->
+        <!-- شريحة 1: الإضافات -->
         <div class="hero-slide active" data-slide="0">
           <div class="slide-media">
             <img src="images/modsslid.png" alt="الإضافات" />
@@ -85,7 +86,9 @@
           <div class="slide-content">
             <h1>إضافات الألعاب <span>Game Mods</span></h1>
             <p>إضافات ومودات لجميع الألعاب - ماين كرافت، راست، آرك، والمزيد</p>
-            <a href="addons-java.html" class="btn-primary">تصفح الإضافات</a>
+            <a href="src/mods-folder/addons-java.html" class="btn-primary"
+              >تصفح الإضافات</a
+            >
           </div>
         </div>
 
@@ -97,7 +100,9 @@
           <div class="slide-content">
             <h1>الألعاب <span>Games</span></h1>
             <p>مجموعة متنوعة من الألعاب للتحميل مع شرح كامل</p>
-            <a href="games.html" class="btn-primary">تصفح الألعاب</a>
+            <a href="src/app-games-folder/games.html" class="btn-primary"
+              >تصفح الألعاب</a
+            >
           </div>
         </div>
 
@@ -109,7 +114,9 @@
           <div class="slide-content">
             <h1>التطبيقات <span>Apps</span></h1>
             <p>تطبيقات مختارة ومفيدة، مع روابط تحميل مباشرة</p>
-            <a href="apps.html" class="btn-primary">تصفح التطبيقات</a>
+            <a href="src/app-games-folder/apps.html" class="btn-primary"
+              >تصفح التطبيقات</a
+            >
           </div>
         </div>
       </div>
@@ -121,6 +128,7 @@
         <button class="dot" data-dot="2" aria-label="الشريحة 3"></button>
       </div>
     </section>
+
     <!-- ============================================
          الإحصائيات
          ============================================ -->
@@ -144,8 +152,8 @@
     </section>
 
     <!-- ============================================
-     قسم أحدث الإضافات
-     ============================================ -->
+         قسم أحدث الإضافات
+         ============================================ -->
     <section class="featured" id="addons">
       <div class="section-header">
         <h2>أحدث الإضافات</h2>
@@ -153,7 +161,7 @@
 
       <div class="cards-container">
         <div class="cards-slider" id="cardsSlider">
-          <!-- 1. إضافات ماين كرافت - Java Edition (ظاهرة) -->
+          <!-- 1. إضافات ماين كرافت - Java Edition -->
           <a
             href="src/mods-folder/addons-java.html"
             class="card"
@@ -170,8 +178,12 @@
             </div>
           </a>
 
-          <!-- 2. إضافات ماين كرافت - Bedrock Edition (ظاهرة) -->
-          <a href="addons-bedrock.html" class="card" draggable="false">
+          <!-- 2. إضافات ماين كرافت - Bedrock Edition -->
+          <a
+            href="src/mods-folder/addons-bedrock.html"
+            class="card"
+            draggable="false"
+          >
             <div class="card-image">
               <img
                 src="images/bedrok.jpg"
@@ -187,34 +199,37 @@
             </div>
           </a>
 
-          <!-- 3. إضافات راست (Rust) - ظاهرة -->
-          <a href="#" class="card" draggable="false" onclick="return false;">
+          <!-- 3. إضافات راست (Rust) -->
+          <a
+            href="src/mods-folder/addons-rust.html"
+            class="card"
+            draggable="false"
+          >
             <div class="card-image">
               <img src="images/rust-addons.jpg" alt="Rust" draggable="false" />
-              <span class="card-badge badge-coming-soon">قريباً</span>
+              <span class="card-badge">متوفر</span>
             </div>
             <div class="card-body">
               <h3>إضافات راست (Rust)</h3>
               <p>مودات وإضافات متنوعة للعبة راست على PC.</p>
-              <span class="card-btn">قريباً</span>
+              <span class="card-btn">تصفح الإضافات</span>
             </div>
           </a>
 
           <!-- 4. إضافات آرك (ARK) - مخفية -->
           <a
-            href="#"
+            href="src/mods-folder/addons-ark.html"
             class="card card-extra"
             draggable="false"
-            onclick="return false;"
           >
             <div class="card-image">
               <img src="images/ark-addons.jpg" alt="ARK" draggable="false" />
-              <span class="card-badge badge-coming-soon">قريباً</span>
+              <span class="card-badge">متوفر</span>
             </div>
             <div class="card-body">
               <h3>إضافات آرك (ARK)</h3>
               <p>مودات وإضافات متنوعة للعبة آرك على PC والجوال.</p>
-              <span class="card-btn">قريباً</span>
+              <span class="card-btn">تصفح الإضافات</span>
             </div>
           </a>
         </div>
@@ -254,9 +269,10 @@
         </div>
       </div>
     </section>
+
     <!-- ============================================
-     قسم الألعاب والتطبيقات
-     ============================================ -->
+         قسم الألعاب والتطبيقات
+         ============================================ -->
     <section class="featured" id="games-apps">
       <div class="section-header">
         <h2>الألعاب والتطبيقات</h2>
@@ -264,8 +280,12 @@
 
       <div class="cards-container">
         <div class="cards-slider" id="gamesSlider">
-          <!-- 1. الألعاب (ظاهرة افتراضياً) -->
-          <a href="games.html" class="card" draggable="false">
+          <!-- 1. الألعاب -->
+          <a
+            href="src/app-games-folder/games.html"
+            class="card"
+            draggable="false"
+          >
             <div class="card-image">
               <img src="images/games.jpg" alt="الألعاب" draggable="false" />
             </div>
@@ -276,8 +296,12 @@
             </div>
           </a>
 
-          <!-- 2. التطبيقات (ظاهرة افتراضياً) -->
-          <a href="apps.html" class="card" draggable="false">
+          <!-- 2. التطبيقات -->
+          <a
+            href="src/app-games-folder/apps.html"
+            class="card"
+            draggable="false"
+          >
             <div class="card-image">
               <img src="images/app.jpg" alt="التطبيقات" draggable="false" />
             </div>
@@ -288,8 +312,12 @@
             </div>
           </a>
 
-          <!-- 3. مشغّلات ماين كرافت (ظاهرة افتراضياً) -->
-          <a href="minecraft-launcher.html" class="card" draggable="false">
+          <!-- 3. مشغّلات ماين كرافت -->
+          <a
+            href="src/app-games-folder/minecraft-launcher.html"
+            class="card"
+            draggable="false"
+          >
             <div class="card-image">
               <img
                 src="images/minelan.png"
@@ -304,8 +332,12 @@
             </div>
           </a>
 
-          <!-- 4. مواقع مفيدة (مخفية - تظهر عند "إظهار المزيد") -->
-          <a href="websites.html" class="card card-extra" draggable="false">
+          <!-- 4. مواقع مفيدة (مخفية) -->
+          <a
+            href="src/app-games-folder/websites.html"
+            class="card card-extra"
+            draggable="false"
+          >
             <div class="card-image">
               <img src="images/web.png" alt="مواقع مفيدة" draggable="false" />
             </div>
@@ -352,6 +384,7 @@
         </div>
       </div>
     </section>
+
     <!-- ============================================
          دعوة للاشتراك
          ============================================ -->
@@ -373,21 +406,18 @@
           <p>موقعك الأول لتحميل المودات والتطبيقات المشروحة على قناتي.</p>
         </div>
         <div class="footer-col">
-          <h4>روابط سريعة</h4>
-          <ul>
-            <li><a href="#top">الرئيسية</a></li>
-            <li><a href="#addons">تصفح الإضافات</a></li>
-            <li><a href="#games-apps">الألعاب والتطبيقات</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
           <h4>تابعني</h4>
           <ul>
             <li>
-              <a href="https://youtube.com/@leon-at" target="_blank">يوتيوب</a>
+              <a href="https://youtube.com/@leon-at" target="_blank"
+                >▶ يوتيوب</a
+              >
             </li>
-            <li><a href="#">تيليجرام</a></li>
-            <li><a href="#">إنستجرام</a></li>
+            <li>
+              <a href="https://instagram.com/leon_at" target="_blank"
+                >📷 إنستجرام</a
+              >
+            </li>
           </ul>
         </div>
       </div>
