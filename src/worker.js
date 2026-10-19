@@ -92,8 +92,8 @@ export default {
 
         const result = await env.DB.prepare(
           `INSERT INTO mods 
-            (title, description, full_description, image_url, download_url, category, edition, video_url) 
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    (title, description, full_description, image_url, download_url, category, edition, video_url, loader, game_version) 
+   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         )
           .bind(
             title,
@@ -104,6 +104,8 @@ export default {
             category || "mods",
             edition || "java",
             video_url || "",
+            body.loader || "",
+            body.game_version || "",
           )
           .run();
 
