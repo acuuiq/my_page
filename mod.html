@@ -33,9 +33,6 @@
         color: var(--primary);
         font-weight: 700;
       }
-      .breadcrumb .separator {
-        color: #555;
-      }
       .mod-card {
         max-width: 1400px;
         margin: 15px auto 0;
@@ -203,16 +200,17 @@
         box-shadow: 0 10px 30px rgba(41, 214, 255, 0.3);
         border-color: var(--primary);
       }
+
       .versions-list {
         background: var(--dark-2);
         border-radius: 12px;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
-      /* تعديل رؤوس الجدول لتشمل المشغل */
+      /* تعديل الجدول: 4 أعمدة فقط (إصدار، لعبة، مشغل، تحميل) */
       .version-header {
         display: grid;
-        grid-template-columns: 80px 120px 120px 1fr 100px;
+        grid-template-columns: 100px 130px 1fr 110px;
         padding: 12px 18px;
         background: rgba(41, 214, 255, 0.05);
         border-bottom: 1px solid rgba(41, 214, 255, 0.15);
@@ -223,7 +221,7 @@
       }
       .version-item {
         display: grid;
-        grid-template-columns: 80px 120px 120px 1fr 100px;
+        grid-template-columns: 100px 130px 1fr 110px;
         align-items: center;
         padding: 14px 18px;
         gap: 12px;
@@ -249,7 +247,6 @@
         font-weight: 600;
         font-size: 13px;
       }
-      /* تنسيق خاص للمشغل */
       .version-loader {
         color: #ffa500;
         font-weight: 700;
@@ -259,13 +256,6 @@
         border-radius: 6px;
         display: inline-block;
         width: fit-content;
-      }
-      .version-changelog {
-        color: #999;
-        font-size: 12px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
       .version-download {
         background: var(--gradient-1);
@@ -279,6 +269,7 @@
         display: inline-block;
         text-decoration: none;
       }
+
       .empty-state {
         text-align: center;
         padding: 40px 30px;
@@ -293,7 +284,6 @@
         margin-bottom: 10px;
         opacity: 0.5;
       }
-      /* Lightbox */
       .lightbox {
         position: fixed;
         inset: 0;
@@ -378,11 +368,9 @@
           padding: 12px;
           text-align: center;
         }
-        .version-loader {
+        .version-loader,
+        .version-tag {
           margin: 0 auto;
-        }
-        .version-changelog {
-          white-space: normal;
         }
         .version-download {
           width: 100%;
@@ -527,7 +515,6 @@
             ? `<a href="${mod.video_url}" target="_blank" class="btn-secondary" style="background:var(--gradient-1); color:white;">▶ مشاهدة الشرح</a>`
             : "";
 
-          // البطاقة العلوية (بدون النوع والمشغل، فقط الاسم والصورة والوصف)
           cardContainer.innerHTML = `
             <div class="mod-header">
               <div class="mod-image"><img src="${mod.image_url}" alt="${mod.title}"></div>
@@ -560,7 +547,7 @@
             imagesContent.innerHTML = `<div class="empty-state">لا توجد صور مضافة بعد</div>`;
           }
 
-          // جدول الإصدارات (مع إضافة عمود المشغل بدلاً من الوصف القديم)
+          // هنا التعديل: جلب النواة من بيانات المود الأساسية (mod.loader)
           const versionsContent = document.getElementById("versionsContent");
           if (mod.versions && mod.versions.length > 0) {
             versionsContent.innerHTML = `
@@ -568,22 +555,22 @@
                 <div class="version-header">
                   <span>الإصدار</span>
                   <span>إصدار اللعبة</span>
-                  <span>المشغل (Loader)</span>
-                  <span>ملاحظات</span>
+                  <span>المشغل</span>
                   <span>التحميل</span>
                 </div>
                 ${mod.versions
-                  .map(
-                    (v) => `
+                  .map((v) => {
+                    // التحقق: إذا كانت النواة موجودة في المود الأساسي نعرضها، وإلا نعرض "فابريك" كافتراضي (أو يمكنك تغييرها)
+                    const loaderName = mod.loader ? mod.loader : "Fabric";
+                    return `
                   <div class="version-item">
                     <span class="version-tag">${v.version}</span>
                     <span class="version-mc">${v.minecraft_version || "-"}</span>
-                    <span class="version-loader">${mod.loader || "غير محدد"}</span>
-                    <span class="version-changelog">${v.changelog || "لا يوجد وصف"}</span>
+                    <span class="version-loader">${loaderName}</span>
                     <a href="${v.download_url}" target="_blank" class="version-download">⬇ تحميل</a>
                   </div>
-                `,
-                  )
+                `;
+                  })
                   .join("")}
               </div>
             `;
@@ -624,7 +611,6 @@
           openLightbox(parseInt(e.target.dataset.index));
         }
       });
-
       function openLightbox(index) {
         if (!window.galleryImages || window.galleryImages.length === 0) return;
         currentImageIndex = index;
