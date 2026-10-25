@@ -209,9 +209,10 @@
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
+      /* تعديل رؤوس الجدول لتشمل المشغل */
       .version-header {
         display: grid;
-        grid-template-columns: 100px 130px 1fr 110px;
+        grid-template-columns: 80px 120px 120px 1fr 100px;
         padding: 12px 18px;
         background: rgba(41, 214, 255, 0.05);
         border-bottom: 1px solid rgba(41, 214, 255, 0.15);
@@ -222,7 +223,7 @@
       }
       .version-item {
         display: grid;
-        grid-template-columns: 100px 130px 1fr 110px;
+        grid-template-columns: 80px 120px 120px 1fr 100px;
         align-items: center;
         padding: 14px 18px;
         gap: 12px;
@@ -247,6 +248,17 @@
         color: var(--primary);
         font-weight: 600;
         font-size: 13px;
+      }
+      /* تنسيق خاص للمشغل */
+      .version-loader {
+        color: #ffa500;
+        font-weight: 700;
+        font-size: 13px;
+        background: rgba(255, 165, 0, 0.1);
+        padding: 4px 8px;
+        border-radius: 6px;
+        display: inline-block;
+        width: fit-content;
       }
       .version-changelog {
         color: #999;
@@ -281,6 +293,7 @@
         margin-bottom: 10px;
         opacity: 0.5;
       }
+      /* Lightbox */
       .lightbox {
         position: fixed;
         inset: 0;
@@ -340,6 +353,7 @@
       .lightbox-next {
         left: 20px;
       }
+
       @media (max-width: 768px) {
         .mod-header {
           grid-template-columns: 1fr;
@@ -363,6 +377,9 @@
           gap: 8px;
           padding: 12px;
           text-align: center;
+        }
+        .version-loader {
+          margin: 0 auto;
         }
         .version-changelog {
           white-space: normal;
@@ -510,6 +527,7 @@
             ? `<a href="${mod.video_url}" target="_blank" class="btn-secondary" style="background:var(--gradient-1); color:white;">▶ مشاهدة الشرح</a>`
             : "";
 
+          // البطاقة العلوية (بدون النوع والمشغل، فقط الاسم والصورة والوصف)
           cardContainer.innerHTML = `
             <div class="mod-header">
               <div class="mod-image"><img src="${mod.image_url}" alt="${mod.title}"></div>
@@ -519,12 +537,7 @@
                   <span class="badge badge-edition ${editionClass}">🎮 ${editionText} Edition</span>
                   <span class="badge badge-category">📁 ${mod.category}</span>
                 </div>
-                <p class="mod-description">
-                  <span style="color: var(--primary); font-weight: 700; display: inline-block; margin-bottom: 5px;">
-                    ⚙️ النوع: ${mod.loader || "غير محدد"} | 🎮 إصدار اللعبة: ${mod.game_version || "غير محدد"}
-                  </span><br>
-                  <span style="font-size: 13px; color: #aaa;">${mod.description}</span>
-                </p>
+                <p class="mod-description">${mod.description}</p>
                 <div class="mod-actions">${videoBtn}</div>
               </div>
             </div>
@@ -547,17 +560,25 @@
             imagesContent.innerHTML = `<div class="empty-state">لا توجد صور مضافة بعد</div>`;
           }
 
+          // جدول الإصدارات (مع إضافة عمود المشغل بدلاً من الوصف القديم)
           const versionsContent = document.getElementById("versionsContent");
           if (mod.versions && mod.versions.length > 0) {
             versionsContent.innerHTML = `
               <div class="versions-list">
-                <div class="version-header"><span>الإصدار</span><span>إصدار اللعبة</span><span>الوصف</span><span>التحميل</span></div>
+                <div class="version-header">
+                  <span>الإصدار</span>
+                  <span>إصدار اللعبة</span>
+                  <span>المشغل (Loader)</span>
+                  <span>ملاحظات</span>
+                  <span>التحميل</span>
+                </div>
                 ${mod.versions
                   .map(
                     (v) => `
                   <div class="version-item">
                     <span class="version-tag">${v.version}</span>
                     <span class="version-mc">${v.minecraft_version || "-"}</span>
+                    <span class="version-loader">${mod.loader || "غير محدد"}</span>
                     <span class="version-changelog">${v.changelog || "لا يوجد وصف"}</span>
                     <a href="${v.download_url}" target="_blank" class="version-download">⬇ تحميل</a>
                   </div>
