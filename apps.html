@@ -4,24 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>التطبيقات | LEON_AT</title>
-    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* ============================================
-         📱 تصميم صفحة التطبيقات — سوق بلي
-         ============================================ */
-
-      /* ===== شريط التنقل المبسّط ===== */
       .navbar-inner .nav-links,
       .navbar-inner .subscribe-btn,
       .navbar-inner .menu-toggle,
       .navbar-inner .mobile-menu {
         display: none !important;
       }
-
       .page-title-nav {
         font-size: 18px;
         font-weight: 900;
@@ -43,7 +37,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
       .navbar-inner .nav-back-btn {
         display: inline-flex;
         align-items: center;
@@ -59,7 +52,6 @@
         text-decoration: none;
         flex-shrink: 0;
       }
-
       .navbar-inner .nav-back-btn:hover {
         background: var(--gradient-1);
         color: white;
@@ -67,20 +59,15 @@
         transform: translateX(4px);
         box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
       }
-
-      /* ===== محتوى الصفحة ===== */
       .page-content-wrapper {
         max-width: 1400px;
         margin: 0 auto;
         padding: 30px 24px;
       }
-
-      /* ===== مربع البحث ===== */
       .search-box {
         position: relative;
         margin-bottom: 20px;
       }
-
       .search-box input {
         width: 100%;
         padding: 16px 55px 16px 22px;
@@ -94,17 +81,14 @@
         transition: all 0.3s;
         outline: none;
       }
-
       .search-box input::placeholder {
         color: #666;
       }
-
       .search-box input:focus {
         border-color: var(--primary);
         background: rgba(16, 24, 39, 1);
         box-shadow: 0 0 25px rgba(41, 214, 255, 0.25);
       }
-
       .search-box-icon {
         position: absolute;
         right: 20px;
@@ -114,16 +98,11 @@
         font-size: 20px;
         pointer-events: none;
       }
-
-      /* ============================================
-         📱 شبكة التطبيقات — نمط سوق بلي
-         ============================================ */
       .apps-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 18px;
       }
-
       .app-card {
         background: linear-gradient(
           135deg,
@@ -140,7 +119,6 @@
         text-decoration: none;
         color: inherit;
       }
-
       .app-card::before {
         content: "";
         position: absolute;
@@ -157,19 +135,15 @@
         transition: opacity 0.35s;
         pointer-events: none;
       }
-
       .app-card:hover::before {
         opacity: 1;
       }
-
       .app-card:hover {
         transform: translateY(-8px);
         box-shadow:
           0 20px 40px rgba(0, 0, 0, 0.5),
           0 0 30px rgba(41, 214, 255, 0.15);
       }
-
-      /* ===== الصورة — مربعة (مثل سوق بلي) ===== */
       .app-card-image {
         width: 100%;
         aspect-ratio: 1 / 1;
@@ -177,19 +151,15 @@
         position: relative;
         background: var(--dark-2);
       }
-
       .app-card-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
       .app-card:hover .app-card-image img {
         transform: scale(1.1);
       }
-
-      /* ===== الشارة (اختياري) ===== */
       .app-badge {
         position: absolute;
         top: 10px;
@@ -203,8 +173,6 @@
         z-index: 2;
         box-shadow: 0 4px 12px rgba(41, 214, 255, 0.4);
       }
-
-      /* ===== اسم التطبيق (فقط) ===== */
       .app-card-name {
         padding: 12px 10px;
         text-align: center;
@@ -221,12 +189,9 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
-
       .app-card:hover .app-card-name {
         color: var(--primary);
       }
-
-      /* ===== رسالة "لا نتائج" ===== */
       .no-results {
         grid-column: 1 / -1;
         text-align: center;
@@ -234,56 +199,43 @@
         color: #888;
         font-size: 16px;
       }
-
       .no-results-icon {
         font-size: 48px;
         margin-bottom: 12px;
         opacity: 0.5;
       }
-
-      /* ============================================
-         📱 الجوال
-         ============================================ */
       @media (max-width: 768px) {
         .page-title-nav {
           font-size: 14px;
           padding: 0 10px;
         }
-
         .navbar-inner .nav-back-btn {
           padding: 6px 12px;
           font-size: 11px;
         }
-
         .page-content-wrapper {
           padding: 20px 12px;
         }
-
         .search-box input {
           padding: 13px 48px 13px 18px;
           font-size: 13px;
         }
-
         .search-box-icon {
           font-size: 17px;
           right: 16px;
         }
-
         .apps-grid {
           grid-template-columns: repeat(3, 1fr);
           gap: 10px;
         }
-
         .app-card {
           border-radius: 12px;
         }
-
         .app-card-name {
           font-size: 11px;
           padding: 8px 6px;
           min-height: 40px;
         }
-
         .app-badge {
           font-size: 8px;
           padding: 3px 7px;
@@ -291,13 +243,11 @@
           right: 6px;
         }
       }
-
       @media (max-width: 400px) {
         .apps-grid {
           grid-template-columns: repeat(3, 1fr);
           gap: 8px;
         }
-
         .app-card-name {
           font-size: 10px;
           padding: 6px 4px;
@@ -307,32 +257,26 @@
     </style>
   </head>
   <body id="top">
-    <!-- شاشة التحميل -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loader">
         <div class="loader-logo">
-          <img src="../../images/logo.png" alt="LEON_AT" />
+          <img src="images/logo.png" alt="LEON_AT" />
         </div>
         <div class="loader-spinner"></div>
         <p class="loader-text">جارٍ التحميل...</p>
       </div>
     </div>
-
-    <!-- شريط التنقل -->
     <nav class="navbar navbar-inner">
       <div class="nav-container">
-        <a href="index.html" class="logo">
-          <img src="../../images/logo.png" alt="LEON_AT" class="logo-img" />
-          <span>LEON_AT</span>
-        </a>
-
+        <a href="index.html" class="logo"
+          ><img src="images/logo.png" alt="LEON_AT" class="logo-img" /><span
+            >LEON_AT</span
+          ></a
+        >
         <h1 class="page-title-nav">📱 التطبيقات</h1>
-
         <a href="index.html" class="nav-back-btn"> ← الرئيسية </a>
       </div>
     </nav>
-
-    <!-- محتوى الصفحة -->
     <div class="page-content-wrapper">
       <div class="search-box">
         <input
@@ -340,16 +284,10 @@
           id="searchInput"
           placeholder="ابحث عن تطبيق..."
           autocomplete="off"
-        />
-        <span class="search-box-icon">🔍</span>
+        /><span class="search-box-icon">🔍</span>
       </div>
-
-      <section class="apps-grid" id="appsGrid">
-        <!-- التطبيقات تُحمَّل تلقائياً -->
-      </section>
+      <section class="apps-grid" id="appsGrid"></section>
     </div>
-
-    <!-- التذييل -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -376,52 +314,36 @@
         <p>© 2026 LEON_AT — جميع الحقوق محفوظة</p>
       </div>
     </footer>
-
     <script>
       const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
       let allApps = [];
-
       async function loadAppsFromDB() {
         const grid = document.getElementById("appsGrid");
         if (!grid) return;
-
         try {
           const response = await fetch(API_URL);
           const mods = await response.json();
-
-          // فلترة: نعرض فقط التطبيقات (category = "apps")
           allApps = mods.filter((mod) => mod.category === "apps");
-
           renderApps(allApps);
         } catch (error) {
           grid.innerHTML =
             "<p style='color:#ff3333;text-align:center;padding:40px;grid-column:1/-1;'>خطأ في تحميل التطبيقات</p>";
-          console.error(error);
         }
       }
-
       function renderApps(apps) {
         const grid = document.getElementById("appsGrid");
         if (!grid) return;
-
         if (apps.length === 0) {
-          grid.innerHTML = `
-            <div class="no-results">
-              <div class="no-results-icon">📱</div>
-              لا توجد تطبيقات بعد — قريباً!
-            </div>
-          `;
+          grid.innerHTML = `<div class="no-results"><div class="no-results-icon">📱</div>لا توجد تطبيقات بعد — قريباً!</div>`;
           return;
         }
-
         grid.innerHTML = apps
           .map((app) => {
             const badge = app.badge
               ? `<span class="app-badge">${app.badge}</span>`
               : "";
-
             return `
-              <a href="src/app-games-folder/app.html?id=${app.id}" class="app-card">
+              <a href="mod.html?id=${app.id}" class="app-card">
                 <div class="app-card-image">
                   <img src="${app.image_url}" alt="${app.title}" loading="lazy">
                   ${badge}
@@ -432,26 +354,20 @@
           })
           .join("");
       }
-
-      // ===== البحث =====
       const searchInput = document.getElementById("searchInput");
       if (searchInput) {
         searchInput.addEventListener("input", (e) => {
           const query = e.target.value.trim().toLowerCase();
-
           if (!query) {
             renderApps(allApps);
             return;
           }
-
           const filtered = allApps.filter((app) =>
             app.title.toLowerCase().includes(query),
           );
-
           renderApps(filtered);
         });
       }
-
       loadAppsFromDB();
     </script>
   </body>

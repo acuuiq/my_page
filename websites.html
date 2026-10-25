@@ -4,24 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>مواقع مفيدة | LEON_AT</title>
-    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* ============================================
-         🌐 تصميم صفحة المواقع المفيدة
-         ============================================ */
-
-      /* ===== شريط التنقل المبسّط ===== */
       .navbar-inner .nav-links,
       .navbar-inner .subscribe-btn,
       .navbar-inner .menu-toggle,
       .navbar-inner .mobile-menu {
         display: none !important;
       }
-
       .page-title-nav {
         font-size: 18px;
         font-weight: 900;
@@ -43,7 +37,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
       .navbar-inner .nav-back-btn {
         display: inline-flex;
         align-items: center;
@@ -59,7 +52,6 @@
         text-decoration: none;
         flex-shrink: 0;
       }
-
       .navbar-inner .nav-back-btn:hover {
         background: var(--gradient-1);
         color: white;
@@ -67,20 +59,15 @@
         transform: translateX(4px);
         box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
       }
-
-      /* ===== محتوى الصفحة ===== */
       .page-content-wrapper {
         max-width: 1400px;
         margin: 0 auto;
         padding: 30px 24px;
       }
-
-      /* ===== مربع البحث ===== */
       .search-box {
         position: relative;
         margin-bottom: 20px;
       }
-
       .search-box input {
         width: 100%;
         padding: 16px 55px 16px 22px;
@@ -94,17 +81,14 @@
         transition: all 0.3s;
         outline: none;
       }
-
       .search-box input::placeholder {
         color: #666;
       }
-
       .search-box input:focus {
         border-color: var(--primary);
         background: rgba(16, 24, 39, 1);
         box-shadow: 0 0 25px rgba(41, 214, 255, 0.25);
       }
-
       .search-box-icon {
         position: absolute;
         right: 20px;
@@ -114,16 +98,11 @@
         font-size: 20px;
         pointer-events: none;
       }
-
-      /* ============================================
-         🌐 شبكة المواقع — نمط سوق بلي
-         ============================================ */
       .websites-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 18px;
       }
-
       .website-card {
         background: linear-gradient(
           135deg,
@@ -140,7 +119,6 @@
         text-decoration: none;
         color: inherit;
       }
-
       .website-card::before {
         content: "";
         position: absolute;
@@ -157,19 +135,15 @@
         transition: opacity 0.35s;
         pointer-events: none;
       }
-
       .website-card:hover::before {
         opacity: 1;
       }
-
       .website-card:hover {
         transform: translateY(-8px);
         box-shadow:
           0 20px 40px rgba(0, 0, 0, 0.5),
           0 0 30px rgba(41, 214, 255, 0.15);
       }
-
-      /* ===== الصورة — مربعة ===== */
       .website-card-image {
         width: 100%;
         aspect-ratio: 1 / 1;
@@ -177,19 +151,15 @@
         position: relative;
         background: var(--dark-2);
       }
-
       .website-card-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
       .website-card:hover .website-card-image img {
         transform: scale(1.1);
       }
-
-      /* ===== الشارة ===== */
       .website-badge {
         position: absolute;
         top: 10px;
@@ -203,8 +173,6 @@
         z-index: 2;
         box-shadow: 0 4px 12px rgba(41, 214, 255, 0.4);
       }
-
-      /* ===== الاسم ===== */
       .website-card-name {
         padding: 12px 10px;
         text-align: center;
@@ -221,12 +189,9 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
-
       .website-card:hover .website-card-name {
         color: var(--primary);
       }
-
-      /* ===== رسالة "لا نتائج" ===== */
       .no-results {
         grid-column: 1 / -1;
         text-align: center;
@@ -234,56 +199,43 @@
         color: #888;
         font-size: 16px;
       }
-
       .no-results-icon {
         font-size: 48px;
         margin-bottom: 12px;
         opacity: 0.5;
       }
-
-      /* ============================================
-         📱 الجوال
-         ============================================ */
       @media (max-width: 768px) {
         .page-title-nav {
           font-size: 14px;
           padding: 0 10px;
         }
-
         .navbar-inner .nav-back-btn {
           padding: 6px 12px;
           font-size: 11px;
         }
-
         .page-content-wrapper {
           padding: 20px 12px;
         }
-
         .search-box input {
           padding: 13px 48px 13px 18px;
           font-size: 13px;
         }
-
         .search-box-icon {
           font-size: 17px;
           right: 16px;
         }
-
         .websites-grid {
           grid-template-columns: repeat(3, 1fr);
           gap: 10px;
         }
-
         .website-card {
           border-radius: 12px;
         }
-
         .website-card-name {
           font-size: 11px;
           padding: 8px 6px;
           min-height: 40px;
         }
-
         .website-badge {
           font-size: 8px;
           padding: 3px 7px;
@@ -291,13 +243,11 @@
           right: 6px;
         }
       }
-
       @media (max-width: 400px) {
         .websites-grid {
           grid-template-columns: repeat(3, 1fr);
           gap: 8px;
         }
-
         .website-card-name {
           font-size: 10px;
           padding: 6px 4px;
@@ -307,7 +257,6 @@
     </style>
   </head>
   <body id="top">
-    <!-- شاشة التحميل -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loader">
         <div class="loader-logo">
@@ -317,22 +266,17 @@
         <p class="loader-text">جارٍ التحميل...</p>
       </div>
     </div>
-
-    <!-- شريط التنقل -->
     <nav class="navbar navbar-inner">
       <div class="nav-container">
-        <a href="index.html" class="logo">
-          <img src="../../images/logo.png" alt="LEON_AT" class="logo-img" />
-          <span>LEON_AT</span>
-        </a>
-
+        <a href="index.html" class="logo"
+          ><img src="images/logo.png" alt="LEON_AT" class="logo-img" /><span
+            >LEON_AT</span
+          ></a
+        >
         <h1 class="page-title-nav">🌐 مواقع مفيدة</h1>
-
         <a href="index.html" class="nav-back-btn"> ← الرئيسية </a>
       </div>
     </nav>
-
-    <!-- محتوى الصفحة -->
     <div class="page-content-wrapper">
       <div class="search-box">
         <input
@@ -340,16 +284,10 @@
           id="searchInput"
           placeholder="ابحث عن موقع..."
           autocomplete="off"
-        />
-        <span class="search-box-icon">🔍</span>
+        /><span class="search-box-icon">🔍</span>
       </div>
-
-      <section class="websites-grid" id="websitesGrid">
-        <!-- المواقع تُحمَّل تلقائياً -->
-      </section>
+      <section class="websites-grid" id="websitesGrid"></section>
     </div>
-
-    <!-- التذييل -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -376,60 +314,38 @@
         <p>© 2026 LEON_AT — جميع الحقوق محفوظة</p>
       </div>
     </footer>
-
     <script>
       const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
       let allWebsites = [];
-
       async function loadWebsitesFromDB() {
         const grid = document.getElementById("websitesGrid");
         if (!grid) return;
-
         try {
           const response = await fetch(API_URL);
           const mods = await response.json();
-
-          // فلترة: نعرض فقط المواقع (category = "websites")
           allWebsites = mods.filter((mod) => mod.category === "websites");
-
           renderWebsites(allWebsites);
         } catch (error) {
           grid.innerHTML =
             "<p style='color:#ff3333;text-align:center;padding:40px;grid-column:1/-1;'>خطأ في تحميل المواقع</p>";
-          console.error(error);
         }
       }
-
       function renderWebsites(websites) {
         const grid = document.getElementById("websitesGrid");
         if (!grid) return;
-
         if (websites.length === 0) {
-          grid.innerHTML = `
-            <div class="no-results">
-              <div class="no-results-icon">🌐</div>
-              لا توجد مواقع بعد — قريباً!
-            </div>
-          `;
+          grid.innerHTML = `<div class="no-results"><div class="no-results-icon">🌐</div>لا توجد مواقع بعد — قريباً!</div>`;
           return;
         }
-
         grid.innerHTML = websites
           .map((site) => {
             const badge = site.badge
               ? `<span class="website-badge">${site.badge}</span>`
               : "";
-
-            // الرابط: إذا كان موقع خارجي → يفتح مباشرة | إذا صفحة داخلية → داخلية
             const link = site.download_url || "#";
             const isExternal = link.startsWith("http");
-
             return `
-              <a
-                href="${link}"
-                ${isExternal ? 'target="_blank" rel="noopener"' : ""}
-                class="website-card"
-              >
+              <a href="${link}" ${isExternal ? 'target="_blank" rel="noopener"' : ""} class="website-card">
                 <div class="website-card-image">
                   <img src="${site.image_url}" alt="${site.title}" loading="lazy">
                   ${badge}
@@ -440,26 +356,20 @@
           })
           .join("");
       }
-
-      // ===== البحث =====
       const searchInput = document.getElementById("searchInput");
       if (searchInput) {
         searchInput.addEventListener("input", (e) => {
           const query = e.target.value.trim().toLowerCase();
-
           if (!query) {
             renderWebsites(allWebsites);
             return;
           }
-
           const filtered = allWebsites.filter((site) =>
             site.title.toLowerCase().includes(query),
           );
-
           renderWebsites(filtered);
         });
       }
-
       loadWebsitesFromDB();
     </script>
   </body>
