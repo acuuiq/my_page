@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>لوحة التحكم الكبرى | LEON_AT</title>
+    <title>لوحة التحكم | LEON_AT</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
@@ -11,13 +11,13 @@
     />
     <style>
       .admin-container {
-        max-width: 1400px;
+        max-width: 1000px;
         margin: 40px auto;
         padding: 30px;
       }
       .admin-header {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
       }
       .admin-header h1 {
         font-size: 32px;
@@ -25,7 +25,6 @@
         margin-bottom: 10px;
       }
 
-      /* التبويبات الرئيسية */
       .main-tabs {
         display: flex;
         gap: 6px;
@@ -54,12 +53,11 @@
         box-shadow: 0 6px 20px rgba(41, 214, 255, 0.3);
       }
 
-      /* قائمة الأقسام الثمانية */
       .category-tabs {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
       }
       .cat-btn {
         padding: 8px 16px;
@@ -70,6 +68,7 @@
         font-family: "Cairo";
         cursor: pointer;
         transition: 0.3s;
+        font-size: 13px;
       }
       .cat-btn.active {
         background: rgba(41, 214, 255, 0.15);
@@ -96,6 +95,15 @@
         border-bottom: 1px solid rgba(41, 214, 255, 0.15);
         padding-bottom: 12px;
       }
+      .panel-card h3 {
+        font-size: 16px;
+        color: var(--light);
+        margin: 25px 0 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      }
+
+      /* حقول مرتبة عمودياً لتناسب الشاشات المنقسمة */
       .form-group {
         margin-bottom: 18px;
       }
@@ -110,18 +118,17 @@
       .form-group textarea,
       .form-group select {
         width: 100%;
-        padding: 12px;
+        padding: 14px;
         border-radius: 8px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         background: var(--dark);
         color: var(--light);
         font-family: "Cairo";
         font-size: 14px;
+        box-sizing: border-box;
       }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
+      .form-group textarea {
+        resize: vertical;
       }
 
       .btn {
@@ -137,8 +144,9 @@
         background: var(--gradient-1);
         color: white;
         width: 100%;
-        padding: 14px;
+        padding: 16px;
         font-size: 16px;
+        margin-top: 15px;
       }
       .btn-danger {
         background: rgba(255, 50, 50, 0.15);
@@ -146,10 +154,14 @@
         border: 1px solid rgba(255, 50, 50, 0.3);
         padding: 6px 14px;
         font-size: 12px;
+        cursor: pointer;
+        border-radius: 6px;
       }
       .btn-secondary {
         background: rgba(255, 255, 255, 0.08);
         color: var(--light);
+        padding: 10px 15px;
+        font-size: 13px;
       }
 
       .message {
@@ -171,10 +183,10 @@
         color: #ff5555;
       }
 
+      /* قائمة الإدارة */
       .items-list {
         display: grid;
         gap: 12px;
-        margin-top: 15px;
       }
       .item-row {
         display: flex;
@@ -200,9 +212,37 @@
         font-size: 15px;
         margin-bottom: 3px;
       }
-      .item-row p {
-        font-size: 12px;
-        color: #888;
+
+      /* لوحة التفاصيل المتقدمة */
+      .images-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .image-item {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .image-item img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        display: block;
+      }
+      .image-item button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(255, 50, 50, 0.9);
+        color: white;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        cursor: pointer;
       }
 
       .version-row {
@@ -211,8 +251,8 @@
         gap: 10px;
         margin-bottom: 10px;
       }
+
       @media (max-width: 768px) {
-        .form-row,
         .version-row {
           grid-template-columns: 1fr;
         }
@@ -227,13 +267,7 @@
           <span>LEON_AT</span>
         </a>
         <ul class="nav-links">
-          <li>
-            <a
-              href="javascript:void(0)"
-              onclick="window.location.href = base + 'index.html'"
-              >الرئيسية</a
-            >
-          </li>
+          <li><a href="index.html">الرئيسية</a></li>
           <li><a href="admin.html">لوحة التحكم</a></li>
         </ul>
       </div>
@@ -241,11 +275,9 @@
 
     <div class="admin-container">
       <div class="admin-header">
-        <h1>🎛️ لوحة التحكم الكبرى</h1>
-        <p>إدارة شاملة لجميع أقسام الموقع</p>
+        <h1>🎛️ لوحة التحكم</h1>
       </div>
 
-      <!-- التبويب الرئيسي -->
       <div class="main-tabs">
         <button class="main-tab active" data-tab="add">➕ إضافة محتوى</button>
         <button class="main-tab" data-tab="manage">📋 إدارة المحتوى</button>
@@ -254,7 +286,7 @@
       <!-- تبويب الإضافة -->
       <div id="panel-add" class="admin-panel">
         <div class="panel-card">
-          <h2>اختر القسم المراد الإضافة إليه:</h2>
+          <h2>اختر القسم:</h2>
           <div class="category-tabs">
             <button class="cat-btn active" data-cat="mods_java">
               ☕ مودات جافا
@@ -262,20 +294,8 @@
             <button class="cat-btn" data-cat="mods_bedrock">
               📱 مودات بيدروك
             </button>
-            <button
-              class="cat-btn"
-              disabled
-              style="text-decoration: line-through"
-            >
-              🔫 مودات راست (قريباً)
-            </button>
-            <button
-              class="cat-btn"
-              disabled
-              style="text-decoration: line-through"
-            >
-              🦖 مودات آرك (قريباً)
-            </button>
+            <button class="cat-btn" disabled>🔫 راست (قريباً)</button>
+            <button class="cat-btn" disabled>🦖 آرك (قريباً)</button>
             <button class="cat-btn" data-cat="games">🎮 ألعاب</button>
             <button class="cat-btn" data-cat="apps">💻 تطبيقات</button>
             <button class="cat-btn" data-cat="launchers">⛏️ مشغّلات</button>
@@ -283,60 +303,19 @@
           </div>
 
           <form id="addForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label>الاسم / العنوان *</label>
-                <input
-                  type="text"
-                  id="title"
-                  required
-                  placeholder="اسم المود، اللعبة، التطبيق..."
-                />
-              </div>
-              <div class="form-group" id="editionGroup" style="display: none">
-                <label>إصدار اللعبة (للجافا فقط) *</label>
-                <select id="edition">
-                  <option value="java">Java Edition</option>
-                  <option value="bedrock">Bedrock Edition</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-row" id="versionGroup" style="display: none">
-              <div class="form-group">
-                <label>نواة المود (Loader) *</label>
-                <select id="loader">
-                  <option value="Fabric">Fabric (فابريك)</option>
-                  <option value="Forge">Forge (فورج)</option>
-                  <option value="NeoForge">NeoForge</option>
-                  <option value="Quilt">Quilt</option>
-                  <option value="None">بدون نواة</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>إصدار اللعبة (مثلاً 1.20.1) *</label>
-                <input type="text" id="game_version" placeholder="1.20.1" />
-              </div>
-            </div>
-
+            <!-- البيانات الأساسية -->
             <div class="form-group">
-              <label>الوصف المختصر *</label>
-              <textarea
-                id="description"
+              <label>الاسم *</label>
+              <input
+                type="text"
+                id="title"
                 required
-                style="min-height: 80px"
-              ></textarea>
-            </div>
-            <div class="form-group" id="fullDescGroup">
-              <label>الوصف الكامل</label>
-              <textarea
-                id="full_description"
-                style="min-height: 120px"
-              ></textarea>
+                placeholder="اسم المود أو اللعبة"
+              />
             </div>
 
             <div class="form-group">
-              <label>رابط الصورة الرئيسية *</label>
+              <label>الصورة الرئيسية (رابط) *</label>
               <input
                 type="text"
                 id="image_url"
@@ -346,10 +325,80 @@
             </div>
 
             <div class="form-group">
-              <label>رابط التحميل / الموقع</label>
-              <input type="text" id="download_url" placeholder="https://..." />
+              <label>الوصف المختصر *</label>
+              <textarea
+                id="description"
+                required
+                style="min-height: 60px"
+                placeholder="يظهر في البطاقة..."
+              ></textarea>
             </div>
 
+            <div class="form-group" id="fullDescGroup">
+              <label>الوصف الطويل والدقيق</label>
+              <textarea
+                id="full_description"
+                style="min-height: 120px"
+                placeholder="يظهر في صفحة التفاصيل..."
+              ></textarea>
+            </div>
+
+            <!-- الحقول الخاصة بالمودات (إصدار ونواة) -->
+            <div id="modSpecificFields" style="display: block">
+              <h3>⚙️ تفاصيل المود</h3>
+              <div class="form-group">
+                <label>نواة المود (Loader)</label>
+                <select id="loader">
+                  <option value="Fabric">Fabric (فابريك)</option>
+                  <option value="Forge">Forge (فورج)</option>
+                  <option value="NeoForge">NeoForge</option>
+                  <option value="Quilt">Quilt</option>
+                  <option value="None">بدون نواة</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>إصدار اللعبة (مثلاً 1.20.1)</label>
+                <input type="text" id="game_version" placeholder="1.20.1" />
+              </div>
+
+              <div class="form-group">
+                <label>إصدار المود (Version)</label>
+                <input type="text" id="mod_version" placeholder="1.0.0" />
+              </div>
+
+              <div class="form-group">
+                <label>رابط التحميل</label>
+                <input
+                  type="text"
+                  id="download_url"
+                  placeholder="https://mediafire.com/..."
+                />
+              </div>
+
+              <div class="form-group">
+                <label>الصور الإضافية للمود (روابط مفصولة بفاصلة ,)</label>
+                <textarea
+                  id="extra_images"
+                  style="min-height: 60px"
+                  placeholder="images/img1.jpg, images/img2.jpg"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- الحقول الخاصة بالألعاب/التطبيقات/المواقع -->
+            <div id="otherSpecificFields" style="display: none">
+              <div class="form-group">
+                <label>رابط التحميل / الموقع</label>
+                <input
+                  type="text"
+                  id="other_download_url"
+                  placeholder="https://..."
+                />
+              </div>
+            </div>
+
+            <!-- فيديو الشرح للكل -->
             <div class="form-group">
               <label>رابط فيديو الشرح (اختياري)</label>
               <input
@@ -368,7 +417,7 @@
       <!-- تبويب الإدارة -->
       <div id="panel-manage" class="admin-panel" style="display: none">
         <div class="panel-card">
-          <h2>اختر القسم لعرض محتواه:</h2>
+          <h2>اختر القسم:</h2>
           <div class="category-tabs">
             <button class="cat-btn active" data-mcat="mods_java">
               ☕ مودات جافا
@@ -381,8 +430,58 @@
             <button class="cat-btn" data-mcat="launchers">⛏️ مشغّلات</button>
             <button class="cat-btn" data-mcat="websites">🌐 مواقع</button>
           </div>
-
           <div id="itemsList" class="items-list"></div>
+        </div>
+
+        <!-- لوحة التفاصيل المتقدمة (للتعديل) -->
+        <div
+          id="detailPanel"
+          class="panel-card"
+          style="display: none; margin-top: 20px"
+        >
+          <h2 id="detailTitle">تفاصيل العنصر</h2>
+
+          <h3>📸 الصور الإضافية</h3>
+          <div
+            class="form-group"
+            style="display: flex; gap: 10px; align-items: center"
+          >
+            <input
+              type="text"
+              id="newImageUrl"
+              placeholder="رابط الصورة..."
+              style="flex: 1"
+            />
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="addImage()"
+              style="white-space: nowrap"
+            >
+              ➕ إضافة
+            </button>
+          </div>
+          <div id="imagesList" class="images-grid"></div>
+
+          <h3>📦 الإصدارات</h3>
+          <div id="versionsList"></div>
+          <div style="display: flex; gap: 10px; margin-top: 10px">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="addVersionRow()"
+            >
+              ➕ إضافة إصدار
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="saveVersions()"
+              style="margin-top: 0; padding: 10px 20px; width: auto"
+            >
+              💾 حفظ الإصدارات الجديدة
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -390,8 +489,9 @@
     <script>
       const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
       let currentCategory = "mods_java";
+      let currentModId = null;
 
-      // التبديل بين تبويب الإضافة والإدارة
+      // التبديل بين التبويبات
       document.querySelectorAll(".main-tab").forEach((tab) => {
         tab.addEventListener("click", () => {
           document
@@ -415,92 +515,111 @@
             .forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
           currentCategory = btn.dataset.cat;
-          updateFormFields();
+
+          const modFields = document.getElementById("modSpecificFields");
+          const otherFields = document.getElementById("otherSpecificFields");
+          const fullDesc = document.getElementById("fullDescGroup");
+
+          if (
+            currentCategory === "mods_java" ||
+            currentCategory === "mods_bedrock"
+          ) {
+            modFields.style.display = "block";
+            otherFields.style.display = "none";
+            fullDesc.style.display = "block";
+          } else {
+            modFields.style.display = "none";
+            otherFields.style.display = "block";
+            fullDesc.style.display =
+              currentCategory === "websites" ? "none" : "block";
+          }
         });
       });
 
-      // تغيير الحقول بناءً على القسم
-      function updateFormFields() {
-        const editionGroup = document.getElementById("editionGroup");
-        const versionGroup = document.getElementById("versionGroup");
-        const fullDescGroup = document.getElementById("fullDescGroup");
-        const editionSelect = document.getElementById("edition");
-
-        if (currentCategory === "mods_java") {
-          editionGroup.style.display = "block";
-          versionGroup.style.display = "block";
-          fullDescGroup.style.display = "block";
-          editionSelect.value = "java";
-          editionSelect.disabled = true;
-          document.getElementById(
-            "loader",
-          ).parentElement.parentElement.style.display = "grid"; // إظهار النواة
-        } else if (currentCategory === "mods_bedrock") {
-          editionGroup.style.display = "block";
-          versionGroup.style.display = "none"; // بيدروك لا يحتاج نواة
-          fullDescGroup.style.display = "block";
-          editionSelect.value = "bedrock";
-          editionSelect.disabled = true;
-        } else if (currentCategory === "websites") {
-          editionGroup.style.display = "none";
-          versionGroup.style.display = "none";
-          fullDescGroup.style.display = "none"; // الموقع لا يحتاج وصف طويل
-        } else {
-          editionGroup.style.display = "none";
-          versionGroup.style.display = "none";
-          fullDescGroup.style.display = "block";
-        }
-      }
-
-      // إرسال النموذج
+      // حفظ المحتوى الجديد
       document
         .getElementById("addForm")
         .addEventListener("submit", async (e) => {
           e.preventDefault();
 
-          let category = "";
-          let edition = "";
+          let category = currentCategory.includes("mods")
+            ? "mods"
+            : currentCategory;
+          let edition =
+            currentCategory === "mods_java"
+              ? "java"
+              : currentCategory === "mods_bedrock"
+                ? "bedrock"
+                : "none";
+          let download_url = currentCategory.includes("mods")
+            ? document.getElementById("download_url").value
+            : document.getElementById("other_download_url").value;
 
-          if (currentCategory === "mods_java") {
-            category = "mods";
-            edition = "java";
-          } else if (currentCategory === "mods_bedrock") {
-            category = "mods";
-            edition = "bedrock";
-          } else {
-            category = currentCategory;
-            edition = "none";
-          }
-
-          const mod = {
+          const modData = {
             title: document.getElementById("title").value,
             description: document.getElementById("description").value,
             full_description: document.getElementById("full_description").value,
             image_url: document.getElementById("image_url").value,
-            download_url: document.getElementById("download_url").value,
+            download_url: download_url,
             category: category,
             edition: edition,
             video_url: document.getElementById("video_url").value,
-            // الحقول الجديدة
-            loader: document.getElementById("loader").value,
-            game_version: document.getElementById("game_version").value,
           };
 
           try {
+            // 1. إنشاء المود الأساسي
             const res = await fetch(API_URL, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(mod),
+              body: JSON.stringify(modData),
             });
             const data = await res.json();
+
             if (data.success) {
-              showMsg("✅ تم الحفظ بنجاح!", "success");
+              const newModId = data.id;
+
+              // 2. إضافة الإصدار الأول (إذا كان مود)
+              if (currentCategory.includes("mods")) {
+                const gVer = document.getElementById("game_version").value;
+                const mVer = document.getElementById("mod_version").value;
+                const loader = document.getElementById("loader").value;
+
+                if (mVer || gVer) {
+                  await fetch(`${API_URL}/${newModId}/versions`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      version: mVer || "1.0.0",
+                      minecraft_version: gVer || "-",
+                      download_url: download_url,
+                      changelog: `Loader: ${loader}`,
+                    }),
+                  });
+                }
+
+                // 3. إضافة الصور الإضافية
+                const extraImgs = document.getElementById("extra_images").value;
+                if (extraImgs.trim() !== "") {
+                  const imgsArr = extraImgs
+                    .split(",")
+                    .map((i) => i.trim())
+                    .filter((i) => i);
+                  for (const img of imgsArr) {
+                    await fetch(`${API_URL}/${newModId}/images`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ image_url: img }),
+                    });
+                  }
+                }
+              }
+
+              showMsg("✅ تم الحفظ بنجاح مع كامل التفاصيل!", "success");
               document.getElementById("addForm").reset();
-              updateFormFields();
             } else {
               showMsg("❌ خطأ: " + data.error, "error");
             }
-          } catch (e) {
+          } catch (err) {
             showMsg("❌ خطأ في الاتصال", "error");
           }
         });
@@ -512,11 +631,12 @@
             .querySelectorAll(".cat-btn[data-mcat]")
             .forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
+          document.getElementById("detailPanel").style.display = "none";
           loadItems(btn.dataset.mcat);
         });
       });
 
-      // تحميل العناصر للإدارة
+      // تحميل القائمة
       async function loadItems(forceCat = null) {
         const catToLoad = forceCat || "mods_java";
         const list = document.getElementById("itemsList");
@@ -539,7 +659,7 @@
 
           if (filtered.length === 0) {
             list.innerHTML =
-              "<p style='color:#888;text-align:center;'>لا يوجد محتوى في هذا القسم بعد.</p>";
+              "<p style='color:#888;text-align:center;'>لا يوجد محتوى بعد.</p>";
             return;
           }
 
@@ -551,10 +671,11 @@
                 <img src="${m.image_url}" alt="">
                 <div>
                   <h3>${m.title}</h3>
-                  <p>${m.loader ? "⚙️ " + m.loader : ""} ${m.game_version ? " | " + m.game_version : ""}</p>
+                  <p>${m.category} | ${m.edition}</p>
                 </div>
               </div>
               <div>
+                <button class="btn btn-secondary" onclick="loadDetails(${m.id})">⚙️ تعديل</button>
                 <button class="btn btn-danger" onclick="deleteItem(${m.id})">🗑 حذف</button>
               </div>
             </div>
@@ -566,21 +687,153 @@
         }
       }
 
-      window.deleteItem = async function (id) {
-        if (!confirm("هل أنت متأكد من الحذف؟")) return;
+      // تحميل تفاصيل العنصر لتعديله
+      window.loadDetails = async function (id) {
+        currentModId = id;
+        document.getElementById("detailPanel").style.display = "block";
+        document
+          .getElementById("detailPanel")
+          .scrollIntoView({ behavior: "smooth" });
+
         try {
-          await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-          document.querySelector(".cat-btn[data-mcat].active").click();
+          const res = await fetch(`${API_URL}/${id}`);
+          const mod = await res.json();
+
+          document.getElementById("detailTitle").textContent =
+            `📝 تعديل: ${mod.title}`;
+
+          // عرض الإصدارات
+          const vList = document.getElementById("versionsList");
+          if (mod.versions && mod.versions.length > 0) {
+            vList.innerHTML = mod.versions
+              .map(
+                (v) => `
+              <div class="version-row">
+                <input type="text" value="${v.version}" placeholder="الإصدار">
+                <input type="text" value="${v.minecraft_version || ""}" placeholder="إصدار اللعبة">
+                <input type="text" value="${v.download_url}" placeholder="الرابط">
+                <input type="text" value="${v.changelog || ""}" placeholder="الوصف">
+                <button class="btn btn-danger" onclick="deleteVersion(${v.id})">🗑</button>
+              </div>
+            `,
+              )
+              .join("");
+          } else {
+            vList.innerHTML = "<p style='color:#888;'>لا توجد إصدارات.</p>";
+          }
+
+          // عرض الصور
+          const iList = document.getElementById("imagesList");
+          if (mod.images && mod.images.length > 0) {
+            iList.innerHTML = mod.images
+              .map(
+                (img) => `
+              <div class="image-item">
+                <img src="${img.image_url}">
+                <button onclick="deleteImage(${img.id})">×</button>
+              </div>
+            `,
+              )
+              .join("");
+          } else {
+            iList.innerHTML = "<p style='color:#888;'>لا توجد صور إضافية.</p>";
+          }
         } catch (e) {
-          alert("خطأ");
+          console.error(e);
         }
+      };
+
+      function addVersionRow() {
+        const row = document.createElement("div");
+        row.className = "version-row";
+        row.innerHTML = `
+          <input type="text" placeholder="الإصدار">
+          <input type="text" placeholder="إصدار اللعبة">
+          <input type="text" placeholder="الرابط">
+          <input type="text" placeholder="الوصف">
+          <button class="btn btn-danger" onclick="this.parentElement.remove()">🗑</button>
+        `;
+        document.getElementById("versionsList").appendChild(row);
+      }
+
+      window.saveVersions = async function () {
+        if (!currentModId) return;
+        const rows = document.querySelectorAll("#versionsList .version-row");
+        let saved = 0;
+        for (const row of rows) {
+          const inputs = row.querySelectorAll("input");
+          const version = inputs[0].value;
+          const minecraft_version = inputs[1].value;
+          const download_url = inputs[2].value;
+          const changelog = inputs[3].value;
+          if (!version || !download_url) continue;
+          if (row.dataset.saved === "true") continue;
+
+          try {
+            await fetch(`${API_URL}/${currentModId}/versions`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                version,
+                minecraft_version,
+                download_url,
+                changelog,
+              }),
+            });
+            row.dataset.saved = "true";
+            saved++;
+          } catch (e) {
+            console.error(e);
+          }
+        }
+        if (saved > 0) {
+          alert("✅ تم حفظ " + saved + " إصدار");
+          loadDetails(currentModId);
+        } else {
+          alert("لا توجد إصدارات جديدة");
+        }
+      };
+
+      window.deleteVersion = async function (id) {
+        if (!confirm("حذف الإصدار؟")) return;
+        await fetch(`https://leon-at.leon-at.workers.dev/api/versions/${id}`, {
+          method: "DELETE",
+        });
+        loadDetails(currentModId);
+      };
+
+      window.addImage = async function () {
+        if (!currentModId) return;
+        const url = document.getElementById("newImageUrl").value;
+        if (!url) return alert("أدخل رابط الصورة");
+        await fetch(`${API_URL}/${currentModId}/images`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image_url: url }),
+        });
+        document.getElementById("newImageUrl").value = "";
+        loadDetails(currentModId);
+      };
+
+      window.deleteImage = async function (id) {
+        if (!confirm("حذف الصورة؟")) return;
+        await fetch(`https://leon-at.leon-at.workers.dev/api/images/${id}`, {
+          method: "DELETE",
+        });
+        loadDetails(currentModId);
+      };
+
+      window.deleteItem = async function (id) {
+        if (!confirm("هل أنت متأكد من حذف هذا العنصر بالكامل؟")) return;
+        await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        document.querySelector(".cat-btn[data-mcat].active").click();
       };
 
       function showMsg(text, type) {
         const m = document.getElementById("message");
         m.className = "message " + type;
         m.textContent = text;
-        setTimeout(() => (m.className = "message"), 3000);
+        setTimeout(() => (m.className = "message"), 4000);
       }
     </script>
   </body>
