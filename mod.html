@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>تفاصيل المود | LEON_AT</title>
-    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* ===== Breadcrumb ===== */
       .breadcrumb {
         max-width: 1400px;
         margin: 20px auto 0;
@@ -22,58 +21,49 @@
         color: #888;
         flex-wrap: wrap;
       }
-
       .breadcrumb a {
         color: #aaa;
         transition: color 0.3s;
+        text-decoration: none;
       }
-
       .breadcrumb a:hover {
         color: var(--primary);
       }
-
       .breadcrumb span {
         color: var(--primary);
         font-weight: 700;
       }
-
       .breadcrumb .separator {
         color: #555;
       }
-
-      /* ===== بطاقة المود الرئيسية ===== */
       .mod-card {
         max-width: 1400px;
         margin: 15px auto 0;
         padding: 0 24px;
       }
-
       .mod-header {
         background: var(--dark-2);
         border-radius: 14px;
         padding: 18px;
         border: 1px solid rgba(41, 214, 255, 0.15);
         display: grid;
-        grid-template-columns: 100px 1fr;
+        grid-template-columns: 120px 1fr;
         gap: 18px;
         align-items: start;
       }
-
       .mod-image {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         border-radius: 10px;
         overflow: hidden;
         border: 2px solid rgba(41, 214, 255, 0.3);
         flex-shrink: 0;
       }
-
       .mod-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-
       .mod-info h1 {
         font-size: 20px;
         font-weight: 900;
@@ -84,14 +74,12 @@
         background-clip: text;
         line-height: 1.3;
       }
-
       .mod-badges {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
         margin-bottom: 10px;
       }
-
       .badge {
         display: inline-flex;
         align-items: center;
@@ -101,63 +89,43 @@
         font-size: 11px;
         font-weight: 700;
       }
-
       .badge-edition {
         background: rgba(255, 165, 0, 0.15);
         color: #ffa500;
         border: 1px solid rgba(255, 165, 0, 0.3);
       }
-
       .badge-edition.bedrock {
         background: rgba(0, 212, 100, 0.15);
         color: #00d464;
         border-color: rgba(0, 212, 100, 0.3);
       }
-
       .badge-category {
         background: rgba(41, 214, 255, 0.15);
         color: var(--primary);
         border: 1px solid rgba(41, 214, 255, 0.3);
       }
-
-      .badge-rating {
-        background: rgba(255, 215, 0, 0.15);
-        color: #ffd700;
-        border: 1px solid rgba(255, 215, 0, 0.3);
-      }
-
-      .badge-downloads {
-        background: rgba(124, 58, 237, 0.15);
-        color: #a78bfa;
-        border: 1px solid rgba(124, 58, 237, 0.3);
-      }
-
       .mod-description {
         color: #bbb;
         font-size: 13px;
         line-height: 1.7;
         margin-bottom: 12px;
       }
-
       .mod-actions {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
       }
-
       .mod-actions a {
         padding: 8px 18px;
         font-size: 12px;
         border-radius: 8px;
+        text-decoration: none;
       }
-
-      /* ===== التبويبات ===== */
       .tabs-container {
         max-width: 1400px;
         margin: 25px auto;
         padding: 0 24px;
       }
-
       .tabs-header {
         display: flex;
         gap: 4px;
@@ -168,7 +136,6 @@
         margin-bottom: 15px;
         overflow-x: auto;
       }
-
       .tab-btn {
         flex: 1;
         padding: 10px 20px;
@@ -183,27 +150,18 @@
         transition: all 0.3s;
         white-space: nowrap;
       }
-
-      .tab-btn:hover {
-        color: var(--light);
-        background: rgba(255, 255, 255, 0.05);
-      }
-
       .tab-btn.active {
         background: var(--gradient-1);
         color: white;
         box-shadow: 0 4px 15px rgba(41, 214, 255, 0.3);
       }
-
       .tab-content {
         display: none;
         animation: fadeIn 0.3s ease-out;
       }
-
       .tab-content.active {
         display: block;
       }
-
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -214,8 +172,6 @@
           transform: translateY(0);
         }
       }
-
-      /* ===== الوصف ===== */
       .description-box {
         background: var(--dark-2);
         padding: 20px;
@@ -226,14 +182,11 @@
         line-height: 1.9;
         white-space: pre-wrap;
       }
-
-      /* ===== معرض الصور ===== */
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 12px;
       }
-
       .gallery img {
         width: 100%;
         height: 140px;
@@ -245,21 +198,17 @@
           box-shadow 0.3s;
         border: 2px solid transparent;
       }
-
       .gallery img:hover {
         transform: scale(1.05);
         box-shadow: 0 10px 30px rgba(41, 214, 255, 0.3);
         border-color: var(--primary);
       }
-
-      /* ===== الإصدارات ===== */
       .versions-list {
         background: var(--dark-2);
         border-radius: 12px;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.06);
       }
-
       .version-header {
         display: grid;
         grid-template-columns: 100px 130px 1fr 110px;
@@ -269,11 +218,8 @@
         color: var(--primary);
         font-weight: 700;
         font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
         gap: 12px;
       }
-
       .version-item {
         display: grid;
         grid-template-columns: 100px 130px 1fr 110px;
@@ -283,15 +229,9 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         transition: background 0.3s;
       }
-
       .version-item:last-child {
         border-bottom: none;
       }
-
-      .version-item:hover {
-        background: rgba(41, 214, 255, 0.05);
-      }
-
       .version-tag {
         background: var(--gradient-1);
         color: white;
@@ -303,13 +243,11 @@
         display: inline-block;
         width: fit-content;
       }
-
       .version-mc {
         color: var(--primary);
         font-weight: 600;
         font-size: 13px;
       }
-
       .version-changelog {
         color: #999;
         font-size: 12px;
@@ -317,7 +255,6 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-
       .version-download {
         background: var(--gradient-1);
         color: white;
@@ -326,18 +263,10 @@
         font-weight: 700;
         font-size: 12px;
         text-align: center;
-        transition:
-          transform 0.3s,
-          box-shadow 0.3s;
+        transition: 0.3s;
         display: inline-block;
+        text-decoration: none;
       }
-
-      .version-download:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(41, 214, 255, 0.4);
-      }
-
-      /* ===== الحالات الفارغة ===== */
       .empty-state {
         text-align: center;
         padding: 40px 30px;
@@ -347,19 +276,16 @@
         color: #666;
         font-size: 13px;
       }
-
       .empty-state-icon {
         font-size: 36px;
         margin-bottom: 10px;
         opacity: 0.5;
       }
-      /* ===== نافذة عرض الصور (Lightbox) ===== */
       .lightbox {
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.92);
         backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
         z-index: 9999;
         display: flex;
         align-items: center;
@@ -368,56 +294,17 @@
         pointer-events: none;
         transition: opacity 0.3s ease;
       }
-
       .lightbox.active {
         opacity: 1;
         pointer-events: all;
       }
-
-      .lightbox-content {
-        position: relative;
-        max-width: 90vw;
-        max-height: 85vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        animation: lightboxIn 0.4s ease-out;
-      }
-
-      @keyframes lightboxIn {
-        from {
-          opacity: 0;
-          transform: scale(0.9);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
       .lightbox-content img {
         max-width: 90vw;
         max-height: 80vh;
         object-fit: contain;
         border-radius: 12px;
-        box-shadow:
-          0 20px 60px rgba(0, 0, 0, 0.6),
-          0 0 80px rgba(41, 214, 255, 0.2);
         border: 2px solid rgba(41, 214, 255, 0.3);
       }
-
-      .lightbox-counter {
-        margin-top: 15px;
-        color: var(--primary);
-        font-weight: 700;
-        font-size: 14px;
-        padding: 6px 16px;
-        background: rgba(41, 214, 255, 0.1);
-        border-radius: 20px;
-        border: 1px solid rgba(41, 214, 255, 0.3);
-      }
-
-      /* زر الإغلاق */
       .lightbox-close {
         position: absolute;
         top: 20px;
@@ -427,259 +314,145 @@
         border-radius: 50%;
         background: rgba(255, 50, 50, 0.9);
         color: white;
-        border: 2px solid rgba(255, 255, 255, 0.2);
+        border: none;
         font-size: 22px;
-        font-weight: 700;
         cursor: pointer;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10001;
-        box-shadow: 0 4px 20px rgba(255, 50, 50, 0.4);
       }
-
-      .lightbox-close:hover {
-        background: #ff3333;
-        transform: scale(1.1) rotate(90deg);
-        box-shadow: 0 6px 30px rgba(255, 50, 50, 0.7);
-      }
-
-      /* أزرار التنقل */
       .lightbox-nav {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 56px;
-        height: 56px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         background: rgba(41, 214, 255, 0.15);
         color: var(--primary);
         border: 2px solid rgba(41, 214, 255, 0.4);
-        font-size: 36px;
-        font-weight: 700;
+        font-size: 32px;
         cursor: pointer;
-        transition: all 0.3s;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 10001;
-        backdrop-filter: blur(10px);
-        line-height: 1;
-        padding-bottom: 6px;
       }
-
-      .lightbox-nav:hover {
-        background: rgba(41, 214, 255, 0.3);
-        border-color: var(--primary);
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 0 30px rgba(41, 214, 255, 0.5);
-      }
-
       .lightbox-prev {
-        right: 30px;
+        right: 20px;
       }
-
       .lightbox-next {
-        left: 30px;
+        left: 20px;
       }
-
-      /* استجابة الجوال */
-      @media (max-width: 768px) {
-        .lightbox-close {
-          top: 15px;
-          right: 15px;
-          width: 42px;
-          height: 42px;
-          font-size: 18px;
-        }
-
-        .lightbox-nav {
-          width: 44px;
-          height: 44px;
-          font-size: 28px;
-        }
-
-        .lightbox-prev {
-          right: 10px;
-        }
-
-        .lightbox-next {
-          left: 10px;
-        }
-
-        .lightbox-content img {
-          max-width: 95vw;
-          max-height: 70vh;
-        }
-      }
-
-      /* ===== استجابة الجوال ===== */
       @media (max-width: 768px) {
         .mod-header {
           grid-template-columns: 1fr;
           padding: 15px;
           gap: 15px;
+          text-align: center;
         }
-
         .mod-image {
-          width: 100%;
-          height: 180px;
+          width: 120px;
+          height: 120px;
+          margin: 0 auto;
         }
-
-        .mod-info h1 {
-          font-size: 18px;
-        }
-
         .tabs-container {
           margin: 20px auto;
         }
-
-        .tab-btn {
-          padding: 8px 14px;
-          font-size: 12px;
-        }
-
         .version-header {
           display: none;
         }
-
         .version-item {
           grid-template-columns: 1fr;
           gap: 8px;
           padding: 12px;
+          text-align: center;
         }
-
         .version-changelog {
           white-space: normal;
         }
-
-        .mod-actions a {
-          flex: 1;
-          text-align: center;
+        .version-download {
+          width: 100%;
         }
-
-        .breadcrumb {
-          font-size: 11px;
+        .mod-badges {
+          justify-content: center;
         }
       }
     </style>
   </head>
   <body id="top">
-    <!-- شاشة التحميل -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loader">
         <div class="loader-logo">
-          <img src="../../images/logo.png" alt="LEON_AT" />
+          <img src="images/logo.png" alt="LEON_AT" />
         </div>
         <div class="loader-spinner"></div>
         <p class="loader-text">جارٍ التحميل...</p>
       </div>
     </div>
-
-    <!-- ===========================================
-     شريط التنقل المبسّط
-     ============================================ -->
     <nav class="navbar navbar-inner">
       <div class="nav-container">
-        <a href="../../index.html" class="logo">
-          <img src="../../images/logo.png" alt="LEON_AT" class="logo-img" />
-          <span>LEON_AT</span>
-        </a>
-
-        <!-- ⭐ زر السابق -->
+        <a href="index.html" class="logo"
+          ><img src="images/logo.png" alt="LEON_AT" class="logo-img" /><span
+            >LEON_AT</span
+          ></a
+        >
         <button class="nav-back-btn" onclick="history.back()">← السابق</button>
       </div>
     </nav>
-
-    <!-- Breadcrumb -->
     <div class="breadcrumb" id="breadcrumb">
-      <a href="index.html">🏠 الرئيسية</a>
-      <span class="separator">›</span>
-      <a href="addons-java.html" id="breadcrumbParent">📦 إضافات Java</a>
-      <span class="separator">›</span>
+      <a href="index.html">🏠 الرئيسية</a><span class="separator">›</span>
+      <a href="addons-java.html" id="breadcrumbParent">📦 إضافات Java</a
+      ><span class="separator">›</span>
       <span id="breadcrumbTitle">جارٍ التحميل...</span>
     </div>
-
-    <!-- بطاقة المود -->
     <div class="mod-card" id="modCard">
       <div class="empty-state">
         <div class="empty-state-icon">⏳</div>
         جارٍ تحميل التفاصيل...
       </div>
     </div>
-
-    <!-- التبويبات -->
     <div class="tabs-container" id="tabsContainer" style="display: none">
       <div class="tabs-header">
         <button class="tab-btn active" data-tab="description">📝 الوصف</button>
         <button class="tab-btn" data-tab="images">📸 الصور</button>
         <button class="tab-btn" data-tab="versions">📦 الإصدارات</button>
       </div>
-
       <div class="tab-content active" id="tab-description">
         <div class="description-box" id="descriptionContent">
           جارٍ التحميل...
         </div>
       </div>
-
       <div class="tab-content" id="tab-images">
         <div id="imagesContent">جارٍ التحميل...</div>
       </div>
-
       <div class="tab-content" id="tab-versions">
         <div id="versionsContent">جارٍ التحميل...</div>
       </div>
     </div>
-    <!-- ===== نافذة عرض الصور (Lightbox) ===== -->
     <div class="lightbox" id="lightbox">
-      <button class="lightbox-close" id="lightboxClose" title="إغلاق">✕</button>
-      <button
-        class="lightbox-nav lightbox-prev"
-        id="lightboxPrev"
-        title="السابق"
-      >
-        ‹
-      </button>
-      <button
-        class="lightbox-nav lightbox-next"
-        id="lightboxNext"
-        title="التالي"
-      >
-        ›
-      </button>
-
+      <button class="lightbox-close" id="lightboxClose">✕</button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
       <div class="lightbox-content">
         <img src="" alt="صورة" id="lightboxImage" />
-        <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
       </div>
     </div>
-
-    <!-- التذييل -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
           <h4>LEON_AT</h4>
-          <p>موقعك الأول لتحميل المودات والتطبيقات المشروحة على قناتي.</p>
-        </div>
-        <div class="footer-col">
-          <h4>روابط سريعة</h4>
-          <ul>
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><a href="addons-java.html">إضافات Java</a></li>
-            <li><a href="addons-bedrock.html">إضافات Bedrock</a></li>
-            <li><a href="games.html">الألعاب</a></li>
-            <li><a href="apps.html">التطبيقات</a></li>
-          </ul>
+          <p>موقعك الأول لتحميل المودات والتطبيقات.</p>
         </div>
         <div class="footer-col">
           <h4>تابعني</h4>
           <ul>
             <li>
-              <a href="https://youtube.com/@leon-at" target="_blank">يوتيوب</a>
+              <a href="https://youtube.com/@leon-at" target="_blank"
+                >▶ يوتيوب</a
+              >
             </li>
-            <li><a href="#">تيليجرام</a></li>
-            <li><a href="#">إنستجرام</a></li>
+            <li>
+              <a href="https://instagram.com/leon_at" target="_blank"
+                >📷 إنستجرام</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -687,137 +460,98 @@
         <p>© 2026 LEON_AT — جميع الحقوق محفوظة</p>
       </div>
     </footer>
-
     <script>
       const API_URL = "https://leon-at.leon-at.workers.dev/api/mods";
-
-      // جلب ID المود من الرابط
       const params = new URLSearchParams(window.location.search);
       const modId = params.get("id");
 
       async function loadModDetails() {
         const cardContainer = document.getElementById("modCard");
-
         if (!modId) {
           cardContainer.innerHTML =
-            "<div class='empty-state'><div class='empty-state-icon'>❌</div>لم يتم تحديد مود</div>";
+            "<div class='empty-state'>لم يتم تحديد مود</div>";
           return;
         }
-
         try {
           const response = await fetch(`${API_URL}/${modId}`);
           const mod = await response.json();
-
           if (mod.error) {
             cardContainer.innerHTML =
-              "<div class='empty-state'><div class='empty-state-icon'>❌</div>المود غير موجود</div>";
+              "<div class='empty-state'>المود غير موجود</div>";
             return;
           }
 
-          // ===== Breadcrumb =====
           document.getElementById("breadcrumbTitle").textContent = mod.title;
-
           const parentLink = document.getElementById("breadcrumbParent");
           if (mod.edition === "bedrock") {
             parentLink.textContent = "📦 إضافات Bedrock";
             parentLink.href = "addons-bedrock.html";
+          } else if (mod.edition === "rust") {
+            parentLink.textContent = "📦 إضافات Rust";
+            parentLink.href = "addons-rust.html";
+          } else if (mod.edition === "ark") {
+            parentLink.textContent = "📦 إضافات ARK";
+            parentLink.href = "addons-ark.html";
+          } else {
+            parentLink.textContent = "📦 إضافات Java";
+            parentLink.href = "addons-java.html";
           }
 
-          // ===== شارات =====
           const editionClass = mod.edition === "bedrock" ? "bedrock" : "";
-          const editionText = mod.edition === "bedrock" ? "Bedrock" : "Java";
-
-          const ratingBadge = mod.rating
-            ? `<span class="badge badge-rating">⭐ ${mod.rating}</span>`
-            : "";
-          const downloadsBadge = mod.downloads
-            ? `<span class="badge badge-downloads">⬇ ${mod.downloads}</span>`
-            : "";
-
-          // ===== زر الفيديو =====
+          const editionText =
+            mod.edition === "bedrock"
+              ? "Bedrock"
+              : mod.edition === "rust"
+                ? "Rust"
+                : mod.edition === "ark"
+                  ? "ARK"
+                  : "Java";
           const videoBtn = mod.video_url
-            ? `<a href="${mod.video_url}" target="_blank" class="btn-secondary">▶ مشاهدة الشرح</a>`
+            ? `<a href="${mod.video_url}" target="_blank" class="btn-secondary" style="background:var(--gradient-1); color:white;">▶ مشاهدة الشرح</a>`
             : "";
 
-          // ===== بطاقة المود =====
           cardContainer.innerHTML = `
             <div class="mod-header">
-              <div class="mod-image">
-                <img src="${mod.image_url}" alt="${mod.title}">
-              </div>
+              <div class="mod-image"><img src="${mod.image_url}" alt="${mod.title}"></div>
               <div class="mod-info">
                 <h1>${mod.title}</h1>
                 <div class="mod-badges">
                   <span class="badge badge-edition ${editionClass}">🎮 ${editionText} Edition</span>
                   <span class="badge badge-category">📁 ${mod.category}</span>
-                  ${ratingBadge}
-                  ${downloadsBadge}
                 </div>
-<p class="mod-description">
-  <span style="color: var(--primary); font-weight: 700; display: inline-block; margin-bottom: 5px;">
-    ⚙️ النوع: ${mod.loader || "غير محدد"} | 🎮 إصدار اللعبة: ${mod.game_version || "غير محدد"}
-  </span><br>
-  <span style="font-size: 13px; color: #aaa;">${mod.description}</span>
-</p>                                <div class="mod-actions">
-                  ${videoBtn || ""}
-                </div>
+                <p class="mod-description">
+                  <span style="color: var(--primary); font-weight: 700; display: inline-block; margin-bottom: 5px;">
+                    ⚙️ النوع: ${mod.loader || "غير محدد"} | 🎮 إصدار اللعبة: ${mod.game_version || "غير محدد"}
+                  </span><br>
+                  <span style="font-size: 13px; color: #aaa;">${mod.description}</span>
+                </p>
+                <div class="mod-actions">${videoBtn}</div>
               </div>
             </div>
           `;
 
-          // ===== إظهار التبويبات =====
           document.getElementById("tabsContainer").style.display = "block";
-
-          // ===== محتوى الوصف =====
           const descriptionContent =
             document.getElementById("descriptionContent");
           if (mod.full_description) {
             descriptionContent.textContent = mod.full_description;
           } else {
-            descriptionContent.innerHTML = `
-              <div class="empty-state" style="border:none;background:transparent;padding:20px;">
-                <div class="empty-state-icon">📝</div>
-                لا يوجد وصف كامل لهذا المود بعد
-              </div>
-            `;
+            descriptionContent.innerHTML = `<div class="empty-state" style="border:none;background:transparent;">لا يوجد وصف كامل بعد</div>`;
           }
 
-          // ===== محتوى الصور =====
           const imagesContent = document.getElementById("imagesContent");
           if (mod.images && mod.images.length > 0) {
-            imagesContent.innerHTML = `
-              <div class="gallery">
-                ${mod.images
-                  .map(
-                    (img, index) =>
-                      `${img.image_url.match(/\.(jpeg|jpg|gif|png|webp)$/i) ? `<img src="${img.image_url}" alt="صورة" data-index="${index}" class="gallery-img" style="cursor:pointer;">` : ""}`,
-                  )
-                  .join("")}
-              </div>
-            `;
-
-            // تخزين الصور للاستخدام في Lightbox
+            imagesContent.innerHTML = `<div class="gallery">${mod.images.map((img, index) => `${img.image_url.match(/\.(jpeg|jpg|gif|png|webp)$/i) ? `<img src="${img.image_url}" alt="صورة" data-index="${index}" class="gallery-img">` : ""}`).join("")}</div>`;
             window.galleryImages = mod.images.map((img) => img.image_url);
           } else {
-            imagesContent.innerHTML = `
-              <div class="empty-state">
-                <div class="empty-state-icon">📸</div>
-                لا توجد صور مضافة بعد
-              </div>
-            `;
+            imagesContent.innerHTML = `<div class="empty-state">لا توجد صور مضافة بعد</div>`;
           }
 
-          // ===== محتوى الإصدارات =====
           const versionsContent = document.getElementById("versionsContent");
           if (mod.versions && mod.versions.length > 0) {
             versionsContent.innerHTML = `
               <div class="versions-list">
-                <div class="version-header">
-                  <span>الإصدار</span>
-                  <span>إصدار اللعبة</span>
-                  <span>الوصف</span>
-                  <span>التحميل</span>
-                </div>
+                <div class="version-header"><span>الإصدار</span><span>إصدار اللعبة</span><span>الوصف</span><span>التحميل</span></div>
                 ${mod.versions
                   .map(
                     (v) => `
@@ -833,95 +567,52 @@
               </div>
             `;
           } else {
-            versionsContent.innerHTML = `
-              <div class="empty-state">
-                <div class="empty-state-icon">📦</div>
-                لا توجد إصدارات مضافة بعد
-              </div>
-            `;
+            versionsContent.innerHTML = `<div class="empty-state">لا توجد إصدارات مضافة بعد</div>`;
           }
         } catch (error) {
           cardContainer.innerHTML =
-            "<div class='empty-state'><div class='empty-state-icon'>❌</div>خطأ في تحميل البيانات</div>";
-          console.error(error);
+            "<div class='empty-state'>خطأ في تحميل البيانات</div>";
         }
       }
 
-      // ===== التبويبات =====
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
-          const tabName = btn.dataset.tab;
-
-          // تحديث الأزرار
-          document.querySelectorAll(".tab-btn").forEach((b) => {
-            b.classList.remove("active");
-          });
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
-
-          // تحديث المحتوى
-          document.querySelectorAll(".tab-content").forEach((content) => {
-            content.classList.remove("active");
-          });
-          document.getElementById(`tab-${tabName}`).classList.add("active");
+          document
+            .querySelectorAll(".tab-content")
+            .forEach((content) => content.classList.remove("active"));
+          document
+            .getElementById(`tab-${btn.dataset.tab}`)
+            .classList.add("active");
         });
       });
 
-      // ===== شاشة التحميل =====
-      const loadingOverlay = document.getElementById("loadingOverlay");
-      if (loadingOverlay) {
-        document.querySelectorAll('a[href$=".html"]').forEach((link) => {
-          const href = link.getAttribute("href");
-          if (!href || href.startsWith("#") || href.startsWith("http")) return;
-
-          link.addEventListener("click", (e) => {
-            e.preventDefault();
-            loadingOverlay.classList.add("active");
-            setTimeout(() => {
-              window.location.href = link.href;
-            }, 600);
-          });
-        });
-
-        window.addEventListener("pageshow", () => {
-          loadingOverlay.classList.remove("active");
-        });
-      }
-
-      // ===== تحميل الصفحة =====
       loadModDetails();
-      // ===== معرض الصور (Lightbox) =====
       const lightbox = document.getElementById("lightbox");
       const lightboxImage = document.getElementById("lightboxImage");
-      const lightboxCounter = document.getElementById("lightboxCounter");
       const lightboxClose = document.getElementById("lightboxClose");
       const lightboxPrev = document.getElementById("lightboxPrev");
       const lightboxNext = document.getElementById("lightboxNext");
-
       let currentImageIndex = 0;
 
-      // فتح Lightbox عند النقر على صورة
       document.addEventListener("click", (e) => {
         if (e.target.classList.contains("gallery-img")) {
-          const index = parseInt(e.target.dataset.index);
-          openLightbox(index);
+          openLightbox(parseInt(e.target.dataset.index));
         }
       });
 
       function openLightbox(index) {
         if (!window.galleryImages || window.galleryImages.length === 0) return;
-
         currentImageIndex = index;
         updateLightboxImage();
         lightbox.classList.add("active");
-        document.body.style.overflow = "hidden";
       }
-
       function updateLightboxImage() {
         const images = window.galleryImages;
         lightboxImage.src = images[currentImageIndex];
-        lightboxCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
-
-        // إخفاء أزرار التنقل إذا كانت صورة واحدة
         if (images.length <= 1) {
           lightboxPrev.style.display = "none";
           lightboxNext.style.display = "none";
@@ -930,44 +621,26 @@
           lightboxNext.style.display = "flex";
         }
       }
-
       function closeLightbox() {
         lightbox.classList.remove("active");
-        document.body.style.overflow = "";
       }
-
       function nextImage() {
-        const images = window.galleryImages;
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        updateLightboxImage();
-      }
-
-      function prevImage() {
-        const images = window.galleryImages;
         currentImageIndex =
-          (currentImageIndex - 1 + images.length) % images.length;
+          (currentImageIndex + 1) % window.galleryImages.length;
+        updateLightboxImage();
+      }
+      function prevImage() {
+        currentImageIndex =
+          (currentImageIndex - 1 + window.galleryImages.length) %
+          window.galleryImages.length;
         updateLightboxImage();
       }
 
-      // أحداث الأزرار
       lightboxClose.addEventListener("click", closeLightbox);
       lightboxNext.addEventListener("click", nextImage);
       lightboxPrev.addEventListener("click", prevImage);
-
-      // إغلاق عند النقر على الخلفية
       lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
-      });
-
-      // دعم لوحة المفاتيح
-      document.addEventListener("keydown", (e) => {
-        if (!lightbox.classList.contains("active")) return;
-
-        if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") prevImage();
-        if (e.key === "ArrowLeft") nextImage();
+        if (e.target === lightbox) closeLightbox();
       });
     </script>
   </body>
