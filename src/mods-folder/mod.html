@@ -753,8 +753,12 @@
                   ${ratingBadge}
                   ${downloadsBadge}
                 </div>
-                <p class="mod-description">${mod.description}</p>
-                                <div class="mod-actions">
+<p class="mod-description">
+  <span style="color: var(--primary); font-weight: 700; display: inline-block; margin-bottom: 5px;">
+    ⚙️ النوع: ${mod.loader || "غير محدد"} | 🎮 إصدار اللعبة: ${mod.game_version || "غير محدد"}
+  </span><br>
+  <span style="font-size: 13px; color: #aaa;">${mod.description}</span>
+</p>                                <div class="mod-actions">
                   ${videoBtn || ""}
                 </div>
               </div>
@@ -786,7 +790,7 @@
                 ${mod.images
                   .map(
                     (img, index) =>
-                      `<img src="${img.image_url}" alt="صورة" data-index="${index}" class="gallery-img" style="cursor:pointer;">`,
+                      `${img.image_url.match(/\.(jpeg|jpg|gif|png|webp)$/i) ? `<img src="${img.image_url}" alt="صورة" data-index="${index}" class="gallery-img" style="cursor:pointer;">` : ""}`,
                   )
                   .join("")}
               </div>
